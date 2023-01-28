@@ -365,7 +365,7 @@ Public Class AntiguedadCli
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+        'Hola a quien vea esto
         If IsNothing(CmbAgteVta.SelectedValue) Then
             MessageBox.Show("Seleccione un agente", _
             "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
