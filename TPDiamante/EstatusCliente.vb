@@ -223,21 +223,21 @@ Public Class EstatusCliente
 
  ' Boton consultar
  Private Sub bConsultar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bConsultar.Click
-  Try
+        Try
 
-   Dim sError As String
+            Dim sError As String
 
-   sError = String.Empty
-   If (fValidaDatos(sError)) Then
-    mConsultaCliente(String.Empty, dtDel.Value, dtAl.Value)
-    BtnExcel.Visible = True
-   Else
-    MsgBox("Verifique los siguientes campos: " + sError, MsgBoxStyle.Exclamation, "Tracto Partes Diamante")
-   End If
+            sError = String.Empty
+            If (fValidaDatos(sError)) Then
+                mConsultaCliente(String.Empty, dtDel.Value, dtAl.Value)
+                BtnExcel.Visible = True
+            Else
+                MsgBox("Verifique los siguientes campos: " + sError, MsgBoxStyle.Exclamation, "Tracto Partes Diamante")
+            End If
 
 
-  Catch ex As Exception
-   MsgBox("Error al cargar en el metodo:" + Environment.NewLine + "-bConsultar_Click() " +
+        Catch ex As Exception
+            MsgBox("Error al cargar en el metodo:" + Environment.NewLine + "-bConsultar_Click() " +
                  Environment.NewLine + ex.ToString(), MsgBoxStyle.Critical, "Tracto Partes Diamante")
   End Try
  End Sub
