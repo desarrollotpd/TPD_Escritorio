@@ -184,8 +184,8 @@ Public Class frmpantallasEntrega
  End Sub
  Sub LlenarEmpaque()
   Try
-   dgvEntrega.DataSource = SQL.EjecutarProcedimiento("TPD_Estatus_Empaque", "", 0, "")
-   EstiloEmpaque()
+			dgvEntrega.DataSource = SQL.EjecutarProcedimiento("TPD_Estatus_Empaque2", "", 0, "")
+			EstiloEmpaque()
   Catch ex As Exception
    MsgBox("Error: " + ex.ToString)
   End Try

@@ -11,12 +11,12 @@ Public Class ReciboMatDetalle
     Dim DvDetFactEnt As New DataView
 
     Private Sub ReciboMat_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Then
-            DgvOrdCompra.ReadOnly = True
-            DgvDetOComp.ReadOnly = True
-            Button1.Visible = False
-        End If
-        cargar_registros()
+		If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Then
+			DgvOrdCompra.ReadOnly = True
+			DgvDetOComp.ReadOnly = True
+			Button1.Visible = False
+		End If
+		cargar_registros()
     End Sub
     Sub cargar_registros()
 
@@ -338,29 +338,29 @@ Public Class ReciboMatDetalle
             .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
 
-            If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Then
-                .Columns(9).HeaderText = "$ Precio"
-                .Columns(9).Width = 70
-                .Columns(9).DefaultCellStyle.Format = "###,###,###.00"
-                .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(9).Visible = False
-            Else
-                .Columns(9).HeaderText = "$ Precio"
+			If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Then
+				.Columns(9).HeaderText = "$ Precio"
+				.Columns(9).Width = 70
+				.Columns(9).DefaultCellStyle.Format = "###,###,###.00"
+				.Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+				.Columns(9).Visible = False
+			Else
+				.Columns(9).HeaderText = "$ Precio"
                 .Columns(9).Width = 70
                 .Columns(9).DefaultCellStyle.Format = "###,###,###.00"
                 .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 .Columns(9).ReadOnly = True
             End If
 
-            If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Then
-                .Columns(10).HeaderText = "$ Total"
-                .Columns(10).Width = 70
-                .Columns(10).DefaultCellStyle.Format = "###,###,###.00"
-                .Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(10).Visible = False
+			If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Then
+				.Columns(10).HeaderText = "$ Total"
+				.Columns(10).Width = 70
+				.Columns(10).DefaultCellStyle.Format = "###,###,###.00"
+				.Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+				.Columns(10).Visible = False
 
-            Else
-                .Columns(10).HeaderText = "$ Total"
+			Else
+				.Columns(10).HeaderText = "$ Total"
                 .Columns(10).Width = 70
                 .Columns(10).DefaultCellStyle.Format = "###,###,###.00"
                 .Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
@@ -368,12 +368,12 @@ Public Class ReciboMatDetalle
             End If
 
 
-            If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Then
-                .Columns(11).HeaderText = "Estatus"
-                .Columns(11).Width = 50
-                .Columns(11).Visible = False
-            Else
-                .Columns(11).HeaderText = "Estatus"
+			If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Then
+				.Columns(11).HeaderText = "Estatus"
+				.Columns(11).Width = 50
+				.Columns(11).Visible = False
+			Else
+				.Columns(11).HeaderText = "Estatus"
                 .Columns(11).Width = 50
                 .Columns(11).ReadOnly = True
 

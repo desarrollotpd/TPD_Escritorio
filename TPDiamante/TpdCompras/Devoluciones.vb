@@ -28,21 +28,21 @@ Public Class Devoluciones
             BSave.Location = New Point(673, 90)
             Label1.Location = New Point(650, 128)
         End If
-        'DGGarantias.Columns.Clear()
+		'DGGarantias.Columns.Clear()
 
 
 
-        If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" _
-                    Or UsrTPM = "ASTRIDY" Or UsrTPM = "VENTAS5" Or UsrTPM = "VENTAS4" Or UsrTPM = "RROBLES" Or UsrTPM = "VENTAS8" _
-                    Or UsrTPM = "VVERGARA" Or UsrTPM = "VENTAS1" Then
-            Button1.Visible = False
-            BSave.Visible = False
-            Label1.Visible = False
+		If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" _
+																				Or UsrTPM = "ASTRIDY" Or UsrTPM = "VENTAS5" Or UsrTPM = "VENTAS4" Or UsrTPM = "RROBLES" Or UsrTPM = "VENTAS8" _
+																				Or UsrTPM = "VVERGARA" Or UsrTPM = "VENTAS1" Then
+			Button1.Visible = False
+			BSave.Visible = False
+			Label1.Visible = False
 
 
-        End If
+		End If
 
-        Try
+		Try
             ''--------------------
             TBDocNum.BackColor = Color.Cornsilk
 

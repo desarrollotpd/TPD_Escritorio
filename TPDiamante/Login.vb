@@ -388,19 +388,19 @@ Public Class Login
 
   Dim slpcode As String = SQL2.CampoEspecifico("SELECT t0.slpcode FROM BonoMensual_ParametrosPorAgente t0 INNER JOIN Usuarios t1 ON t0.slpcode = t1.CodAgte WHERE t1.Id_Usuario = '" + TxtUsuario.Text + "'", "slpcode")
 
-  If slpcode = "False" And TxtUsuario.Text <> "MANAGER" And TxtUsuario.Text = "TESORERIA" And TxtUsuario.Text <> "COMERCIAL" And TxtUsuario.Text <> "SISTEMAS" Then
-   Inicio.MnuBonoMensual.Visible = False
-  Else
-   Inicio.MnuBonoMensual.Visible = True
+		If slpcode = "False" And TxtUsuario.Text <> "MANAGER" And TxtUsuario.Text = "TESORERIA" And TxtUsuario.Text <> "COMERCIAL" And TxtUsuario.Text <> "CGARCIA" And TxtUsuario.Text <> "SISTEMAS" Then
+			Inicio.MnuBonoMensual.Visible = False
+		Else
+			Inicio.MnuBonoMensual.Visible = True
   End If
 
   SQL2.Cerrar()
 
-  'Ventas líneas remate / Obsoletos
-  If TxtUsuario.Text = "MANAGER" Then
-   Inicio.VentasLineasRemateObsoletosToolStripMenuItem.Visible = True
-  Else
-   Inicio.VentasLineasRemateObsoletosToolStripMenuItem.Visible = False
+		'Ventas líneas remate / Obsoletos
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			Inicio.VentasLineasRemateObsoletosToolStripMenuItem.Visible = True
+		Else
+			Inicio.VentasLineasRemateObsoletosToolStripMenuItem.Visible = False
   End If
 
 
@@ -453,8 +453,13 @@ Public Class Login
    Inicio.MListas.Visible = False
   End If
 
-        'Surtimiento
-        If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "OPALMACEN" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "ALMACEN1" _
+		'OPERACION DIAMANTE
+		If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			Inicio.OperaciónDiamanteToolStripMenuItem.Visible = False
+		End If
+
+		'Surtimiento
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "OPALMACEN" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "ALMACEN1" _
       Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "ALMACENS" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "RHUMANOS" _
       Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ALMER" Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "VOTNIEL" Then
 
@@ -557,61 +562,61 @@ Public Class Login
   End If
 
 
-  '•	BACK ORDER
-  'o	Por recuperar
+		'•	BACK ORDER
+		'o	Por recuperar
 
 
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-            Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" _
-            Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "AINVEN" _
-            Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
-            Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-            Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
-            Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" _
-            Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "ATABASCO" _
-            Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "ATUXTLA" _
-            Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" _
-            Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+												Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" _
+												Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "AINVEN" _
+												Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
+												Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+												Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
+												Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" _
+												Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "ATABASCO" _
+												Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "ATUXTLA" _
+												Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" _
+												Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
 
-   Inicio.SMBoPorRec.Visible = True
-   Inicio.SMBoPorRec.Enabled = True
+			Inicio.SMBoPorRec.Visible = True
+			Inicio.SMBoPorRec.Enabled = True
 
-  End If
+		End If
 
-  'o	Back Order - VENTAS
+		'o	Back Order - VENTAS
 
-  If TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" Then
+		If TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" Then
             Inicio.SMValInvPRO.Visible = True
             Inicio.SMValInvPRO.Enabled = True
         End If
 
-        If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "AVERACRUZ" Or TxtUsuario.Text = "JSANCHEZ" _
-               Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "ATUXTLA" Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "COMERCIAL" Then
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "AVERACRUZ" Or TxtUsuario.Text = "JSANCHEZ" _
+															Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "ATUXTLA" Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
 
-   Inicio.SMBOVentas.Visible = True
-   Inicio.SMBOVentas.Enabled = True
+			Inicio.SMBOVentas.Visible = True
+			Inicio.SMBOVentas.Enabled = True
 
-   Inicio.SMValInvPRO.Visible = True
-   Inicio.SMValInvPRO.Enabled = True
+			Inicio.SMValInvPRO.Visible = True
+			Inicio.SMValInvPRO.Enabled = True
 
-   Inicio.MAutos.Visible = True
+			Inicio.MAutos.Visible = True
 
-  End If
+		End If
 
-        'o	Recuperado
-        If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" _
-      Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
-      Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "VENTAS14" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Then
+		'o	Recuperado
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" _
+						Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
+						Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "VENTAS14" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Then
 
-            Inicio.SMBoRec.Visible = True
-            Inicio.SMBoRec.Enabled = True
+			Inicio.SMBoRec.Visible = True
+			Inicio.SMBoRec.Enabled = True
 
-        End If
+		End If
 
-  'o	Registro de BO recuperado
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+		'o	Registro de BO recuperado
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
       Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
       Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Then
 
@@ -620,26 +625,26 @@ Public Class Login
 
   End If
 
-  'o	BOLineas
+		'o	BOLineas
 
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" _
-      Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" Or TxtUsuario.Text = "AINVEN" _
-      Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-      Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-      Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
-      Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" _
+						Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" Or TxtUsuario.Text = "AINVEN" _
+						Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+						Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+						Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" _
+						Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
 
-   Inicio.SMBOLineas.Visible = True
-   Inicio.SMBOLineas.Enabled = True
+			Inicio.SMBOLineas.Visible = True
+			Inicio.SMBOLineas.Enabled = True
 
-  End If
+		End If
 
-  '•	COBRANZA
-  'o	Cobranza recuperada
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+		'•	COBRANZA
+		'o	Cobranza recuperada
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
       Or TxtUsuario.Text = "COBRANZ1" Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "COBRANZ4" _
       Or TxtUsuario.Text = "COBRANZ5" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "COBRANZ3" Then
 
@@ -649,133 +654,143 @@ Public Class Login
   End If
 
 
-  'o	Cobranza cliente
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COBRANZ3" _
-      Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "VVERGARA" _
-      Or TxtUsuario.Text = "COBRANZ1" Or TxtUsuario.Text = "COBRANZ4" Or TxtUsuario.Text = "VENTAS9" _
-      Or TxtUsuario.Text = "COBRANZ5" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-      Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "VMERIDA" _
-      Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
+		'o	Cobranza cliente
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COBRANZ3" _
+						Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "VVERGARA" _
+						Or TxtUsuario.Text = "COBRANZ1" Or TxtUsuario.Text = "COBRANZ4" Or TxtUsuario.Text = "VENTAS9" _
+						Or TxtUsuario.Text = "COBRANZ5" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+						Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "VMERIDA" _
+						Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
 
-   Inicio.SMCobClientes.Visible = True
-   Inicio.SMCobClientes.Enabled = True
+			Inicio.SMCobClientes.Visible = True
+			Inicio.SMCobClientes.Enabled = True
 
-  End If
+		End If
 
-  'o	Comisiones
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CONTAB1" Then
+		'o	Comisiones
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Or TxtUsuario.Text = "CONTAB1" Then
 
-   Inicio.SMPagoCom.Visible = True
-   Inicio.SMPagoCom.Enabled = True
+			Inicio.SMPagoCom.Visible = True
+			Inicio.SMPagoCom.Enabled = True
 
-  End If
-
-
-  'o	Estatus del cliente
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-            Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COBRANZ3" _
-            Or TxtUsuario.Text = "COBRANZ1" Or TxtUsuario.Text = "COBRANZ4" _
-            Or TxtUsuario.Text = "COBRANZ5" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "COMERCIAL" Then
-
-   Inicio.SMEstatusCli.Visible = True
-   Inicio.SMEstatusCli.Enabled = True
-
-  End If
+		End If
 
 
-  'o	Notas de credito
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "COBRANZ3" _
+		'o	Estatus del cliente
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+												Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COBRANZ3" _
+												Or TxtUsuario.Text = "COBRANZ1" Or TxtUsuario.Text = "COBRANZ4" _
+												Or TxtUsuario.Text = "COBRANZ5" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+
+			Inicio.SMEstatusCli.Visible = True
+			Inicio.SMEstatusCli.Enabled = True
+
+		End If
+
+
+		'o	Notas de credito
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "COBRANZ3" _
                                  Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "ACTAS" Then
    Inicio.SMNotCredito.Visible = True
    Inicio.SMNotCredito.Enabled = True
   End If
 
-  'o	Antiguedad de saldos de clientes
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "COBRANZ3" _
-                Or TxtUsuario.Text = "COBRANZ1" Or TxtUsuario.Text = "COBRANZ4" _
-                Or TxtUsuario.Text = "COBRANZ5" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COBRANZ2" _
-                Or TxtUsuario.Text = "COMERCIAL" Then
+		'o	Antiguedad de saldos de clientes
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "COBRANZ3" _
+																Or TxtUsuario.Text = "COBRANZ1" Or TxtUsuario.Text = "COBRANZ4" _
+																Or TxtUsuario.Text = "COBRANZ5" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COBRANZ2" _
+																Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
 
-   Inicio.SMAntiguedadCli.Visible = True
-   Inicio.SMAntiguedadCli.Enabled = True
+			Inicio.SMAntiguedadCli.Visible = True
+			Inicio.SMAntiguedadCli.Enabled = True
 
 
-  End If
+		End If
 
-  '•	EMBARQUES
-  'o Fletes
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+		'•	EMBARQUES
+		If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			Inicio.MEmbarques.Visible = False
+		End If
+
+
+		'o Fletes
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
             Or TxtUsuario.Text = "LMARTINEZ" Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "COMPRAS1" Then
 
    Inicio.SMFletes.Visible = True
    Inicio.SMFletes.Enabled = True
 
   End If
-  '•	ORDEN DE VENTA
-  'o	Creadas por facturar
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "AINVEN" _
-      Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-      Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-      Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" _
-      Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" Or TxtUsuario.Text = "VMERIDA" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
-      Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Or TxtUsuario.Text = "COMPRAS1" Then
+		'•	ORDEN DE VENTA
+		'o	Creadas por facturar
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "AINVEN" _
+						Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+						Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+						Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" _
+						Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" Or TxtUsuario.Text = "VMERIDA" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" _
+						Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Or TxtUsuario.Text = "COMPRAS1" Then
 
-   Inicio.SMCreadasPorFacturar.Visible = True
-   Inicio.SMCreadasPorFacturar.Enabled = True
+			Inicio.SMCreadasPorFacturar.Visible = True
+			Inicio.SMCreadasPorFacturar.Enabled = True
 
-  End If
+		End If
 
-  'o	Registrar orden de venta
-  'If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-  '          Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "ABAJIO" _
-  '          Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-  '          Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
-  '          Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
+		'o	Registrar orden de venta
+		'If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+		'          Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "ABAJIO" _
+		'          Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+		'          Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
+		'          Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
 
-  Inicio.SMOvtaCrearOV.Visible = False
-        If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" _
-      Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
-      Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "AVERACRUZ" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "RLIRA" Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "AVERACRUZ" Then
+		Inicio.SMOvtaCrearOV.Visible = False
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" _
+						Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
+						Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Or TxtUsuario.Text = "AVERACRUZ" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "RLIRA" Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "AVERACRUZ" Then
 
-            'Or TxtUsuario.Text = "AVERACRUZ" Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "VENTAS9"
+			'Or TxtUsuario.Text = "AVERACRUZ" Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "VENTAS9"
 
-            Inicio.SMOvtaCrearOV.Visible = True
-            Inicio.SMOvtaCrearOV.Enabled = True
+			Inicio.SMOvtaCrearOV.Visible = True
+			Inicio.SMOvtaCrearOV.Enabled = True
 
-        End If
+		End If
 
-        'o Cotizacion
-        'If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" _
-        '              Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "ABAJIO" _
-        '          Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-        '          Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" _
-        '          Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-        '          Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "ANCAR" _
-        '          Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
-        '          Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
+		'Borradores en ventas
+		If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			Inicio.BorradoresToolStripMenuItem.Visible = False
+		End If
 
-        ' Inicio.SMCotizacion.Visible = True
-        ' Inicio.SMCotizacion.Enabled = True
+		'o Cotizacion
+		'If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" _
+		'              Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "ABAJIO" _
+		'          Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+		'          Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" _
+		'          Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+		'          Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "ANCAR" _
+		'          Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
+		'          Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
 
-        'End If
-        Inicio.SMCotizacion.Visible = False
+		' Inicio.SMCotizacion.Visible = True
+		' Inicio.SMCotizacion.Enabled = True
+
+		'End If
+		Inicio.SMCotizacion.Visible = False
         If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" _
             Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "AMERIDA" _
             Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
             Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" _
             Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
             Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "ANCAR" _
-            Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "COMERCIAL" _
+            Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" _
             Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
 
             Inicio.SMCotizacion.Visible = True
@@ -791,131 +806,135 @@ Public Class Login
   Inicio.AgenteHistoricoListaDePreciosToolStripMenuItem.Visible = False
   Inicio.AdministraciónDeTabletasToolStripMenuItem.Visible = False
   Inicio.AgenteHistoricoPasadoToolStripMenuItem.Visible = False
-  If TxtUsuario.Text = "MANAGER" Then
-   Inicio.BloquearModVentasToolStripMenuItem.Visible = True
-   Inicio.AgenteHistoricoListaDePreciosToolStripMenuItem.Visible = True
-   Inicio.AdministraciónDeTabletasToolStripMenuItem.Visible = True
-   Inicio.AgenteHistoricoPasadoToolStripMenuItem.Visible = True
-  End If
+		If TxtUsuario.Text = "MANAGER" Then
+			Inicio.BloquearModVentasToolStripMenuItem.Visible = True
+			Inicio.AgenteHistoricoListaDePreciosToolStripMenuItem.Visible = True
+			Inicio.AdministraciónDeTabletasToolStripMenuItem.Visible = True
+			Inicio.AgenteHistoricoPasadoToolStripMenuItem.Visible = True
+		End If
+		If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			Inicio.AgenteHistoricoListaDePreciosToolStripMenuItem.Visible = True
+			Inicio.AgenteHistoricoPasadoToolStripMenuItem.Visible = True
+		End If
 
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "CONTAB1" _
-      Or TxtUsuario.Text = "ACONTABLE" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" _
-      Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-      Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-      Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
-      Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
-   Inicio.SMAgentes2.Visible = True
-   Inicio.SMAgentes2.Enabled = True
-  End If
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "CONTAB1" _
+						Or TxtUsuario.Text = "ACONTABLE" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" _
+						Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+						Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+						Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" _
+						Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
+			Inicio.SMAgentes2.Visible = True
+			Inicio.SMAgentes2.Enabled = True
+		End If
 
-  'o	Agente-Cliente
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" _
-      Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-      Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-      Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
-      Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
+		'o	Agente-Cliente
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" _
+						Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+						Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+						Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" _
+						Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
 
-   Inicio.SMAgteClite.Visible = True
-   Inicio.SMAgteClite.Enabled = True
+			Inicio.SMAgteClite.Visible = True
+			Inicio.SMAgteClite.Enabled = True
 
-  End If
+		End If
 
-  'o	Agente-Cliente(Rutas)
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "DDORANTES" _
-      Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-      Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-      Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
-      Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
+		'o	Agente-Cliente(Rutas)
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "DDORANTES" _
+						Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+						Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+						Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" _
+						Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
 
-   Inicio.SMAgteClteRutas.Visible = True
-   Inicio.SMAgteClteRutas.Enabled = True
+			Inicio.SMAgteClteRutas.Visible = True
+			Inicio.SMAgteClteRutas.Enabled = True
 
-  End If
-
-
-  'o	Agente-Línea
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" _
-      Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-      Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-      Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
-      Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
-
-   Inicio.SMAgteLinea.Visible = True
-   Inicio.SMAgteLinea.Enabled = True
-
-  End If
+		End If
 
 
-  'o	Devolución de Materiales
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" _
-      Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-      Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-      Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" _
-      Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
+		'o	Agente-Línea
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" _
+						Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+						Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+						Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" _
+						Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
 
-   Inicio.SMDevoluciones.Visible = True
-   Inicio.SMDevoluciones.Enabled = True
+			Inicio.SMAgteLinea.Visible = True
+			Inicio.SMAgteLinea.Enabled = True
 
-  End If
-
-
-  'o	Líneas 
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "COMERCIAL" Then
-
-   Inicio.SMVtaLineas.Visible = True
-   Inicio.SMVtaLineas.Enabled = True
-
-  End If
-
-  'o  Ventas Netas Totales x Mes
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-            Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Then
-   Inicio.SMVentasTotales.Visible = True
-   Inicio.SMVentasTotales.Enabled = True
-  End If
+		End If
 
 
-  'o	Venta caída 
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Then
+		'o	Devolución de Materiales
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" _
+						Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+						Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+						Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" Or TxtUsuario.Text = "RMERCADO" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" _
+						Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Then
 
-   Inicio.SMVentaCaida.Visible = True
-   Inicio.SMVentaCaida.Enabled = True
+			Inicio.SMDevoluciones.Visible = True
+			Inicio.SMDevoluciones.Enabled = True
 
-  End If
+		End If
 
 
-  'o	Ranking de líneas
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Then
+		'o	Líneas 
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
 
-   Inicio.SMRankingLineas.Visible = True
-   Inicio.SMRankingLineas.Enabled = True
+			Inicio.SMVtaLineas.Visible = True
+			Inicio.SMVtaLineas.Enabled = True
 
-  End If
+		End If
 
-  'o	ScoreCard
-  'se modifico para que no se escriban los accesos en codigo duro
-  'Modifico Ivan Gonzalez
-  Dim SQL As New Comandos_SQL()
+		'o  Ventas Netas Totales x Mes
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+												Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			Inicio.SMVentasTotales.Visible = True
+			Inicio.SMVentasTotales.Enabled = True
+		End If
+
+
+		'o	Venta caída 
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+
+			Inicio.SMVentaCaida.Visible = True
+			Inicio.SMVentaCaida.Enabled = True
+
+		End If
+
+
+		'o	Ranking de líneas
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+
+			Inicio.SMRankingLineas.Visible = True
+			Inicio.SMRankingLineas.Enabled = True
+
+		End If
+
+		'o	ScoreCard
+		'se modifico para que no se escriban los accesos en codigo duro
+		'Modifico Ivan Gonzalez
+		Dim SQL As New Comandos_SQL()
   SQL.conectarTPM()
   Dim CodAgte As String = SQL.CampoEspecifico("Select CodAgte FROM Usuarios where Id_Usuario = '" + TxtUsuario.Text + "'", "CodAgte")
   Dim AgteVentas As String = SQL.CampoEspecifico("SELECT AgteVentas FROM Usuarios where Id_Usuario = '" + TxtUsuario.Text + "'", "AgteVentas")
@@ -929,61 +948,59 @@ Public Class Login
    Inicio.SMLíneasObjetivo.Visible = True
   End If
 
-  'o	Líneas Halcon             
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Then
+		'o	Líneas Halcon             
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
 
-   Inicio.SMLíneasHalcon.Visible = True
-   Inicio.SMLíneasHalcon.Enabled = True
+			Inicio.SMLíneasHalcon.Visible = True
+			Inicio.SMLíneasHalcon.Enabled = True
 
-  End If
+		End If
 
-  'o	Líneas Objetivo
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Then
+		'o	Líneas Objetivo
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
 
-   Inicio.SMLíneasObjetivo.Visible = True
-   Inicio.SMLíneasObjetivo.Enabled = True
+			Inicio.SMLíneasObjetivo.Visible = True
+			Inicio.SMLíneasObjetivo.Enabled = True
 
-  End If
-
-
-  'o	Pedio sugerido
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Then
-
-   Inicio.SMPedidoSugerido.Visible = True
-   Inicio.SMPedidoSugerido.Enabled = True
-
-  End If
+		End If
 
 
-  'o	Descuentos
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "COMERCIAL" Then
+		'o	Pedio sugerido
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
 
-   Inicio.SMDescuentos.Visible = True
-   Inicio.SMDescuentos.Enabled = True
+			Inicio.SMPedidoSugerido.Visible = True
+			Inicio.SMPedidoSugerido.Enabled = True
 
-  End If
+		End If
 
-  'o	Envio de facturas
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "AINVEN" _
-      Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-      Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "COBRANZ4" _
-      Or TxtUsuario.Text = "COBRANZ5" _
-      Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "CONTAB1" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" _
-      Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
-      Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "COMPRAS1" Then
-   Inicio.SMEnvioFacturas.Visible = True
-   Inicio.SMEnvioFacturas.Enabled = True
-  End If
 
-  'Envio de facturas masivo y reenvio 
+		'o	Descuentos
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
 
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Then
+			Inicio.SMDescuentos.Visible = True
+			Inicio.SMDescuentos.Enabled = True
 
-   Inicio.EnvioMasivoDeFacturasToolStripMenuItem.Visible = True
-   Inicio.ReenvioDeFacturasFaltantesToolStripMenuItem.Visible = True
+		End If
+
+		'o	Envio de facturas
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "AINVEN" _
+						Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+						Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "COBRANZ4" _
+						Or TxtUsuario.Text = "COBRANZ5" _
+						Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "CONTAB1" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" _
+						Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "COMPRAS1" Then
+			Inicio.SMEnvioFacturas.Visible = True
+			Inicio.SMEnvioFacturas.Enabled = True
+		End If
+
+		'Envio de facturas masivo y reenvio 
+
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Then
+			Inicio.EnvioMasivoDeFacturasToolStripMenuItem.Visible = True
+			Inicio.ReenvioDeFacturasFaltantesToolStripMenuItem.Visible = True
   Else
 
    Inicio.EnvioMasivoDeFacturasToolStripMenuItem.Visible = False
@@ -991,18 +1008,18 @@ Public Class Login
    Inicio.ReenvioDeFacturasFaltantesToolStripMenuItem.Visible = False
   End If
 
-  'o	Ventas Cliente Mensual
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COBRANZ3" Or TxtUsuario.Text = "COMERCIAL" _
-            Or TxtUsuario.Text = "COBRANZ2" Then
-   Inicio.SMVtaCliMen.Visible = True
-   Inicio.SMVtaCliMen.Enabled = True
-  End If
+		'o	Ventas Cliente Mensual
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "COBRANZ3" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" _
+												Or TxtUsuario.Text = "COBRANZ2" Then
+			Inicio.SMVtaCliMen.Visible = True
+			Inicio.SMVtaCliMen.Enabled = True
+		End If
 
-  'o	Reporte Tracking Diario
-  'SE MODIFICO PARA QUE PUEDAN ENTRAR LOS AGENTES DE VENTAS
-  'MODIFICADO POR IVAN GONZALEZ
-  'Dim SQL As New Comandos_SQL()
-  SQL.conectarTPM()
+		'o	Reporte Tracking Diario
+		'SE MODIFICO PARA QUE PUEDAN ENTRAR LOS AGENTES DE VENTAS
+		'MODIFICADO POR IVAN GONZALEZ
+		'Dim SQL As New Comandos_SQL()
+		SQL.conectarTPM()
   Dim CodAgente As String = SQL.CampoEspecifico("select CodAgte from Usuarios where Id_Usuario = '" + UsrTPM + "'", "CodAgte")
   SQL.Cerrar()
   If CodAgte <> "" Or TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Then
@@ -1039,12 +1056,18 @@ Public Class Login
     Inicio.SolicitudDeCancelaciones.Enabled = True
     Inicio.SolicitudDeCancelaciones.Visible = True
 
-    If TxtUsuario.Text = "MANAGER" Then
-     Inicio.SolicitudDeCancelaciones.Enabled = False
-     Inicio.SolicitudDeCancelaciones.Visible = False
-    End If
+				If TxtUsuario.Text = "MANAGER" Then
+					Inicio.SolicitudDeCancelaciones.Enabled = False
+					Inicio.SolicitudDeCancelaciones.Visible = False
+				End If
 
-   End If
+				'Permito ver este modulo por solicitud de Salvador
+				If TxtUsuario.Text = "CGARCIA" Then
+					Inicio.SolicitudDeCancelaciones.Enabled = True
+					Inicio.SolicitudDeCancelaciones.Visible = True
+				End If
+
+			End If
    conexion_universal.rd_s.Close()
    'CIERRA LA CONEXION
    conexion_universal.cerrar_conectar()
@@ -1055,46 +1078,46 @@ Public Class Login
    'Return
   End Try 'FIN CAPTURA EL ERROR
 
-  'Envio de facturas por cliente
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" _
-      Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "AINVEN" _
-      Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-      Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "COBRANZ4" Or TxtUsuario.Text = "COBRANZ5" _
-      Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "CONTAB1" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
-      Or TxtUsuario.Text = "VMERIDA" Then
-   Inicio.SMEnvioFacturasCli.Enabled = True
-   Inicio.SMEnvioFacturasCli.Visible = True
+		'Envio de facturas por cliente
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" _
+						Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "AINVEN" _
+						Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+						Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "COBRANZ4" Or TxtUsuario.Text = "COBRANZ5" _
+						Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "CONTAB1" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" _
+						Or TxtUsuario.Text = "VMERIDA" Then
+			Inicio.SMEnvioFacturasCli.Enabled = True
+			Inicio.SMEnvioFacturasCli.Visible = True
+		End If
+		'Análisis de ventas
+
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			Inicio.AnalisisDeVentaToolStripMenuItem.Visible = True
+		Else
+			Inicio.AnalisisDeVentaToolStripMenuItem.Visible = False
   End If
-  'Análisis de ventas
 
-  If TxtUsuario.Text = "MANAGER" Then
-   Inicio.AnalisisDeVentaToolStripMenuItem.Visible = True
-  Else
-   Inicio.AnalisisDeVentaToolStripMenuItem.Visible = False
-  End If
+		'Visita Agente
 
-        'Visita Agente
+		'Envio de facturas por cliente
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "VENTAS4" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" _
+						Or TxtUsuario.Text = "RLIRA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "AMERIDA" _
+								Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "COBRANZ2" _
+						Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" _
+						Or TxtUsuario.Text = "VMERIDA" Then
 
-        'Envio de facturas por cliente
-        If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "VENTAS4" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" _
-      Or TxtUsuario.Text = "RLIRA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "AMERIDA" _
-        Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "COBRANZ2" _
-      Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
-      Or TxtUsuario.Text = "VMERIDA" Then
-
-            'Inicio.RegistroDeVisitasDeAgentesToolStripMenuItem.Enabled = True
-            'Inicio.RegistroDeVisitasDeAgentesToolStripMenuItem.Visible = True
-        End If
+			'Inicio.RegistroDeVisitasDeAgentesToolStripMenuItem.Enabled = True
+			'Inicio.RegistroDeVisitasDeAgentesToolStripMenuItem.Visible = True
+		End If
 
 
 
-        'Modificacion de comisiones
-        If TxtUsuario.Text <> "MANAGER" Then
+		'Modificacion de comisiones
+		If TxtUsuario.Text <> "MANAGER" Then
 
    Inicio.ModificaciónDeComisionesToolStripMenuItem.Visible = False
 
@@ -1110,44 +1133,45 @@ Public Class Login
 
 
 
-  '•	LISTAS
-  'o	De precio
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" _
-      Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "AINVEN" _
-      Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
-      Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
-      Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
-      Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" _
-      Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" _
-      Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "ANCAR" _
-      Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" _
-      Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Or TxtUsuario.Text = "SINERGIA" Then
+		'•	LISTAS
+		'o	De precio
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" _
+						Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "AINVEN" _
+						Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "RROBLES" _
+						Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+						Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "CSANTOS" Or TxtUsuario.Text = "ATUXTLA" _
+						Or TxtUsuario.Text = "RMERCADO" Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AFUENTES" _
+						Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RJIMENEZ" Or TxtUsuario.Text = "ATABASCO" _
+						Or TxtUsuario.Text = "LCEBALLOS" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "ANCAR" _
+						Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" _
+						Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AVERACRUZ" Or TxtUsuario.Text = "SINERGIA" Then
 
-   Inicio.SMListPrecio.Visible = True
-   Inicio.SMListPrecio.Enabled = True
+			Inicio.SMListPrecio.Visible = True
+			Inicio.SMListPrecio.Enabled = True
 
-  End If
+		End If
 
-  'o	De inventario
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" Or TxtUsuario.Text = "COMERCIAL" Then
-            Inicio.SMListInv.Visible = True
-            Inicio.SMListInv.Enabled = True
+		'o	De inventario
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" Then
+			Inicio.SMListInv.Visible = True
+			Inicio.SMListInv.Enabled = True
 
-        End If
+		End If
 
-  '•	COMPRAS
-  If TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "LMARTINEZ" _
-          Or TxtUsuario.Text = "ARAMOS" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "ACONTABLE" Or TxtUsuario.Text = "COBRANZ3" _
-          Or TxtUsuario.Text = "COBRANZ4" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "COBRANZ5" Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Then
-   Inicio.MCompras.Visible = True
-  End If
+		'•	COMPRAS
+		If TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "LMARTINEZ" _
+										Or TxtUsuario.Text = "ARAMOS" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "ACONTABLE" Or TxtUsuario.Text = "COBRANZ3" _
+										Or TxtUsuario.Text = "COBRANZ4" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "COBRANZ5" _
+										Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" _
+										Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "RLIRA" _
+										Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			Inicio.MCompras.Visible = True
+		End If
 
-
-
-  'o	Pagos a proveedores
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+		'o	Pagos a proveedores
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
       Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" _
       Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "ACONTABLE" Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" Then
 
@@ -1204,18 +1228,16 @@ Public Class Login
 
         End If
 
-        'o	Solicitud de artículos
-        If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "CINTER" _
-      Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "AINVEN" Then
+		'o	Solicitud de artículos
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "CINTER" _
+						Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "RLIRA" Then
+			Inicio.SMSolArt.Visible = True
+			Inicio.SMSolArt.Enabled = True
+		End If
 
-   Inicio.SMSolArt.Visible = True
-   Inicio.SMSolArt.Enabled = True
-
-  End If
-
-  'o	Boletin
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+		'o	Boletin
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
       Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" Then
 
    Inicio.SMBoletin.Visible = True
@@ -1232,41 +1254,41 @@ Public Class Login
 
         End If
 
-        'o	Recibo de Mat Cal
+		'o	Recibo de Mat Cal
 
-        If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-      Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" _
-      Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VVERGARA" _
-      Or TxtUsuario.Text = "MCHABLE" Or TxtUsuario.Text = "ALMER" Or TxtUsuario.Text = "VOTNIEL" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "VENTAS2" _
-        Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "AINVEN" Then
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+						Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" _
+						Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VVERGARA" _
+						Or TxtUsuario.Text = "MCHABLE" Or TxtUsuario.Text = "ALMER" Or TxtUsuario.Text = "VOTNIEL" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "VENTAS2" _
+								Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" Or TxtUsuario.Text = "AINVEN" Then
 
-            Inicio.MCompras.Visible = True
-            Inicio.SMRecMatCal.Visible = True
-            Inicio.SMRecMatCal.Enabled = True
+			Inicio.MCompras.Visible = True
+			Inicio.SMRecMatCal.Visible = True
+			Inicio.SMRecMatCal.Enabled = True
 
-        End If
+		End If
 
-        'o	Garantias
+		'o	Garantias
 
-        If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
-          Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "COBRANZ3" _
-          Or TxtUsuario.Text = "COBRANZ4" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "COBRANZ5" _
-          Or TxtUsuario.Text = "ACONTABLE" Or TxtUsuario.Text = "CONTAB1" _
-          Or TxtUsuario.Text = "ACOMPRAS" Or TxtUsuario.Text = "ALMACEN1" Or TxtUsuario.Text = "MCHABLE" Or TxtUsuario.Text = "ALMER" Or TxtUsuario.Text = "VOTNIEL" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" _
-          Or TxtUsuario.Text = "COBRANZ2" _
-          Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" Or TxtUsuario.Text = "COMERCIAL" _
-          Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" _
-          Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "VENTAS1" Or TxtUsuario.Text = "OPALMACEN" Then
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+										Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "COBRANZ3" _
+										Or TxtUsuario.Text = "COBRANZ4" Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "COBRANZ5" _
+										Or TxtUsuario.Text = "ACONTABLE" Or TxtUsuario.Text = "CONTAB1" _
+										Or TxtUsuario.Text = "ACOMPRAS" Or TxtUsuario.Text = "ALMACEN1" Or TxtUsuario.Text = "MCHABLE" Or TxtUsuario.Text = "ALMER" Or TxtUsuario.Text = "VOTNIEL" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" _
+										Or TxtUsuario.Text = "COBRANZ2" _
+										Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "RLIRA" _
+										Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" _
+										Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "VENTAS1" Or TxtUsuario.Text = "OPALMACEN" Then
 
-   Inicio.SMGarantias.Visible = True
-   Inicio.SMGarantias.Enabled = True
+			Inicio.SMGarantias.Visible = True
+			Inicio.SMGarantias.Enabled = True
 
-  End If
+		End If
 
 
-  ''o	Articulos en boletin
+		''o	Articulos en boletin
 
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "COMPRAS1" Then
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" Or TxtUsuario.Text = "COMPRAS1" Then
 
    Inicio.SMBoletin2.Visible = True
    Inicio.SMBoletin2.Enabled = True
@@ -1310,52 +1332,54 @@ Public Class Login
 
   End If
 
-        'ACCESO AL APARTADO DE ARTICULOS ESPECIALES
-        If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" _
-                Or TxtUsuario.Text = "VENTAS1" Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" _
-                Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" _
-                Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "RLIRA" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "PCOMPRAS" _
-                Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "VENTAS14" Then
-            Inicio.SolArticulosEspecialesToolStripMenuItem.Visible = True
-            Inicio.SolArticulosEspecialesToolStripMenuItem.Enabled = True
-        End If
+		'ACCESO AL APARTADO DE ARTICULOS ESPECIALES
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "ACOMPRAS" _
+																Or TxtUsuario.Text = "VENTAS1" Or TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" _
+																Or TxtUsuario.Text = "VENTAS4" Or TxtUsuario.Text = "VENTAS5" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VENTAS8" Or TxtUsuario.Text = "VENTAS16" _
+																Or TxtUsuario.Text = "VENTAS9" Or TxtUsuario.Text = "RLIRA" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "PCOMPRAS" _
+																Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			Inicio.SolArticulosEspecialesToolStripMenuItem.Visible = True
+			Inicio.SolArticulosEspecialesToolStripMenuItem.Enabled = True
+		End If
 
-        If TxtUsuario.Text = "OPALMACEN" Then
-   Inicio.MCompras.Visible = True
-   Inicio.SMGarantias.Visible = True
-   Inicio.SMGarantias.Enabled = True
+		If TxtUsuario.Text = "OPALMACEN" Then
+			Inicio.MCompras.Visible = True
+			Inicio.SMGarantias.Visible = True
+			Inicio.SMGarantias.Enabled = True
 
-   Inicio.MInventario.Visible = True
-   Inicio.Devoluciones2ToolStripMenuItem.Visible = True
-   Inicio.Devoluciones2ToolStripMenuItem.Enabled = True
+			Inicio.MInventario.Visible = True
+			Inicio.Devoluciones2ToolStripMenuItem.Visible = True
+			Inicio.Devoluciones2ToolStripMenuItem.Enabled = True
 
-   Inicio.MAutos.Visible = False
-   Inicio.MVtas.Visible = False
-   Inicio.MOVta.Visible = False
-   Inicio.OperaciónDiamanteToolStripMenuItem.Visible = True
-   Inicio.ClasificaciónPorVentasToolStripMenuItem.Visible = False
+			Inicio.MAutos.Visible = False
+			Inicio.MVtas.Visible = False
+			Inicio.MOVta.Visible = False
+			Inicio.OperaciónDiamanteToolStripMenuItem.Visible = True
+			Inicio.ClasificaciónPorVentasToolStripMenuItem.Visible = False
+		End If
 
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "CINTER" Then
+			Inicio.PartidasFaltantesTarimaToolStripMenuItem.Visible = True
+			Inicio.PartidasFaltantesTarimaToolStripMenuItem.Enabled = True
+		Else
+			Inicio.PartidasFaltantesTarimaToolStripMenuItem.Visible = False
+			Inicio.PartidasFaltantesTarimaToolStripMenuItem.Enabled = False
 
+		End If
 
+		'Transportar
+		Inicio.TransportesToolStripMenuItem.Visible = False
+		Inicio.TransportesToolStripMenuItem.Enabled = False
 
-  End If
+		If TxtUsuario.Text = "MANAGER" Then
+			Inicio.TransportesToolStripMenuItem.Visible = True
+			Inicio.TransportesToolStripMenuItem.Enabled = True
+		End If
 
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "COMPRAS1" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "CINTER" Then
-   Inicio.PartidasFaltantesTarimaToolStripMenuItem.Visible = True
-   Inicio.PartidasFaltantesTarimaToolStripMenuItem.Enabled = True
-  Else
-   Inicio.PartidasFaltantesTarimaToolStripMenuItem.Visible = False
-   Inicio.PartidasFaltantesTarimaToolStripMenuItem.Enabled = False
-
-  End If
-
-
-
-
-        '•	INVENTARIO
-        'o	Auditoria de Inventario  
-        'se comento Or TxtUsuario.Text = "MMAZZOCO"
-        If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
+		'•	INVENTARIO
+		'o	Auditoria de Inventario  
+		'se comento Or TxtUsuario.Text = "MMAZZOCO"
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PRUEBAS" _
         Or TxtUsuario.Text = "COMPRAS1" _
       Or TxtUsuario.Text = "ACOMPRAS" Or TxtUsuario.Text = "CONTAB1" _
       Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" Then
@@ -1612,27 +1636,32 @@ Public Class Login
    Inicio.MContabilidad.Visible = True
   End If
 
-  'Control de Visitas por asesor
-  Inicio.VisitasPorAsesorToolStripMenuItem.Visible = False
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "SISTEMAS" Or TxtUsuario.Text = "CONTAB1" Then
-   Inicio.VisitasPorAsesorToolStripMenuItem.Visible = True
-  End If
 
-  'Control de acceso para el menu "Alta de Vehiculo" dentro de la barra de menu "Control de Vehiculos"'
-  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "ACONTABLE" Then
+		'CONTROL DE VEHICULOS
+		'Bitacora de Cargas
+		If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			Inicio.SMAutosBitacora.Visible = False
+		End If
+
+		'Bitacora de Cargas
+		If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			Inicio.SMAutosCargar.Visible = False
+		End If
+
+		'Control de Visitas por asesor
+		Inicio.VisitasPorAsesorToolStripMenuItem.Visible = False
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Or TxtUsuario.Text = "SISTEMAS" Or TxtUsuario.Text = "CONTAB1" Then
+			Inicio.VisitasPorAsesorToolStripMenuItem.Visible = True
+		End If
+
+		'Control de acceso para el menu "Alta de Vehiculo" dentro de la barra de menu "Control de Vehiculos"'
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "ACONTABLE" Then
    Inicio.SMAutoAlta.Visible = True
   End If
 
-  If TxtUsuario.Text = "VENTAS2" Or TxtUsuario.Text = "VENTAS3" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "RLIRA" Then
-   Inicio.MCompras.Visible = True
-   Inicio.SMSolArt.Visible = True
-   Inicio.SMSolArt.Enabled = True
-   'Inicio.MCompras.Visible = True
-  End If
+		'*********************************************************************************************
 
-  '*********************************************************************************************
-
-  If TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "ACONTABLE" Or TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Then
+		If TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "ACONTABLE" Or TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Then
    Inicio.FacturasCanceladas.Visible = True
   End If
 
@@ -1647,16 +1676,16 @@ Public Class Login
   'If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "COMERCIAL" Then
   Inicio.ArticulosRemateToolStripMenuItem.Enabled = True
   Inicio.ArticulosRemateToolStripMenuItem.Visible = True
-        'End If
+		'End If
 
-        'CONTROL DE VISITAS CLIENTES (VENTAS)
-        If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VVERGARA" _
-                Or TxtUsuario.Text = "LMARTINEZ" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "COMERCIAL" Then
-            'Inicio.SMCheckIn.Enabled = True
-            'Inicio.SMCheckIn.Visible = True
-        End If
+		'CONTROL DE VISITAS CLIENTES (VENTAS)
+		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "RROBLES" Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "VVERGARA" _
+																Or TxtUsuario.Text = "LMARTINEZ" Or TxtUsuario.Text = "CONTAB1" Or TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+			'Inicio.SMCheckIn.Enabled = True
+			'Inicio.SMCheckIn.Visible = True
+		End If
 
-        If TxtUsuario.Text = "CONTAB1" Then
+		If TxtUsuario.Text = "CONTAB1" Then
    Inicio.SMAntiguedadCli.Visible = True
    Inicio.SMAntiguedadCli.Enabled = True
   End If
@@ -1696,21 +1725,21 @@ Public Class Login
 
   End If
 
-        If (DateTime.DaysInMonth(FchServer.Year, FchServer.Month) - FchServer.Day) <= 7 And UsrTPM <> "MANAGER" And UsrTPM <> "TESORERIA" And UsrTPM <> "PRUEBAS" _
-                And UsrTPM <> "COMPRAS1" And UsrTPM <> "ACOMPRAS" And UsrTPM <> "Ventas1" And UsrTPM <> "DDORANTES" _
-                And UsrTPM <> "CONTAB1" And TxtUsuario.Text <> "ACONTABLE" And TxtUsuario.Text <> "RROBLES" And TxtUsuario.Text <> "AMERIDA" And TxtUsuario.Text <> "COMERCIAL" Then
+		If (DateTime.DaysInMonth(FchServer.Year, FchServer.Month) - FchServer.Day) <= 7 And UsrTPM <> "MANAGER" And UsrTPM <> "TESORERIA" And UsrTPM <> "PRUEBAS" _
+																And UsrTPM <> "COMPRAS1" And UsrTPM <> "ACOMPRAS" And UsrTPM <> "Ventas1" And UsrTPM <> "DDORANTES" _
+																And UsrTPM <> "CONTAB1" And TxtUsuario.Text <> "ACONTABLE" And TxtUsuario.Text <> "RROBLES" And TxtUsuario.Text <> "AMERIDA" And TxtUsuario.Text <> "COMERCIAL" And TxtUsuario.Text <> "CGARCIA" Then
 
-            Inicio.SMAgentes2.Enabled = False
-            Inicio.SMAgteClite.Enabled = False
-            Inicio.SMAgteLinea.Enabled = False
-            Inicio.SMAgteClteRutas.Enabled = False
-        End If
+			Inicio.SMAgentes2.Enabled = False
+			Inicio.SMAgteClite.Enabled = False
+			Inicio.SMAgteLinea.Enabled = False
+			Inicio.SMAgteClteRutas.Enabled = False
+		End If
 
-  'If TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" Or TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" Then
-  '    Inicio.BarCodeToolStripMenuItem.Visible = True
-  'End If
+		'If TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "OPALMACEN" Or TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" Then
+		'    Inicio.BarCodeToolStripMenuItem.Visible = True
+		'End If
 
-  varsalir = True
+		varsalir = True
   SQL.Cerrar()
   'cmdlinea1.Connection.Close()
   Me.Close()

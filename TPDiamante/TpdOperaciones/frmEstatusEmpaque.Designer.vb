@@ -22,209 +22,235 @@ Partial Class frmEstatusEmpaque
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.dgvEmpaque = New System.Windows.Forms.DataGridView()
-        Me.dgvEmpaqueDetalle = New System.Windows.Forms.DataGridView()
-        Me.BtnActualizarEmp = New System.Windows.Forms.Button()
-        Me.txtBuscarOrdenes = New System.Windows.Forms.TextBox()
-        Me.lblBuscarOrdenes = New System.Windows.Forms.Label()
-        Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
-        Me.lblFecha = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.lblActualizando = New System.Windows.Forms.Label()
-        Me.ReimpresionPL = New System.Windows.Forms.Button()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.cmbSucursales = New System.Windows.Forms.ComboBox()
-        CType(Me.dgvEmpaque, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dgvEmpaqueDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
-        Me.SuspendLayout()
-        '
-        'dgvEmpaque
-        '
-        Me.dgvEmpaque.AllowUserToAddRows = False
-        Me.dgvEmpaque.AllowUserToDeleteRows = False
-        Me.dgvEmpaque.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvEmpaque.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvEmpaque.Location = New System.Drawing.Point(0, 0)
-        Me.dgvEmpaque.Name = "dgvEmpaque"
-        Me.dgvEmpaque.RowHeadersWidth = 20
-        Me.dgvEmpaque.Size = New System.Drawing.Size(1063, 520)
-        Me.dgvEmpaque.TabIndex = 0
-        '
-        'dgvEmpaqueDetalle
-        '
-        Me.dgvEmpaqueDetalle.AllowUserToAddRows = False
-        Me.dgvEmpaqueDetalle.AllowUserToDeleteRows = False
-        Me.dgvEmpaqueDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvEmpaqueDetalle.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvEmpaqueDetalle.Location = New System.Drawing.Point(0, 0)
-        Me.dgvEmpaqueDetalle.Name = "dgvEmpaqueDetalle"
-        Me.dgvEmpaqueDetalle.RowHeadersWidth = 20
-        Me.dgvEmpaqueDetalle.Size = New System.Drawing.Size(366, 520)
-        Me.dgvEmpaqueDetalle.TabIndex = 1
-        '
-        'BtnActualizarEmp
-        '
-        Me.BtnActualizarEmp.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnActualizarEmp.Location = New System.Drawing.Point(1354, 0)
-        Me.BtnActualizarEmp.Name = "BtnActualizarEmp"
-        Me.BtnActualizarEmp.Size = New System.Drawing.Size(75, 36)
-        Me.BtnActualizarEmp.TabIndex = 2
-        Me.BtnActualizarEmp.Text = "Actualizar"
-        Me.BtnActualizarEmp.UseVisualStyleBackColor = True
-        '
-        'txtBuscarOrdenes
-        '
-        Me.txtBuscarOrdenes.Location = New System.Drawing.Point(400, 9)
-        Me.txtBuscarOrdenes.Name = "txtBuscarOrdenes"
-        Me.txtBuscarOrdenes.Size = New System.Drawing.Size(80, 20)
-        Me.txtBuscarOrdenes.TabIndex = 3
-        '
-        'lblBuscarOrdenes
-        '
-        Me.lblBuscarOrdenes.AutoSize = True
-        Me.lblBuscarOrdenes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBuscarOrdenes.Location = New System.Drawing.Point(285, 10)
-        Me.lblBuscarOrdenes.Name = "lblBuscarOrdenes"
-        Me.lblBuscarOrdenes.Size = New System.Drawing.Size(109, 15)
-        Me.lblBuscarOrdenes.TabIndex = 4
-        Me.lblBuscarOrdenes.Text = "Buscar Ordenes"
-        '
-        'dtpFecha
-        '
-        Me.dtpFecha.Location = New System.Drawing.Point(62, 6)
-        Me.dtpFecha.Name = "dtpFecha"
-        Me.dtpFecha.Size = New System.Drawing.Size(217, 20)
-        Me.dtpFecha.TabIndex = 5
-        '
-        'lblFecha
-        '
-        Me.lblFecha.AutoSize = True
-        Me.lblFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFecha.Location = New System.Drawing.Point(10, 10)
-        Me.lblFecha.Name = "lblFecha"
-        Me.lblFecha.Size = New System.Drawing.Size(46, 15)
-        Me.lblFecha.TabIndex = 6
-        Me.lblFecha.Text = "Fecha"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(486, 10)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(130, 16)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Orden de Entrega"
-        '
-        'Panel1
-        '
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel1.Controls.Add(Me.cmbSucursales)
-        Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Controls.Add(Me.lblActualizando)
-        Me.Panel1.Controls.Add(Me.ReimpresionPL)
-        Me.Panel1.Controls.Add(Me.lblFecha)
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.BtnActualizarEmp)
-        Me.Panel1.Controls.Add(Me.dtpFecha)
-        Me.Panel1.Controls.Add(Me.lblBuscarOrdenes)
-        Me.Panel1.Controls.Add(Me.txtBuscarOrdenes)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1433, 40)
-        Me.Panel1.TabIndex = 8
-        '
-        'lblActualizando
-        '
-        Me.lblActualizando.AutoSize = True
-        Me.lblActualizando.BackColor = System.Drawing.Color.Yellow
-        Me.lblActualizando.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblActualizando.Location = New System.Drawing.Point(927, 9)
-        Me.lblActualizando.Name = "lblActualizando"
-        Me.lblActualizando.Size = New System.Drawing.Size(243, 16)
-        Me.lblActualizando.TabIndex = 9
-        Me.lblActualizando.Text = "ACTUALIZANDO INFORMACION..."
-        '
-        'ReimpresionPL
-        '
-        Me.ReimpresionPL.Location = New System.Drawing.Point(1176, 0)
-        Me.ReimpresionPL.Name = "ReimpresionPL"
-        Me.ReimpresionPL.Size = New System.Drawing.Size(172, 37)
-        Me.ReimpresionPL.TabIndex = 8
-        Me.ReimpresionPL.Text = "Reimpresión Orden de Entrega"
-        Me.ReimpresionPL.UseVisualStyleBackColor = True
-        '
-        'SplitContainer1
-        '
-        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.Location = New System.Drawing.Point(0, 40)
-        Me.SplitContainer1.Name = "SplitContainer1"
-        '
-        'SplitContainer1.Panel1
-        '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.dgvEmpaque)
-        '
-        'SplitContainer1.Panel2
-        '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.dgvEmpaqueDetalle)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1433, 520)
-        Me.SplitContainer1.SplitterDistance = 1063
-        Me.SplitContainer1.TabIndex = 9
-        '
-        'Timer1
-        '
-        Me.Timer1.Interval = 90000
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(652, 9)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(67, 15)
-        Me.Label2.TabIndex = 10
-        Me.Label2.Text = "Sucursal:"
-        '
-        'cmbSucursales
-        '
-        Me.cmbSucursales.FormattingEnabled = True
-        Me.cmbSucursales.Location = New System.Drawing.Point(736, 9)
-        Me.cmbSucursales.Name = "cmbSucursales"
-        Me.cmbSucursales.Size = New System.Drawing.Size(121, 21)
-        Me.cmbSucursales.TabIndex = 11
-        '
-        'frmEstatusEmpaque
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1433, 560)
-        Me.Controls.Add(Me.SplitContainer1)
-        Me.Controls.Add(Me.Panel1)
-        Me.Name = "frmEstatusEmpaque"
-        Me.Text = "Empaque"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.dgvEmpaque, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvEmpaqueDetalle, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.ResumeLayout(False)
-        Me.ResumeLayout(False)
+		Me.components = New System.ComponentModel.Container()
+		Me.dgvEmpaque = New System.Windows.Forms.DataGridView()
+		Me.dgvEmpaqueDetalle = New System.Windows.Forms.DataGridView()
+		Me.BtnActualizarEmp = New System.Windows.Forms.Button()
+		Me.txtBuscarOrdenes = New System.Windows.Forms.TextBox()
+		Me.lblBuscarOrdenes = New System.Windows.Forms.Label()
+		Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
+		Me.lblFecha = New System.Windows.Forms.Label()
+		Me.Label1 = New System.Windows.Forms.Label()
+		Me.Panel1 = New System.Windows.Forms.Panel()
+		Me.cmbSucursales = New System.Windows.Forms.ComboBox()
+		Me.Label2 = New System.Windows.Forms.Label()
+		Me.lblActualizando = New System.Windows.Forms.Label()
+		Me.ReimpresionPL = New System.Windows.Forms.Button()
+		Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+		Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+		Me.statusBarObservacion = New System.Windows.Forms.StatusStrip()
+		Me.ts_ComentarioAlmacen = New System.Windows.Forms.ToolStripStatusLabel()
+		Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+		CType(Me.dgvEmpaque, System.ComponentModel.ISupportInitialize).BeginInit()
+		CType(Me.dgvEmpaqueDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
+		Me.Panel1.SuspendLayout()
+		CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+		Me.SplitContainer1.Panel1.SuspendLayout()
+		Me.SplitContainer1.Panel2.SuspendLayout()
+		Me.SplitContainer1.SuspendLayout()
+		Me.statusBarObservacion.SuspendLayout()
+		Me.SuspendLayout()
+		'
+		'dgvEmpaque
+		'
+		Me.dgvEmpaque.AllowUserToAddRows = False
+		Me.dgvEmpaque.AllowUserToDeleteRows = False
+		Me.dgvEmpaque.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+		Me.dgvEmpaque.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.dgvEmpaque.Location = New System.Drawing.Point(0, 0)
+		Me.dgvEmpaque.Name = "dgvEmpaque"
+		Me.dgvEmpaque.RowHeadersWidth = 20
+		Me.dgvEmpaque.Size = New System.Drawing.Size(1063, 520)
+		Me.dgvEmpaque.TabIndex = 0
+		'
+		'dgvEmpaqueDetalle
+		'
+		Me.dgvEmpaqueDetalle.AllowUserToAddRows = False
+		Me.dgvEmpaqueDetalle.AllowUserToDeleteRows = False
+		Me.dgvEmpaqueDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+		Me.dgvEmpaqueDetalle.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.dgvEmpaqueDetalle.Location = New System.Drawing.Point(0, 0)
+		Me.dgvEmpaqueDetalle.Name = "dgvEmpaqueDetalle"
+		Me.dgvEmpaqueDetalle.RowHeadersWidth = 20
+		Me.dgvEmpaqueDetalle.Size = New System.Drawing.Size(366, 520)
+		Me.dgvEmpaqueDetalle.TabIndex = 1
+		'
+		'BtnActualizarEmp
+		'
+		Me.BtnActualizarEmp.Dock = System.Windows.Forms.DockStyle.Right
+		Me.BtnActualizarEmp.Location = New System.Drawing.Point(1354, 0)
+		Me.BtnActualizarEmp.Name = "BtnActualizarEmp"
+		Me.BtnActualizarEmp.Size = New System.Drawing.Size(75, 36)
+		Me.BtnActualizarEmp.TabIndex = 2
+		Me.BtnActualizarEmp.Text = "Actualizar"
+		Me.BtnActualizarEmp.UseVisualStyleBackColor = True
+		'
+		'txtBuscarOrdenes
+		'
+		Me.txtBuscarOrdenes.Location = New System.Drawing.Point(400, 9)
+		Me.txtBuscarOrdenes.Name = "txtBuscarOrdenes"
+		Me.txtBuscarOrdenes.Size = New System.Drawing.Size(80, 20)
+		Me.txtBuscarOrdenes.TabIndex = 3
+		'
+		'lblBuscarOrdenes
+		'
+		Me.lblBuscarOrdenes.AutoSize = True
+		Me.lblBuscarOrdenes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblBuscarOrdenes.Location = New System.Drawing.Point(285, 10)
+		Me.lblBuscarOrdenes.Name = "lblBuscarOrdenes"
+		Me.lblBuscarOrdenes.Size = New System.Drawing.Size(109, 15)
+		Me.lblBuscarOrdenes.TabIndex = 4
+		Me.lblBuscarOrdenes.Text = "Buscar Ordenes"
+		'
+		'dtpFecha
+		'
+		Me.dtpFecha.Location = New System.Drawing.Point(62, 6)
+		Me.dtpFecha.Name = "dtpFecha"
+		Me.dtpFecha.Size = New System.Drawing.Size(217, 20)
+		Me.dtpFecha.TabIndex = 5
+		'
+		'lblFecha
+		'
+		Me.lblFecha.AutoSize = True
+		Me.lblFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblFecha.Location = New System.Drawing.Point(10, 10)
+		Me.lblFecha.Name = "lblFecha"
+		Me.lblFecha.Size = New System.Drawing.Size(46, 15)
+		Me.lblFecha.TabIndex = 6
+		Me.lblFecha.Text = "Fecha"
+		'
+		'Label1
+		'
+		Me.Label1.AutoSize = True
+		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label1.Location = New System.Drawing.Point(486, 10)
+		Me.Label1.Name = "Label1"
+		Me.Label1.Size = New System.Drawing.Size(130, 16)
+		Me.Label1.TabIndex = 7
+		Me.Label1.Text = "Orden de Entrega"
+		'
+		'Panel1
+		'
+		Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.Panel1.Controls.Add(Me.cmbSucursales)
+		Me.Panel1.Controls.Add(Me.Label2)
+		Me.Panel1.Controls.Add(Me.lblActualizando)
+		Me.Panel1.Controls.Add(Me.ReimpresionPL)
+		Me.Panel1.Controls.Add(Me.lblFecha)
+		Me.Panel1.Controls.Add(Me.Label1)
+		Me.Panel1.Controls.Add(Me.BtnActualizarEmp)
+		Me.Panel1.Controls.Add(Me.dtpFecha)
+		Me.Panel1.Controls.Add(Me.lblBuscarOrdenes)
+		Me.Panel1.Controls.Add(Me.txtBuscarOrdenes)
+		Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+		Me.Panel1.Location = New System.Drawing.Point(0, 0)
+		Me.Panel1.Name = "Panel1"
+		Me.Panel1.Size = New System.Drawing.Size(1433, 40)
+		Me.Panel1.TabIndex = 8
+		'
+		'cmbSucursales
+		'
+		Me.cmbSucursales.FormattingEnabled = True
+		Me.cmbSucursales.Location = New System.Drawing.Point(736, 9)
+		Me.cmbSucursales.Name = "cmbSucursales"
+		Me.cmbSucursales.Size = New System.Drawing.Size(121, 21)
+		Me.cmbSucursales.TabIndex = 11
+		'
+		'Label2
+		'
+		Me.Label2.AutoSize = True
+		Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label2.Location = New System.Drawing.Point(652, 9)
+		Me.Label2.Name = "Label2"
+		Me.Label2.Size = New System.Drawing.Size(67, 15)
+		Me.Label2.TabIndex = 10
+		Me.Label2.Text = "Sucursal:"
+		'
+		'lblActualizando
+		'
+		Me.lblActualizando.AutoSize = True
+		Me.lblActualizando.BackColor = System.Drawing.Color.Yellow
+		Me.lblActualizando.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblActualizando.Location = New System.Drawing.Point(927, 9)
+		Me.lblActualizando.Name = "lblActualizando"
+		Me.lblActualizando.Size = New System.Drawing.Size(243, 16)
+		Me.lblActualizando.TabIndex = 9
+		Me.lblActualizando.Text = "ACTUALIZANDO INFORMACION..."
+		'
+		'ReimpresionPL
+		'
+		Me.ReimpresionPL.Location = New System.Drawing.Point(1176, 0)
+		Me.ReimpresionPL.Name = "ReimpresionPL"
+		Me.ReimpresionPL.Size = New System.Drawing.Size(172, 37)
+		Me.ReimpresionPL.TabIndex = 8
+		Me.ReimpresionPL.Text = "Reimpresión Orden de Entrega"
+		Me.ReimpresionPL.UseVisualStyleBackColor = True
+		'
+		'SplitContainer1
+		'
+		Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.SplitContainer1.Location = New System.Drawing.Point(0, 40)
+		Me.SplitContainer1.Name = "SplitContainer1"
+		'
+		'SplitContainer1.Panel1
+		'
+		Me.SplitContainer1.Panel1.Controls.Add(Me.statusBarObservacion)
+		Me.SplitContainer1.Panel1.Controls.Add(Me.dgvEmpaque)
+		'
+		'SplitContainer1.Panel2
+		'
+		Me.SplitContainer1.Panel2.Controls.Add(Me.dgvEmpaqueDetalle)
+		Me.SplitContainer1.Size = New System.Drawing.Size(1433, 520)
+		Me.SplitContainer1.SplitterDistance = 1063
+		Me.SplitContainer1.TabIndex = 9
+		'
+		'Timer1
+		'
+		Me.Timer1.Interval = 90000
+		'
+		'statusBarObservacion
+		'
+		Me.statusBarObservacion.BackColor = System.Drawing.Color.Maroon
+		Me.statusBarObservacion.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ts_ComentarioAlmacen})
+		Me.statusBarObservacion.Location = New System.Drawing.Point(0, 484)
+		Me.statusBarObservacion.Name = "statusBarObservacion"
+		Me.statusBarObservacion.Size = New System.Drawing.Size(1063, 36)
+		Me.statusBarObservacion.TabIndex = 1
+		Me.statusBarObservacion.Text = "StatusStrip1"
+		'
+		'ts_ComentarioAlmacen
+		'
+		Me.ts_ComentarioAlmacen.Font = New System.Drawing.Font("Arial Narrow", 20.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.ts_ComentarioAlmacen.ForeColor = System.Drawing.Color.Yellow
+		Me.ts_ComentarioAlmacen.Name = "ts_ComentarioAlmacen"
+		Me.ts_ComentarioAlmacen.Size = New System.Drawing.Size(285, 31)
+		Me.ts_ComentarioAlmacen.Text = "Comentario para almacen"
+		'
+		'frmEstatusEmpaque
+		'
+		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+		Me.ClientSize = New System.Drawing.Size(1433, 560)
+		Me.Controls.Add(Me.SplitContainer1)
+		Me.Controls.Add(Me.Panel1)
+		Me.Name = "frmEstatusEmpaque"
+		Me.Text = "Empaque"
+		Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+		CType(Me.dgvEmpaque, System.ComponentModel.ISupportInitialize).EndInit()
+		CType(Me.dgvEmpaqueDetalle, System.ComponentModel.ISupportInitialize).EndInit()
+		Me.Panel1.ResumeLayout(False)
+		Me.Panel1.PerformLayout()
+		Me.SplitContainer1.Panel1.ResumeLayout(False)
+		Me.SplitContainer1.Panel1.PerformLayout()
+		Me.SplitContainer1.Panel2.ResumeLayout(False)
+		CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+		Me.SplitContainer1.ResumeLayout(False)
+		Me.statusBarObservacion.ResumeLayout(False)
+		Me.statusBarObservacion.PerformLayout()
+		Me.ResumeLayout(False)
 
-    End Sub
-    Friend WithEvents dgvEmpaque As System.Windows.Forms.DataGridView
+	End Sub
+	Friend WithEvents dgvEmpaque As System.Windows.Forms.DataGridView
     Friend WithEvents dgvEmpaqueDetalle As System.Windows.Forms.DataGridView
     Friend WithEvents BtnActualizarEmp As System.Windows.Forms.Button
     Friend WithEvents txtBuscarOrdenes As System.Windows.Forms.TextBox
@@ -239,4 +265,7 @@ Partial Class frmEstatusEmpaque
   Friend WithEvents lblActualizando As Label
     Friend WithEvents cmbSucursales As ComboBox
     Friend WithEvents Label2 As Label
+	Friend WithEvents statusBarObservacion As StatusStrip
+	Friend WithEvents ts_ComentarioAlmacen As ToolStripStatusLabel
+	Friend WithEvents ToolTip1 As ToolTip
 End Class

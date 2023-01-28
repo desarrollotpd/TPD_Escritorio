@@ -1,16 +1,9 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Deployment.Application
-Imports System.Net
-Imports System.Security
-Imports System.Security.Permissions
-Imports System.Text
-Imports System.Xml
 Imports TPD_C.Ventas
 Imports TPD_C.TPD_Operacion
 Imports TPD_C.TOP_Operacion
 Imports TPD_C.TPD_Compras
-
-
 
 
 Public Class Inicio
@@ -96,10 +89,11 @@ Public Class Inicio
   End If
  End Sub
 
- Private Sub SMVtaGral_Click2(sender As System.Object, e As System.EventArgs) Handles SMAgentes2.Click
+	Private Sub SMVtaGral_Click2(sender As System.Object, e As System.EventArgs) Handles SMAgentes2.Click
 
- End Sub
- Private Sub SMVtaLinea_Click2(sender As System.Object, e As System.EventArgs) Handles SMVtaLineas.Click
+	End Sub
+
+	Private Sub SMVtaLinea_Click2(sender As System.Object, e As System.EventArgs) Handles SMVtaLineas.Click
   Reporte_Ventas_Lineas.MdiParent = Me
   Reporte_Ventas_Lineas.Show()
  End Sub
@@ -1472,12 +1466,13 @@ Public Class Inicio
   PR.Show()
  End Sub
 
- Private Sub EtiquetasParaCajasDeCamiónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EtiquetasParaCajasDeCamiónToolStripMenuItem.Click
-  frmEtiquetasCajasCamion.MdiParent = Me
-  frmEtiquetasCajasCamion.Show()
- End Sub
+	Private Sub EtiquetasParaCajasDeCamiónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EtiquetasParaCajasDeCamiónToolStripMenuItem.Click
+		frmEtiquetasCajasCamion.MdiParent = Me
+		frmEtiquetasCajasCamion.Show()
+	End Sub
 
- Private Sub CódigoDeBarrasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CódigoDeBarrasToolStripMenuItem.Click
-
- End Sub
+	Private Sub TransportesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TransportesToolStripMenuItem.Click
+		PorLotes.MdiParent = Me
+		PorLotes.Show()
+	End Sub
 End Class

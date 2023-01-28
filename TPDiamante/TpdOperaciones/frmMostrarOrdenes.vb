@@ -306,26 +306,26 @@ Public Class frmMostrarOrdenes
   Dim GroupCode As String
   CveSucursal = SQL.CampoEspecifico("select Almacen from Usuarios where Id_Usuario = '" + UsrTPM + "'", "Almacen")
 
-  'COMBO DE SUCURSALES
-  If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Then
-   ConsutaListaS = "SELECT GroupCode, GroupName FROM SBO_TPD.dbo.OCRG with (nolock) WHERE GroupType = 'C' AND  GroupCode <> '' ORDER BY GroupCode"
+		'COMBO DE SUCURSALES
+		If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Then
+			ConsutaListaS = "SELECT GroupCode, GroupName FROM SBO_TPD.dbo.OCRG with (nolock) WHERE GroupType = 'C' AND  GroupCode <> '' ORDER BY GroupCode"
 
-   Using SqlConnection As New Data.SqlClient.SqlConnection(StrCon)
-    Dim DSetTablas As New DataSet
+			Using SqlConnection As New Data.SqlClient.SqlConnection(StrCon)
+				Dim DSetTablas As New DataSet
 
-    Dim daGSucural As New SqlClient.SqlDataAdapter(ConsutaListaS, SqlConnection)
+				Dim daGSucural As New SqlClient.SqlDataAdapter(ConsutaListaS, SqlConnection)
 
-    'Dim DSetTablas As New DataSet
-    daGSucural.Fill(DSetTablas, "Sucursales")
-    CmbSucursal.DataSource = DSetTablas.Tables("Sucursales")
-    CmbSucursal.DisplayMember = "GroupName"
-    CmbSucursal.ValueMember = "GroupCode"
-    CmbSucursal.SelectedIndex = 0
-    'CveSucursal = Trim(Me.CmbSucursal.SelectedValue.ToString)
-   End Using
-  End If
-  '*********************************************************************************************************************************************
- End Sub
+				'Dim DSetTablas As New DataSet
+				daGSucural.Fill(DSetTablas, "Sucursales")
+				CmbSucursal.DataSource = DSetTablas.Tables("Sucursales")
+				CmbSucursal.DisplayMember = "GroupName"
+				CmbSucursal.ValueMember = "GroupCode"
+				CmbSucursal.SelectedIndex = 0
+				'CveSucursal = Trim(Me.CmbSucursal.SelectedValue.ToString)
+			End Using
+		End If
+		'*********************************************************************************************************************************************
+	End Sub
 
  'Sub MEjecuta_Orden()
  '  Try

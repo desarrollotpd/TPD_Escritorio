@@ -53,12 +53,12 @@ Public Class OVtaCSinM
   End If
 
   panelBotones.Visible = True
-  If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Then
-   panelBotones.Visible = False
-  End If
+		If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Then
+			panelBotones.Visible = False
+		End If
 
 
-  Dim Consulta As String = ""
+		Dim Consulta As String = ""
 
   Consulta = "SELECT T0.[ItemCode] AS Articulo,T0.ItemName AS Descripcion,"
   Consulta &= "T1.[ItmsGrpNam] AS Grupo_Articulo, T2.OnHand AS Existencia "
@@ -2149,17 +2149,17 @@ ContinuoSinActualizar:
    .Columns("Linea").Width = 80
    .Columns("Linea").ReadOnly = True
 
-   If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Then
-    .Columns("Articulo").Visible = False
-   End If
-   .Columns("Proveedor").HeaderText = "Proveedor"
+			If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Then
+				.Columns("Articulo").Visible = False
+			End If
+			.Columns("Proveedor").HeaderText = "Proveedor"
    .Columns("Proveedor").Width = 100
    .Columns("Proveedor").ReadOnly = True
 
-   If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Then
-    .Columns("Pro. Alterno").Visible = False
-   End If
-   .Columns("Pro. Alterno").HeaderText = "Proveedor alterno"
+			If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Then
+				.Columns("Pro. Alterno").Visible = False
+			End If
+			.Columns("Pro. Alterno").HeaderText = "Proveedor alterno"
    .Columns("Pro. Alterno").Width = 100
    .Columns("Pro. Alterno").ReadOnly = True
 

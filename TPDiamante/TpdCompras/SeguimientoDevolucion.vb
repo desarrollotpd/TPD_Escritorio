@@ -16,35 +16,35 @@ Public Class DetDevolucionSeg
 
 
 
-  If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" _
-           Or UsrTPM = "ASTRIDY" Or UsrTPM = "VENTAS5" Or UsrTPM = "VENTAS4" Or UsrTPM = "RROBLES" Or UsrTPM = "VENTAS8" _
-           Or UsrTPM = "VVERGARA" Or UsrTPM = "VENTAS1" Then
-   'Campos almacén
-   DTPFecDic.Enabled = False
-   TBFolio.ReadOnly = True
-   'TBCausa.ReadOnly = True
-   'Campos compras
-   DTPRecComp.Enabled = False
-   'DTPFecEntProv.Enabled = False
-   'TBDiasTransFecProv.ReadOnly = True
-   'TBComentarios.ReadOnly = True
-   'Dictamen
-   GroupBox1.Enabled = False
+		If UsrTPM = "VENTAS2" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" _
+											Or UsrTPM = "ASTRIDY" Or UsrTPM = "VENTAS5" Or UsrTPM = "VENTAS4" Or UsrTPM = "RROBLES" Or UsrTPM = "VENTAS8" _
+											Or UsrTPM = "VVERGARA" Or UsrTPM = "VENTAS1" Then
+			'Campos almacén
+			DTPFecDic.Enabled = False
+			TBFolio.ReadOnly = True
+			'TBCausa.ReadOnly = True
+			'Campos compras
+			DTPRecComp.Enabled = False
+			'DTPFecEntProv.Enabled = False
+			'TBDiasTransFecProv.ReadOnly = True
+			'TBComentarios.ReadOnly = True
+			'Dictamen
+			GroupBox1.Enabled = False
 
-   'Si procede
-   GroupBox5.Enabled = False
+			'Si procede
+			GroupBox5.Enabled = False
 
-   'No procede
-   GroupBox7.Enabled = False
+			'No procede
+			GroupBox7.Enabled = False
 
-   TBDiasTransTot.ReadOnly = True
+			TBDiasTransTot.ReadOnly = True
 
-   BSave.Visible = False
-  End If
+			BSave.Visible = False
+		End If
 
-  ''COMENZAR DE AQUI
+		''COMENZAR DE AQUI
 
-  conexion.Open()
+		conexion.Open()
   Dim cmd As SqlCommand = New SqlCommand("SELECT * FROM DetalleFacturaDevolucion WHERE Factura=@Factura AND Id=@Id AND Itemcode=@ItemCode ", conexion)
 
   cmd.Parameters.AddWithValue("@Factura", Module1.FacturaDev)

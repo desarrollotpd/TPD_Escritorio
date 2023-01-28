@@ -70,49 +70,49 @@ Public Class Tracking
                         " where" +
                         "    t0.SlpCode not in (-1, 1, 2) and (U_ESTATUS = 'ACTIVO' OR U_ESTATUS = 'INACTIVOCC') "
 
-            'MODIFICADO POR IVAN GONZALEZ
-            'SE MODIFICO PARA QUE PUEDAN ENTRAR LOS AGENTES DE VENTAS Y DE MARKETING
-            If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Then
-                '----------------
-                Consulta += " order by" +
-                        "    t0.slpcode "
+			'MODIFICADO POR IVAN GONZALEZ
+			'SE MODIFICO PARA QUE PUEDAN ENTRAR LOS AGENTES DE VENTAS Y DE MARKETING
+			If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Then
+				'----------------
+				Consulta += " order by" +
+																								"    t0.slpcode "
 
-                Dim adapter As New SqlDataAdapter(Consulta, conexion)
-                adapter.Fill(DSAll)
+				Dim adapter As New SqlDataAdapter(Consulta, conexion)
+				adapter.Fill(DSAll)
 
-                Dim filaClte As Data.DataRow
+				Dim filaClte As Data.DataRow
 
-                filaClte = DSAll.Tables(0).NewRow
-                filaClte("SlpName") = "Ventas Tuxtla"
-                filaClte("Correo") = "victorvergara@tractopartesdiamante.com.mx"
-                filaClte("SlpCode") = "83"
-                DSAll.Tables(0).Rows.Add(filaClte)
+				filaClte = DSAll.Tables(0).NewRow
+				filaClte("SlpName") = "Ventas Tuxtla"
+				filaClte("Correo") = "victorvergara@tractopartesdiamante.com.mx"
+				filaClte("SlpCode") = "83"
+				DSAll.Tables(0).Rows.Add(filaClte)
 
-                filaClte = DSAll.Tables(0).NewRow
-                filaClte("SlpName") = "Ventas Merida"
-                filaClte("Correo") = "ricardorobles@tractopartesdiamante.com.mx"
-                filaClte("SlpCode") = "84"
-                DSAll.Tables(0).Rows.Add(filaClte)
-
-
-                filaClte = DSAll.Tables(0).NewRow
-                filaClte("SlpName") = "--Ningun Resultado--"
-                filaClte("Correo") = ""
-                filaClte("SlpCode") = "1010"
-                DSAll.Tables(0).Rows.Add(filaClte)
+				filaClte = DSAll.Tables(0).NewRow
+				filaClte("SlpName") = "Ventas Merida"
+				filaClte("Correo") = "ricardorobles@tractopartesdiamante.com.mx"
+				filaClte("SlpCode") = "84"
+				DSAll.Tables(0).Rows.Add(filaClte)
 
 
-                DvLP.Table = DSAll.Tables(0)
-                DvAux.Table = DSAll.Tables(0)
-                DvLP.RowFilter = "SlpCode <> 1010"
-                CmbAgte.DataSource = DvLP
-                CmbAgte.DisplayMember = "SlpName"
-                CmbAgte.ValueMember = "SlpCode"
-                CmbAgte.SelectedIndex = -1
-                '----------------
-            Else
-                '---------------------
-                SQL.conectarTPM()
+				filaClte = DSAll.Tables(0).NewRow
+				filaClte("SlpName") = "--Ningun Resultado--"
+				filaClte("Correo") = ""
+				filaClte("SlpCode") = "1010"
+				DSAll.Tables(0).Rows.Add(filaClte)
+
+
+				DvLP.Table = DSAll.Tables(0)
+				DvAux.Table = DSAll.Tables(0)
+				DvLP.RowFilter = "SlpCode <> 1010"
+				CmbAgte.DataSource = DvLP
+				CmbAgte.DisplayMember = "SlpName"
+				CmbAgte.ValueMember = "SlpCode"
+				CmbAgte.SelectedIndex = -1
+				'----------------
+			Else
+				'---------------------
+				SQL.conectarTPM()
                 Dim CodAgente As String = SQL.CampoEspecifico("select CodAgte from Usuarios where Id_Usuario = '" + UsrTPM + "'", "CodAgte")
                 Consulta += " and t0.slpcode = " + CodAgente + " order by" +
                         "    t0.slpcode "

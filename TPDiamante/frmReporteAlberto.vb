@@ -14,11 +14,11 @@ Public Class frmReporteAlberto
         Dim agente As String = SQL.CampoEspecifico("select CodAgte From Usuarios where Id_Usuario = '" + UsrTPM + "'", "CodAgte")
 
         SQL.Cerrar()
-        If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Then
-            dgvDatos.DataSource = SQL.EjecutarProcedimiento("rpt_LimFact_Alberto", "@FechaInicio,@FechaFin,@Agente,@Ventas", 4, dtfechainicio.Value.ToString("yyyy-MM-dd") + "," + dtfechafin.Value.ToString("yyyy-MM-dd") + ",99,'No ventas'")
-        Else
-            'Todos los agentes de marketing
-            If agente = "" Then
+		If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Then
+			dgvDatos.DataSource = SQL.EjecutarProcedimiento("rpt_LimFact_Alberto", "@FechaInicio,@FechaFin,@Agente,@Ventas", 4, dtfechainicio.Value.ToString("yyyy-MM-dd") + "," + dtfechafin.Value.ToString("yyyy-MM-dd") + ",99,'No ventas'")
+		Else
+			'Todos los agentes de marketing
+			If agente = "" Then
                 'Marketing
                 dgvDatos.DataSource = SQL.EjecutarProcedimiento("rpt_LimFact_Alberto", "@FechaInicio,@FechaFin,@Agente,@Ventas", 4, dtfechainicio.Value.ToString("yyyy-MM-dd") + "," + dtfechafin.Value.ToString("yyyy-MM-dd") + ",666," + UsrTPM)
             Else

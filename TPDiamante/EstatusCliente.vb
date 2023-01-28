@@ -223,21 +223,21 @@ Public Class EstatusCliente
 
  ' Boton consultar
  Private Sub bConsultar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bConsultar.Click
-        Try
+  Try
 
-            Dim sError As String
+   Dim sError As String
 
-            sError = String.Empty
-            If (fValidaDatos(sError)) Then
-                mConsultaCliente(String.Empty, dtDel.Value, dtAl.Value)
-                BtnExcel.Visible = True
-            Else
-                MsgBox("Verifique los siguientes campos: " + sError, MsgBoxStyle.Exclamation, "Tracto Partes Diamante")
-            End If
+   sError = String.Empty
+   If (fValidaDatos(sError)) Then
+    mConsultaCliente(String.Empty, dtDel.Value, dtAl.Value)
+    BtnExcel.Visible = True
+   Else
+    MsgBox("Verifique los siguientes campos: " + sError, MsgBoxStyle.Exclamation, "Tracto Partes Diamante")
+   End If
 
 
-        Catch ex As Exception
-            MsgBox("Error al cargar en el metodo:" + Environment.NewLine + "-bConsultar_Click() " +
+  Catch ex As Exception
+   MsgBox("Error al cargar en el metodo:" + Environment.NewLine + "-bConsultar_Click() " +
                  Environment.NewLine + ex.ToString(), MsgBoxStyle.Critical, "Tracto Partes Diamante")
   End Try
  End Sub
@@ -415,22 +415,22 @@ Public Class EstatusCliente
      sCliente = String.Empty
     End If
 
-    sCadena &= " union  " +
-                           "SELECT fact.DocNum Factura, fact.DocDate Fechafact, fact.DocTotal Importe,(fact.DocTotal- isnull(fact.PaidToDate,0.00)) [Saldo pendiente], " +
-                           "	   fact.DocDueDate Vencimiento,  isnull(P.SumApplied,0.00) Pago,isnull(dtpag.DocDate,null) FechaDep,  " +
-                           "	   DATEDIFF(day,fact.DocDueDate,isnull(dtpag.DocDate,CONVERT(date, GETDATE()))) Atraso, DocStatus  ,  " +
-                           "	   CASE when isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)<=5 then 'Verde' " +
-                           "			when isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)>=6 and isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)<=15 then 'Amarillo' " +
-                           "			when isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)>=16 and isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)<=30 then 'Naranja' " +
-                           "			when isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)>=30 then 'Rojo' End ,'F', " +
-                           "CASE WHEN fact.EDocNum IS NULL THEN 'N' " +
-                           "ELSE 'Y' END AS 'Timbre',fact.Series    " +
-                           " FROM [SBO-Diamante-productiva].dbo.OINV fact " +
-                           "   LEFT JOIN [SBO-Diamante-productiva].dbo.RCT2 P ON fact.DocEntry = P.DocEntry" +
-                           "   LEFT JOIN [SBO-Diamante-productiva].dbo.ORCT dtpag ON p.DocNum = dtpag.DocEntry" +   'SE CAMBIA ESTA LINEA PARA OBTENER LA FECHA DEL PAGO "   LEFT JOIN [SBO-Diamante-productiva].dbo.ORCT dtpag ON p.DocNum = dtpag.DocNum" +
-                           "   inner join [SBO-Diamante-productiva].dbo.OSLP agent on fact.SlpCode= agent.SlpCode" +
-                           " where fact.DocDate between '" + ini.ToString("yyyy-MM-dd") + "' and '" + fin.ToString("yyyy-MM-dd") + "'"
-    If sCliente = String.Empty Then
+				sCadena &= " union  " +
+																											"SELECT fact.DocNum Factura, fact.DocDate Fechafact, fact.DocTotal Importe,(fact.DocTotal- isnull(fact.PaidToDate,0.00)) [Saldo pendiente], " +
+																											"	   fact.DocDueDate Vencimiento,  isnull(P.SumApplied,0.00) Pago,isnull(dtpag.DocDate,null) FechaDep,  " +
+																											"	   DATEDIFF(day,fact.DocDueDate,isnull(dtpag.DocDate,CONVERT(date, GETDATE()))) Atraso, DocStatus  ,  " +
+																											"	   CASE when isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)<=5 then 'Verde' " +
+																											"			when isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)>=6 and isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)<=15 then 'Amarillo' " +
+																											"			when isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)>=16 and isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)<=30 then 'Naranja' " +
+																											"			when isnull(DATEDIFF(day,fact.DocDueDate,dtpag.DocDate),0)>=30 then 'Rojo' End ,'F', " +
+																											"CASE WHEN fact.EDocNum IS NULL THEN 'N' " +
+																											"ELSE 'Y' END AS 'Timbre',fact.Series    " +
+																											" FROM SBO_TPD.dbo.OINV fact " +
+																											"   LEFT JOIN SBO_TPD.dbo.RCT2 P ON fact.DocEntry = P.DocEntry" +
+																											"   LEFT JOIN SBO_TPD.dbo.ORCT dtpag ON p.DocNum = dtpag.DocEntry" +   'SE CAMBIA ESTA LINEA PARA OBTENER LA FECHA DEL PAGO "   LEFT JOIN [SBO-Diamante-productiva].dbo.ORCT dtpag ON p.DocNum = dtpag.DocNum" +
+																											"   inner join SBO_TPD.dbo.OSLP agent on fact.SlpCode= agent.SlpCode" +
+																											" where fact.DocDate between '" + ini.ToString("yyyy-MM-dd") + "' and '" + fin.ToString("yyyy-MM-dd") + "'"
+				If sCliente = String.Empty Then
      sCadena &= " and agent.Memo='" + cmbAgente.SelectedValue.ToString() + "'" +
                                " and fact.CardCode='" + cmbCliente.SelectedValue.ToString() + "'"
     Else
@@ -453,15 +453,15 @@ Public Class EstatusCliente
      sCliente = String.Empty
     End If
 
-    sCadena &= " union  " +
-                           " select DocNum Factura,DocDate fechafact,DocTotal*-1 importe,PaidToDate-DocTotal,DocDueDate Vencimiento,0 Pago,null FechaDep,null Atraso, " +
-                           " DocStatus ,'Verde','N', " +
-                           "CASE WHEN nc.EDocNum IS NULL THEN 'N' " +
-                           "ELSE 'Y' END AS 'Timbre',nc.Series " +
-                           " from [SBO-Diamante-productiva].dbo.orin nc " +
-                           "    inner join [SBO-Diamante-productiva].dbo.OSLP agent on nc.SlpCode= agent.SlpCode " +
-                           " where DocDueDate between '" + ini.ToString("yyyy-MM-dd") + "' and '" + fin.ToString("yyyy-MM-dd") + "' " + ""
-    If sCliente = String.Empty Then
+				sCadena &= " union  " +
+																											" select DocNum Factura,DocDate fechafact,DocTotal*-1 importe,PaidToDate-DocTotal,DocDueDate Vencimiento,0 Pago,null FechaDep,null Atraso, " +
+																											" DocStatus ,'Verde','N', " +
+																											"CASE WHEN nc.EDocNum IS NULL THEN 'N' " +
+																											"ELSE 'Y' END AS 'Timbre',nc.Series " +
+																											" from SBO_TPD.dbo.ORIN nc " +
+																											"    inner join SBO_TPD.dbo.OSLP agent on nc.SlpCode= agent.SlpCode " +
+																											" where DocDueDate between '" + ini.ToString("yyyy-MM-dd") + "' and '" + fin.ToString("yyyy-MM-dd") + "' " + ""
+				If sCliente = String.Empty Then
      sCadena &= " and agent.Memo='" + cmbAgente.SelectedValue.ToString() + "'" +
                                " and nc.CardCode='" + cmbCliente.SelectedValue.ToString() + "'"
     Else

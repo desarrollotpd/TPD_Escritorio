@@ -683,7 +683,7 @@ Public Class frmLiberacionGuias
 		'CveSucursal = SQL.CampoEspecifico("select Almacen from Usuarios where Id_Usuario = '" + UsrTPM + "'", "Almacen")
 
 		'COMBO DE SUCURSALES
-		If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Or UsrTPM = "AINVEN" Then
+		If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Or UsrTPM = "AINVEN" Then
 			ConsutaListaS = "SELECT GroupCode, GroupName FROM SBO_TPD.dbo.OCRG with (nolock) WHERE GroupType = 'C' AND  GroupCode <> '' ORDER BY GroupCode"
 
 			Using SqlConnection As New Data.SqlClient.SqlConnection(StrCon)

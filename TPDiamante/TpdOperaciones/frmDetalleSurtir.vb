@@ -22,7 +22,7 @@ Public Class frmDetalleSurtir
  Dim PesoSug As Double = 0
 
 #Region "General"
- 'CARGA EOL FORMULARIO AL EJECUTARSE
+ 'CARGA EOL FORMULARIO AL EJECUTARS
  Private Sub frmDetalleSurtir_Load(sender As Object, e As EventArgs) Handles MyBase.Load
   'COLOCA EL TITULO DEL FORMULARIO
   Me.Text = TituloSurtido

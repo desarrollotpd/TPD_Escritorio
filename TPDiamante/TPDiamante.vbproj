@@ -44,7 +44,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://www.clienteleal.com/updatesTPD/</UpdateUrl>
     <MinimumRequiredVersion>1.0.0.85</MinimumRequiredVersion>
-    <ApplicationRevision>373</ApplicationRevision>
+    <ApplicationRevision>384</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -654,6 +654,12 @@
       <DependentUpon>IngresarDevolucion.vb</DependentUpon>
     </Compile>
     <Compile Include="TpdCompras\IngresarDevolucion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TpdCompras\PorLotes.Designer.vb">
+      <DependentUpon>PorLotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TpdCompras\PorLotes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TpdCompras\SeguimientoDevolucion.Designer.vb">
@@ -1950,6 +1956,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TpdCompras\IngresarDevolucion.resx">
       <DependentUpon>IngresarDevolucion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TpdCompras\PorLotes.resx">
+      <DependentUpon>PorLotes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TpdCompras\SeguimientoDevolucion.resx">
       <DependentUpon>SeguimientoDevolucion.vb</DependentUpon>

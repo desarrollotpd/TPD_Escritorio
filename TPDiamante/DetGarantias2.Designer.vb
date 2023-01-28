@@ -566,7 +566,7 @@ Partial Class DetGarantias2
         Me.CBEstatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CBEstatus.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CBEstatus.FormattingEnabled = True
-        Me.CBEstatus.Items.AddRange(New Object() {"", "NO EMPEZADA", "EN CURSO", "CON EL PROVEEDOR", "RETRASO CON EL PROVEEDOR", "RECHAZADA", "TERMINADA", "PENDIENTE NC "})
+        Me.CBEstatus.Items.AddRange(New Object() {"", "NO EMPEZADA", "EN CURSO", "CON EL PROVEEDOR", "RETRASO CON EL PROVEEDOR", "RECHAZADA", "TERMINADA", "PENDIENTE NC"})
         Me.CBEstatus.Location = New System.Drawing.Point(405, 111)
         Me.CBEstatus.Name = "CBEstatus"
         Me.CBEstatus.Size = New System.Drawing.Size(154, 21)
@@ -658,21 +658,21 @@ Partial Class DetGarantias2
     Friend WithEvents DataGridViewTextBoxColumn13 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CBEstatus As System.Windows.Forms.ComboBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents Id As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Estatus As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DiasTot As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents FecSuc As TPDiamante.CalendarColumn
-    Friend WithEvents FecAlm As TPDiamante.CalendarColumn
-    Friend WithEvents Factura As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents FecFac As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DiasTransFactRecep As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents cardcode As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents CardName As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Sucursal As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents Almacen As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ItemCode As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ItemName As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ItmsGrpNam As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Proveedor As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Id As DataGridViewTextBoxColumn
+    Friend WithEvents Estatus As DataGridViewTextBoxColumn
+    Friend WithEvents DiasTot As DataGridViewTextBoxColumn
+    Friend WithEvents FecSuc As CalendarColumn
+    Friend WithEvents FecAlm As CalendarColumn
+    Friend WithEvents Factura As DataGridViewTextBoxColumn
+    Friend WithEvents FecFac As DataGridViewTextBoxColumn
+    Friend WithEvents DiasTransFactRecep As DataGridViewTextBoxColumn
+    Friend WithEvents cardcode As DataGridViewTextBoxColumn
+    Friend WithEvents CardName As DataGridViewTextBoxColumn
+    Friend WithEvents Sucursal As DataGridViewComboBoxColumn
+    Friend WithEvents Almacen As DataGridViewTextBoxColumn
+    Friend WithEvents Cantidad As DataGridViewTextBoxColumn
+    Friend WithEvents ItemCode As DataGridViewTextBoxColumn
+    Friend WithEvents ItemName As DataGridViewTextBoxColumn
+    Friend WithEvents ItmsGrpNam As DataGridViewTextBoxColumn
+    Friend WithEvents Proveedor As DataGridViewTextBoxColumn
 End Class

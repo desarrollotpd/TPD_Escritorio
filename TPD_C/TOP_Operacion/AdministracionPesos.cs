@@ -52,8 +52,7 @@
                 lblCliente2.Text = registro[2].ToString();
                 lblPesoR.Text = registro[3].ToString();
                 lblPeso2.Text= registro[4].ToString();
-                 lblTotal2.Text = registro[5].ToString();
-
+                lblTotal2.Text = registro[5].ToString();
             }
 
            

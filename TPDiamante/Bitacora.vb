@@ -90,24 +90,24 @@ Public Class Bitacora
         Dim Cn As New SqlConnection(StrTpm)
         Dim Da As New SqlDataAdapter
         Dim Cmd As New SqlCommand
-        If IdUsuario = "MANAGER" Or IdUsuario = "CONTAB1" Or IdUsuario = "ACONTABLE" Or IdUsuario = "COMERCIAL" Then
-            With Cmd
-                .CommandType = CommandType.Text
-                '.CommandText = "Select * From Cat_Agentes where Status = 'Activo' order by SlpName"
-                .CommandText = "select Placas, Nombre, Nombre + ' - ' + Marca + ' - ' + Modelo as 'Name', Id_Usuario from Coches t0 left join Usuarios t1 on t0.Agente = t1.CodAgte where t0.Status = 'Activo' AND NOMBRE IS NOT NULL  order by Nombre"
-                .Connection = Cn
-            End With
-            Da.SelectCommand = Cmd
-            Dt = New DataTable
-            Da.Fill(Dt)
-            With ComboBox1
-                .DataSource = Dt
-                .DisplayMember = "Name"
-                .ValueMember = "Placas"
-                '.SelectedIndex = -1
-            End With
-        Else
-            With Cmd
+		If IdUsuario = "MANAGER" Or IdUsuario = "CONTAB1" Or IdUsuario = "ACONTABLE" Or IdUsuario = "COMERCIAL" Or IdUsuario = "CGARCIA" Then
+			With Cmd
+				.CommandType = CommandType.Text
+				'.CommandText = "Select * From Cat_Agentes where Status = 'Activo' order by SlpName"
+				.CommandText = "select Placas, Nombre, Nombre + ' - ' + Marca + ' - ' + Modelo as 'Name', Id_Usuario from Coches t0 left join Usuarios t1 on t0.Agente = t1.CodAgte where t0.Status = 'Activo' AND NOMBRE IS NOT NULL  order by Nombre"
+				.Connection = Cn
+			End With
+			Da.SelectCommand = Cmd
+			Dt = New DataTable
+			Da.Fill(Dt)
+			With ComboBox1
+				.DataSource = Dt
+				.DisplayMember = "Name"
+				.ValueMember = "Placas"
+				'.SelectedIndex = -1
+			End With
+		Else
+			With Cmd
                 .CommandType = CommandType.Text
                 '.CommandText = "Select * From Cat_Agentes where Status = 'Activo' order by SlpName"
                 .CommandText = "select Placas, Nombre, Nombre + ' - ' + Marca + ' - ' + Modelo as 'Name', Id_Usuario from Coches t0 left join Usuarios t1 on t0.Agente = t1.CodAgte where t0.Status = 'Activo' and t1.Id_Usuario = '" & UsrTPM & "' order by Nombre"

@@ -158,16 +158,16 @@ Public Class frmcancelaciones
             Dim consulta As String
             Dim SQL As New Comandos_SQL()
             SQL.conectarTPM()
-            If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Or UsrTPM = "MMAZZOCO" Or UsrTPM = "ACONTABLE" Or UsrTPM = "CONTAB1" Then
+			If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Or UsrTPM = "MMAZZOCO" Or UsrTPM = "ACONTABLE" Or UsrTPM = "CONTAB1" Then
 
-                consulta = "SELECT WhsCode, WhsName FROM OWHS WHERE (WhsCode = 01 or WhsCode = '03' or WhsCode = '07' or WhsCode = '06')"
-            ElseIf UsrTPM = "OPERACIOND" Or UsrTPM = "ACONTABLE" Or UsrTPM = "CONTAB1" Then
+				consulta = "SELECT WhsCode, WhsName FROM OWHS WHERE (WhsCode = 01 or WhsCode = '03' or WhsCode = '07' or WhsCode = '06')"
+			ElseIf UsrTPM = "OPERACIOND" Or UsrTPM = "ACONTABLE" Or UsrTPM = "CONTAB1" Then
 
-                consulta = "SELECT WhsCode, WhsName FROM OWHS WHERE (WhsCode = 01 or WhsCode = '06')"
+				consulta = "SELECT WhsCode, WhsName FROM OWHS WHERE (WhsCode = 01 or WhsCode = '06')"
 
 
-            Else
-                Dim almacen As String = SQL.CampoEspecifico("select Almacen from Usuarios where Id_Usuario = '" + UsrTPM + "'", "Almacen")
+			Else
+				Dim almacen As String = SQL.CampoEspecifico("select Almacen from Usuarios where Id_Usuario = '" + UsrTPM + "'", "Almacen")
         consulta = "SELECT WhsCode, WhsName FROM OWHS WHERE WhsCode = '" + almacen + "'"
       End If
       SQL.Cerrar()
@@ -180,11 +180,11 @@ Public Class frmcancelaciones
                 Lista_alm.Add(conexion_universal.rd_s.Item("WhsName"))
             End While
 
-            If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Or UsrTPM = "MMAZZOCO" Then
-                Lista_alm.Add("TODOS")
-            End If
+			If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Or UsrTPM = "MMAZZOCO" Then
+				Lista_alm.Add("TODOS")
+			End If
 
-            conexion_universal.rd_s.Close()
+			conexion_universal.rd_s.Close()
             With cmbalmacen
                 .DropDownStyle = ComboBoxStyle.DropDown
                 .AutoCompleteMode = AutoCompleteMode.SuggestAppend

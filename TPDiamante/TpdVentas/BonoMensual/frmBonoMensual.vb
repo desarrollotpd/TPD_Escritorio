@@ -35,13 +35,13 @@ Public Class frmBonoMensual
   lblEspera.Height = 235
   lblEspera.Visible = False
 
-  If UsrTPM <> "MANAGER" And UsrTPM <> "COMERCIAL" And UsrTPM <> "SISTEMAS" Then
-   GroupBox3.Visible = False
-   btnParametros.Visible = False
-   Me.Width = 1290
-   Me.Height = 360
-  Else
-   GroupBox3.Visible = True
+		If UsrTPM <> "MANAGER" And UsrTPM <> "COMERCIAL" And UsrTPM <> "CGARCIA" And UsrTPM <> "SISTEMAS" Then
+			GroupBox3.Visible = False
+			btnParametros.Visible = False
+			Me.Width = 1290
+			Me.Height = 360
+		Else
+			GroupBox3.Visible = True
    btnParametros.Visible = True
    Me.Width = 1290
    Me.Height = 647
@@ -135,13 +135,13 @@ Public Class frmBonoMensual
    cmd.Parameters.Add("@fDiasMes", SqlDbType.Int).Value = vDiasMes
    cmd.Parameters.Add("@fDiasRest", SqlDbType.Int).Value = DiasRestantes
    cmd.Parameters.Add("@fSucursal", SqlDbType.Int).Value = 99
-   '-------------------------------------------------------------------------------
-   '-------------------------------------------------------------------------------
+			'-------------------------------------------------------------------------------
+			'-------------------------------------------------------------------------------
 
-   If Agente = "SISTEMAS" Or Agente = "MANAGER" Or Agente = "COMERCIAL" Then
-    cmd.Parameters.Add("@fAgente", SqlDbType.Int).Value = 999 ' Busco a todos
-   Else
-    Dim CodAgte As Integer = CInt(SQL.CampoEspecifico("SELECT CodAgte FROM Usuarios WHERE Id_Usuario = '" & Agente & "'", "CodAgte"))
+			If Agente = "SISTEMAS" Or Agente = "MANAGER" Or Agente = "COMERCIAL" Or UsrTPM = "CGARCIA" Then
+				cmd.Parameters.Add("@fAgente", SqlDbType.Int).Value = 999 ' Busco a todos
+			Else
+				Dim CodAgte As Integer = CInt(SQL.CampoEspecifico("SELECT CodAgte FROM Usuarios WHERE Id_Usuario = '" & Agente & "'", "CodAgte"))
     cmd.Parameters.Add("@fAgente", SqlDbType.Int).Value = CodAgte ' POr el momento lo mando siempre con 999 y valido despues
    End If
 

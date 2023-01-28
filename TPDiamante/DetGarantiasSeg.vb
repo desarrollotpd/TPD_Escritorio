@@ -11,33 +11,33 @@ Public Class DetGarantiasSeg
 
  Private Sub DetGarantiasSeg_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        If UsrTPM = "VENTAS2" Or UsrTPM = "AMERIDA" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" _
-            Or UsrTPM = "ASTRIDY" Or UsrTPM = "VENTAS5" Or UsrTPM = "VENTAS4" Or UsrTPM = "RROBLES" Or UsrTPM = "VENTAS8" _
-            Or UsrTPM = "VVERGARA" Or UsrTPM = "VENTAS1" Then
-            'Campos almacén
-            DTPFecDic.Enabled = False
-            TBFolio.ReadOnly = True
-            TBCausa.ReadOnly = True
-            'Campos compras
-            DTPRecComp.Enabled = False
-            DTPFecEntProv.Enabled = False
-            TBDiasTransFecProv.ReadOnly = True
-            TBComentarios.ReadOnly = True
-            'Dictamen
-            GroupBox1.Enabled = False
+		If UsrTPM = "VENTAS2" Or UsrTPM = "AMERIDA" Or UsrTPM = "VENTAS3" Or UsrTPM = "RLIRA" Or UsrTPM = "RLIRA" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" _
+												Or UsrTPM = "ASTRIDY" Or UsrTPM = "VENTAS5" Or UsrTPM = "VENTAS4" Or UsrTPM = "RROBLES" Or UsrTPM = "VENTAS8" _
+												Or UsrTPM = "VVERGARA" Or UsrTPM = "VENTAS1" Then
+			'Campos almacén
+			DTPFecDic.Enabled = False
+			TBFolio.ReadOnly = True
+			TBCausa.ReadOnly = True
+			'Campos compras
+			DTPRecComp.Enabled = False
+			DTPFecEntProv.Enabled = False
+			TBDiasTransFecProv.ReadOnly = True
+			TBComentarios.ReadOnly = True
+			'Dictamen
+			GroupBox1.Enabled = False
 
-            'Si procede
-            GroupBox5.Enabled = False
+			'Si procede
+			GroupBox5.Enabled = False
 
-            'No procede
-            GroupBox7.Enabled = False
+			'No procede
+			GroupBox7.Enabled = False
 
-            TBDiasTransTot.ReadOnly = True
+			TBDiasTransTot.ReadOnly = True
 
-            BSave.Visible = False
+			BSave.Visible = False
 
-        ElseIf UsrTPM = "ALMACEN1" Then
-            GroupBox1.Enabled = False
+		ElseIf UsrTPM = "ALMACEN1" Then
+			GroupBox1.Enabled = False
    GroupBox5.Enabled = False
    DTPFecEntProv.Enabled = False
    TBDiasTransFecProv.Enabled = False
