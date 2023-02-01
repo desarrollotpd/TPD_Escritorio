@@ -168,10 +168,11 @@ Public Class frmBarCode
      Return
     End If
 
-    'ZPLCommand &= "^FO" + posX + ",55^A0N,17,17^BC,60,Y,N,N^FD" + BarCode + "^FS"
-    ZPLCommand &= "^FO20," + posX + "^A0N,17,17^BY1^BC,60,N,N,N,A^FD" + BarCode + "^FS"
-    'Se agregar codigo QR
-    ZPLCommand &= "^FO245,50^A0N,17,17^BY2,1.0,15^BQN,2,3,H,N,A^FH^FDMM,F" + BarCode.Replace("&", ",B00" & BarCode.Length & "_26") + "^FS"
+
+				'ZPLCommand &= "^FO20," + posX + "^A0N,17,17^BY1^BC,60,N,N,N,A^FD" + BarCode + "^FS"
+				ZPLCommand &= "^FO20,65^A0N,17,17^BY1^BC,60,N,N,N,A^FD" + BarCode + "^FS"
+				'Se agregar codigo QR
+				ZPLCommand &= "^FO245,50^A0N,17,17^BY2,1.0,15^BQN,2,3,H,N,A^FH^FDMM,F" + BarCode.Replace("&", ",B00" & BarCode.Length & "_26") + "^FS"
 
     ZPLCommand &= "^FO0,130^A0N,17,17^FB355,1,0,C^FD" + BarCode + "^FS"
 
@@ -323,20 +324,20 @@ Public Class frmBarCode
 
     ZPLCommand &= "^XZ"
 
-    Try
-     'Return  'Para detener y que no imprima
-     Dim Cliente As New System.Net.Sockets.TcpClient()
-     Cliente.Connect(ipZebra, port)
+				Try
+					'Return  'Para detener y que no imprima
+					Dim Cliente As New System.Net.Sockets.TcpClient()
+					Cliente.Connect(ipZebra, port)
 
-     Dim writer As New System.IO.StreamWriter(Cliente.GetStream())
-     writer.Write(ZPLCommand)
-     writer.Flush()
+					Dim writer As New System.IO.StreamWriter(Cliente.GetStream())
+					writer.Write(ZPLCommand)
+					writer.Flush()
 
-     writer.Close()
-     Cliente.Close()
+					writer.Close()
+					Cliente.Close()
 
-    Catch ex As Exception
-     MessageBox.Show(ex.ToString)
+				Catch ex As Exception
+					MessageBox.Show(ex.ToString)
     End Try
    Next
   Else
