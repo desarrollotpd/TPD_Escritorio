@@ -442,8 +442,11 @@ Public Class Login
   'ToolStripRecursosHumanos
   If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "RHUMANOS" Then
    Inicio.MVacaciones.Visible = True
+   'Reimpresion de formatos de vacaciones
+   Inicio.ReimprimirFormatoVacToolStripMenuItem.Visible = True
   Else
    Inicio.MVacaciones.Visible = False
+   Inicio.ReimprimirFormatoVacToolStripMenuItem.Visible = False
   End If
 
   'Lista de precios

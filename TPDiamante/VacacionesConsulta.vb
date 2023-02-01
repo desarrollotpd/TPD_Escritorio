@@ -3,19 +3,19 @@ Imports System.Data.SqlClient
 
 Public Class VacacionesConsulta
 
-	Public conexion2 As New SqlConnection(StrTpm)
-	Public Consulta As String
-	Public DvDetalle As New DataView
-	Dim AdapMObra As SqlClient.SqlDataAdapter
-	Dim DataSetX As DataSet
-	Dim DvLP As New DataView
-	Dim dvEmpleados As New DataView
-	Dim strTemp As String = ""
-	Dim empleado As String
-	Dim DiasAjusteVacaciones As Int16 = 6
+    Public conexion2 As New SqlConnection(StrTpm)
+    Public Consulta As String
+    Public DvDetalle As New DataView
+    Dim AdapMObra As SqlClient.SqlDataAdapter
+    Dim DataSetX As DataSet
+    Dim DvLP As New DataView
+    Dim dvEmpleados As New DataView
+    Dim strTemp As String = ""
+    Dim empleado As String
+    Dim DiasAjusteVacaciones As Int16 = 6
 
 
-	Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         DGVacaciones.DataSource = Nothing
         Label10.Text = ""
         Label14.Text = ""
@@ -486,191 +486,191 @@ Public Class VacacionesConsulta
             MsgBox(ex.Message)
         Finally
             If conexion2 IsNot Nothing AndAlso conexion2.State <> ConnectionState.Closed Then
-				conexion2.Close()
-			End If
-		End Try
+                conexion2.Close()
+            End If
+        End Try
 
-	End Sub
+    End Sub
 
-	Private Sub DisenoGrid()
-		With Me.DGVacaciones
+    Private Sub DisenoGrid()
+        With Me.DGVacaciones
 
-			'.DataSource = DtAgte
-			.ReadOnly = True
-			'Color de Renglones en Grid
-			.AlternatingRowsDefaultCellStyle.BackColor = Color.FloralWhite
-			.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.CornflowerBlue
-			.DefaultCellStyle.BackColor = Color.AliceBlue
-			.DefaultCellStyle.SelectionBackColor = Color.CornflowerBlue
+            '.DataSource = DtAgte
+            .ReadOnly = True
+            'Color de Renglones en Grid
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FloralWhite
+            .AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.CornflowerBlue
+            .DefaultCellStyle.BackColor = Color.AliceBlue
+            .DefaultCellStyle.SelectionBackColor = Color.CornflowerBlue
 
 
-			'Propiedad para no mostrar el cuadro que se encuentra en la parte
-			'Superior Izquierda del gridview
-			.RowHeadersVisible = True
-			.RowHeadersWidth = 25
-			'.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-			'Color de linea del grid
+            'Propiedad para no mostrar el cuadro que se encuentra en la parte
+            'Superior Izquierda del gridview
+            .RowHeadersVisible = True
+            .RowHeadersWidth = 25
+            '.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            'Color de linea del grid
 
-			.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-			Try
-				.Columns(0).Name = "No. Empleado"
-				.Columns(0).HeaderText = "No. Empleado"
-				.Columns(0).Width = 50
-				.Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-				.Columns(0).Frozen = True
+            Try
+                .Columns(0).Name = "No. Empleado"
+                .Columns(0).HeaderText = "No. Empleado"
+                .Columns(0).Width = 50
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(0).Frozen = True
 
-				.Columns(1).Name = "Nombre"
-				.Columns(1).HeaderText = "Nombre"
-				.Columns(1).Width = 160
-				.Columns(1).Frozen = True
+                .Columns(1).Name = "Nombre"
+                .Columns(1).HeaderText = "Nombre"
+                .Columns(1).Width = 160
+                .Columns(1).Frozen = True
 
-				.Columns(2).Name = "Fecha de Ing."
-				.Columns(2).HeaderText = "Fecha de Ingreso"
-				.Columns(2).Width = 75
-				.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-				.Columns(2).Frozen = True
+                .Columns(2).Name = "Fecha de Ing."
+                .Columns(2).HeaderText = "Fecha de Ingreso"
+                .Columns(2).Width = 75
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(2).Frozen = True
 
-				.Columns(3).Name = "Antiguedad"
-				.Columns(3).HeaderText = "Antiguedad"
-				.Columns(3).Width = 70
-				.Columns(3).DefaultCellStyle.Format = "##0.##"
-				.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-				.Columns(3).Frozen = True
+                .Columns(3).Name = "Antiguedad"
+                .Columns(3).HeaderText = "Antiguedad"
+                .Columns(3).Width = 70
+                .Columns(3).DefaultCellStyle.Format = "##0.##"
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(3).Frozen = True
 
-				.Columns(4).Name = "Días de Vac."
-				.Columns(4).HeaderText = "Días de Vacaciones"
-				.Columns(4).Width = 70
-				.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-				.Columns(4).DefaultCellStyle.Format = "#0"
-				.Columns(4).Frozen = True
+                .Columns(4).Name = "Días de Vac."
+                .Columns(4).HeaderText = "Días de Vacaciones"
+                .Columns(4).Width = 70
+                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(4).DefaultCellStyle.Format = "#0"
+                .Columns(4).Frozen = True
 
-				.Columns(5).Name = "Periodo Comp."
-				.Columns(5).HeaderText = "Periodo Comprendido"
-				.Columns(5).Width = 70
-				.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-				.Columns(5).Frozen = True
-				'.Columns(5).DefaultCellStyle.Format = "##0.#0 %"
+                .Columns(5).Name = "Periodo Comp."
+                .Columns(5).HeaderText = "Periodo Comprendido"
+                .Columns(5).Width = 70
+                .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(5).Frozen = True
+                '.Columns(5).DefaultCellStyle.Format = "##0.#0 %"
 
-				.Columns(6).Name = "Días Gozados"
-				.Columns(6).HeaderText = "Días Gozados"
-				.Columns(6).Width = 70
-				.Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-				.Columns(6).DefaultCellStyle.Format = "##0"
-				.Columns(6).Frozen = True
+                .Columns(6).Name = "Días Gozados"
+                .Columns(6).HeaderText = "Días Gozados"
+                .Columns(6).Width = 70
+                .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(6).DefaultCellStyle.Format = "##0"
+                .Columns(6).Frozen = True
 
-				.Columns(7).Name = "Días Pendientes"
-				.Columns(7).HeaderText = "Días Pendientes"
-				.Columns(7).Width = 70
-				.Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-				.Columns(7).DefaultCellStyle.Format = "##0"
-				.Columns(7).Frozen = True
+                .Columns(7).Name = "Días Pendientes"
+                .Columns(7).HeaderText = "Días Pendientes"
+                .Columns(7).Width = 70
+                .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(7).DefaultCellStyle.Format = "##0"
+                .Columns(7).Frozen = True
 
-				.Columns(8).Name = "Inicio Vac."
-				.Columns(8).HeaderText = "Inicio Vac."
-				.Columns(8).Width = 70
-				.Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-				.Columns(8).Frozen = True
+                .Columns(8).Name = "Inicio Vac."
+                .Columns(8).HeaderText = "Inicio Vac."
+                .Columns(8).Width = 70
+                .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(8).Frozen = True
 
-				.Columns(9).Name = "Caducidad Vac."
-				.Columns(9).HeaderText = "Caducidad Vac."
-				.Columns(9).Width = 70
-				.Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-				.Columns(9).Frozen = True
+                .Columns(9).Name = "Caducidad Vac."
+                .Columns(9).HeaderText = "Caducidad Vac."
+                .Columns(9).Width = 70
+                .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(9).Frozen = True
 
-				.Columns(10).Name = "Día 1"
-				.Columns(10).HeaderText = "Día 1"
-				.Columns(10).Width = 70
-				.Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(10).Name = "Día 1"
+                .Columns(10).HeaderText = "Día 1"
+                .Columns(10).Width = 70
+                .Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(11).Name = "Día 2"
-				.Columns(11).HeaderText = "Día 2"
-				.Columns(11).Width = 70
-				.Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(11).Name = "Día 2"
+                .Columns(11).HeaderText = "Día 2"
+                .Columns(11).Width = 70
+                .Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(12).Name = "Día 3"
-				.Columns(12).HeaderText = "Día 3"
-				.Columns(12).Width = 70
-				.Columns(12).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(12).Name = "Día 3"
+                .Columns(12).HeaderText = "Día 3"
+                .Columns(12).Width = 70
+                .Columns(12).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(13).Name = "Día 4"
-				.Columns(13).HeaderText = "Día 4"
-				.Columns(13).Width = 70
-				.Columns(13).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(13).Name = "Día 4"
+                .Columns(13).HeaderText = "Día 4"
+                .Columns(13).Width = 70
+                .Columns(13).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(14).Name = "Día 5"
-				.Columns(14).HeaderText = "Día 5"
-				.Columns(14).Width = 70
-				.Columns(14).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(14).Name = "Día 5"
+                .Columns(14).HeaderText = "Día 5"
+                .Columns(14).Width = 70
+                .Columns(14).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(15).Name = "Día 6"
-				.Columns(15).HeaderText = "Día 6"
-				.Columns(15).Width = 70
-				.Columns(15).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(15).Name = "Día 6"
+                .Columns(15).HeaderText = "Día 6"
+                .Columns(15).Width = 70
+                .Columns(15).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(16).Name = "Día 7"
-				.Columns(16).HeaderText = "Día 7"
-				.Columns(16).Width = 70
-				.Columns(16).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(16).Name = "Día 7"
+                .Columns(16).HeaderText = "Día 7"
+                .Columns(16).Width = 70
+                .Columns(16).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(17).Name = "Día 8"
-				.Columns(17).HeaderText = "Día 8"
-				.Columns(17).Width = 70
-				.Columns(17).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(17).Name = "Día 8"
+                .Columns(17).HeaderText = "Día 8"
+                .Columns(17).Width = 70
+                .Columns(17).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(18).Name = "Día 9"
-				.Columns(18).HeaderText = "Día 9"
-				.Columns(18).Width = 70
-				.Columns(18).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(18).Name = "Día 9"
+                .Columns(18).HeaderText = "Día 9"
+                .Columns(18).Width = 70
+                .Columns(18).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(19).Name = "Día 10"
-				.Columns(19).HeaderText = "Día 10"
-				.Columns(19).Width = 70
-				.Columns(19).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(19).Name = "Día 10"
+                .Columns(19).HeaderText = "Día 10"
+                .Columns(19).Width = 70
+                .Columns(19).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(20).Name = "Día 11"
-				.Columns(20).HeaderText = "Día 11"
-				.Columns(20).Width = 70
-				.Columns(20).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(20).Name = "Día 11"
+                .Columns(20).HeaderText = "Día 11"
+                .Columns(20).Width = 70
+                .Columns(20).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(21).Name = "Día 12"
-				.Columns(21).HeaderText = "Día 12"
-				.Columns(21).Width = 70
-				.Columns(21).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(21).Name = "Día 12"
+                .Columns(21).HeaderText = "Día 12"
+                .Columns(21).Width = 70
+                .Columns(21).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(22).Name = "Día 13"
-				.Columns(22).HeaderText = "Día 13"
-				.Columns(22).Width = 70
-				.Columns(22).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(22).Name = "Día 13"
+                .Columns(22).HeaderText = "Día 13"
+                .Columns(22).Width = 70
+                .Columns(22).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(23).Name = "Día 14"
-				.Columns(23).HeaderText = "Día 14"
-				.Columns(23).Width = 70
-				.Columns(23).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(23).Name = "Día 14"
+                .Columns(23).HeaderText = "Día 14"
+                .Columns(23).Width = 70
+                .Columns(23).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(24).Name = "Día 15"
-				.Columns(24).HeaderText = "Día 15"
-				.Columns(24).Width = 70
-				.Columns(24).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(24).Name = "Día 15"
+                .Columns(24).HeaderText = "Día 15"
+                .Columns(24).Width = 70
+                .Columns(24).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(25).Name = "Día 16"
-				.Columns(25).HeaderText = "Día 16"
-				.Columns(25).Width = 70
-				.Columns(25).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(25).Name = "Día 16"
+                .Columns(25).HeaderText = "Día 16"
+                .Columns(25).Width = 70
+                .Columns(25).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-				.Columns(26).Name = "Ubicación"
-				.Columns(26).HeaderText = "Ubicación"
-				.Columns(26).Width = 90
-				.Columns(26).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(26).Name = "Ubicación"
+                .Columns(26).HeaderText = "Ubicación"
+                .Columns(26).Width = 90
+                .Columns(26).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-			Catch ex As Exception
+            Catch ex As Exception
 
-			End Try
+            End Try
 
-		End With
-	End Sub
+        End With
+    End Sub
 
-	Private Sub VacacionesConsulta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub VacacionesConsulta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'CBPeriodo.SelectedIndex = 1
 
@@ -678,9 +678,9 @@ Public Class VacacionesConsulta
 
         rbEmpleado.Checked = True
 
-	End Sub
+    End Sub
 
-	Private Sub LlenarComboboxEmpleado()
+    Private Sub LlenarComboboxEmpleado()
 
         'Dim ConsutaLista As String
         'Using SqlConnection As New Data.SqlClient.SqlConnection(StrTpm)
@@ -695,490 +695,492 @@ Public Class VacacionesConsulta
 
 
         conexion2.Open()
-            Dim command As SqlCommand
-            Dim adapter As SqlDataAdapter
+        Dim command As SqlCommand
+        Dim adapter As SqlDataAdapter
         Dim dtTable As DataTable = New DataTable
         '   dtTable = New DataTable
         command = New SqlCommand("SP_Consultas", conexion2)
-            command.CommandType = CommandType.StoredProcedure
-            command.Parameters.Add(New SqlParameter("@opcion", SqlDbType.NVarChar)).Value = "ACTIVOS"
-            adapter = New SqlDataAdapter(command)
-            adapter.Fill(dtTable)
+        command.CommandType = CommandType.StoredProcedure
+        command.Parameters.Add(New SqlParameter("@opcion", SqlDbType.NVarChar)).Value = "ACTIVOS"
+        command.Parameters.Add(New SqlParameter("@id", SqlDbType.Int)).Value = 0
+        command.Parameters.Add(New SqlParameter("@Periodo", SqlDbType.NVarChar)).Value = ""
+        adapter = New SqlDataAdapter(command)
+        adapter.Fill(dtTable)
 
         '   Dim daGEmpleado As New SqlClient.SqlDataAdapter(ConsutaLista, SqlConnection)
         Dim DSetTablas As New DataSet
-            adapter.Fill(DSetTablas, "Empleados")
-            'AGREGAR FILA
-            Dim fila As Data.DataRow
-            'Asignamos a fila la nueva Row(Fila)del Dataset
-            fila = DSetTablas.Tables("Empleados").NewRow
-            'Agregamos los valores a los campos de la tabla
-            fila("NomEmp") = "--Ningun Resultado--"
-            fila("NumEmp") = 1010
-            'Agregamos la fila que acabamos de crear a nuestra tabla del DataSet
-            DSetTablas.Tables("Empleados").Rows.Add(fila)
-            DvLP.Table = DSetTablas.Tables("Empleados")
-            DvLP.RowFilter = "NumEmp <> 1010"
-            Me.CBNomEmp.DataSource = DvLP
-            Me.CBNomEmp.DisplayMember = "NomEmp"
-            Me.CBNomEmp.ValueMember = "NumEmp"
-            Me.CBNomEmp.DataSource = DSetTablas.Tables(0)
-            Me.CBNomEmp.DisplayMember = "NomEmp"
+        adapter.Fill(DSetTablas, "Empleados")
+        'AGREGAR FILA
+        Dim fila As Data.DataRow
+        'Asignamos a fila la nueva Row(Fila)del Dataset
+        fila = DSetTablas.Tables("Empleados").NewRow
+        'Agregamos los valores a los campos de la tabla
+        fila("NomEmp") = "--Ningun Resultado--"
+        fila("NumEmp") = 1010
+        'Agregamos la fila que acabamos de crear a nuestra tabla del DataSet
+        DSetTablas.Tables("Empleados").Rows.Add(fila)
+        DvLP.Table = DSetTablas.Tables("Empleados")
+        DvLP.RowFilter = "NumEmp <> 1010"
+        Me.CBNomEmp.DataSource = DvLP
+        Me.CBNomEmp.DisplayMember = "NomEmp"
+        Me.CBNomEmp.ValueMember = "NumEmp"
+        Me.CBNomEmp.DataSource = DSetTablas.Tables(0)
+        Me.CBNomEmp.DisplayMember = "NomEmp"
         Me.CBNomEmp.ValueMember = "NumEmp"
         conexion2.Close()
         'End Using
     End Sub
 
 
-	'Private Sub LlenarComboboxEmpleadob()
+    'Private Sub LlenarComboboxEmpleadob()
 
-	'	Dim ConsutaLista As String
-	'	Using SqlConnection As New Data.SqlClient.SqlConnection(StrTpm)
+    '	Dim ConsutaLista As String
+    '	Using SqlConnection As New Data.SqlClient.SqlConnection(StrTpm)
 
-	'		Dim DSetTablas As New DataSet
-	'		ConsutaLista = "SELECT NumEmp,NomEmp+' '+AppEmp+' '+ApmMat AS 'NomEmp', YEAR(FechaIMSS) as 'AnioIngreso', "
-	'		ConsutaLista &= "case when (DATEADD(YEAR, DATEDIFF(YEAR, FechaIMSS, GETDATE()), FechaIMSS )) <= GETDATE() then YEAR(GETDATE()) "
-	'		ConsutaLista &= "else ( YEAR(GETDATE()) - 1) end as 'Tope', Tipo "
-	'		ConsutaLista &= "FROM Empleados where Status = 'Activo' and Vacaciones = 'Si' ORDER BY NomEmp "
-	'		Dim daGEmpleado As New SqlClient.SqlDataAdapter(ConsutaLista, SqlConnection)
+    '		Dim DSetTablas As New DataSet
+    '		ConsutaLista = "SELECT NumEmp,NomEmp+' '+AppEmp+' '+ApmMat AS 'NomEmp', YEAR(FechaIMSS) as 'AnioIngreso', "
+    '		ConsutaLista &= "case when (DATEADD(YEAR, DATEDIFF(YEAR, FechaIMSS, GETDATE()), FechaIMSS )) <= GETDATE() then YEAR(GETDATE()) "
+    '		ConsutaLista &= "else ( YEAR(GETDATE()) - 1) end as 'Tope', Tipo "
+    '		ConsutaLista &= "FROM Empleados where Status = 'Activo' and Vacaciones = 'Si' ORDER BY NomEmp "
+    '		Dim daGEmpleado As New SqlClient.SqlDataAdapter(ConsutaLista, SqlConnection)
 
-	'		'Dim DSetTablas As New DataSet
-	'		daGEmpleado.Fill(DSetTablas, "Empleados")
+    '		'Dim DSetTablas As New DataSet
+    '		daGEmpleado.Fill(DSetTablas, "Empleados")
 
 
-	'		'AGREGAR FILA
-	'		Dim fila As Data.DataRow
-	'		'Asignamos a fila la nueva Row(Fila)del Dataset
-	'		fila = DSetTablas.Tables("Empleados").NewRow
-	'		'Agregamos los valores a los campos de la tabla
-	'		fila("NomEmp") = "--Ningun Resultado--"
-	'		fila("NumEmp") = 1010
-	'		'Agregamos la fila que acabamos de crear a nuestra tabla del DataSet
-	'		DSetTablas.Tables("Empleados").Rows.Add(fila)
+    '		'AGREGAR FILA
+    '		Dim fila As Data.DataRow
+    '		'Asignamos a fila la nueva Row(Fila)del Dataset
+    '		fila = DSetTablas.Tables("Empleados").NewRow
+    '		'Agregamos los valores a los campos de la tabla
+    '		fila("NomEmp") = "--Ningun Resultado--"
+    '		fila("NumEmp") = 1010
+    '		'Agregamos la fila que acabamos de crear a nuestra tabla del DataSet
+    '		DSetTablas.Tables("Empleados").Rows.Add(fila)
 
-	'		DvLP.Table = DSetTablas.Tables("Empleados")
-	'		DvLP.RowFilter = "NumEmp <> 1010"
+    '		DvLP.Table = DSetTablas.Tables("Empleados")
+    '		DvLP.RowFilter = "NumEmp <> 1010"
 
 
-	'		Me.CBNomEmp.DataSource = DvLP
-	'		Me.CBNomEmp.DisplayMember = "NomEmp"
-	'		Me.CBNomEmp.ValueMember = "NumEmp"
-	'		'Me.CBNomEmp.SelectedValue = 9999
-	'		'Me.CBNomEmp.SelectedIndex = -1
+    '		Me.CBNomEmp.DataSource = DvLP
+    '		Me.CBNomEmp.DisplayMember = "NomEmp"
+    '		Me.CBNomEmp.ValueMember = "NumEmp"
+    '		'Me.CBNomEmp.SelectedValue = 9999
+    '		'Me.CBNomEmp.SelectedIndex = -1
 
-	'	End Using
-	'End Sub
+    '	End Using
+    'End Sub
 
 
 
 
-	Private Sub mllenaComboAlmacen(ByVal conexion As SqlConnection)
-		Try
-			Dim da As New SqlDataAdapter("SELECT GroupCode , GroupName " +
-																																								"FROM OCRG with (nolock) " +
-																																								"WHERE GroupType = 'C' ORDER BY GroupName ", conexion)
+    Private Sub mllenaComboAlmacen(ByVal conexion As SqlConnection)
+        Try
+            Dim da As New SqlDataAdapter("SELECT GroupCode , GroupName " +
+                                                                                                                                                                "FROM OCRG with (nolock) " +
+                                                                                                                                                                "WHERE GroupType = 'C' ORDER BY GroupName ", conexion)
 
-			Dim ds As New DataSet
-			da.Fill(ds)
-			ds.Tables(0).Rows.Add(0, "TODAS")
-			''Me.cmbAlmacen.DataSource = ds.Tables(0)
-			''Me.cmbAlmacen.DisplayMember = "GroupName"
-			''Me.cmbAlmacen.ValueMember = "GroupCode"
+            Dim ds As New DataSet
+            da.Fill(ds)
+            ds.Tables(0).Rows.Add(0, "TODAS")
+            ''Me.cmbAlmacen.DataSource = ds.Tables(0)
+            ''Me.cmbAlmacen.DisplayMember = "GroupName"
+            ''Me.cmbAlmacen.ValueMember = "GroupCode"
 
-			''Me.cmbAlmacen.SelectedValue = 0
+            ''Me.cmbAlmacen.SelectedValue = 0
 
-		Catch ex As Exception
+        Catch ex As Exception
 
-		End Try
+        End Try
 
-	End Sub
+    End Sub
 
-	Private Sub DGVacaciones_RowPrePaint(sender As Object, e As DataGridViewRowPrePaintEventArgs) Handles DGVacaciones.RowPrePaint
+    Private Sub DGVacaciones_RowPrePaint(sender As Object, e As DataGridViewRowPrePaintEventArgs) Handles DGVacaciones.RowPrePaint
 
 
-	End Sub
+    End Sub
 
-	Private Sub bExcel_Click(sender As Object, e As EventArgs) Handles bExcel.Click
-		Try
+    Private Sub bExcel_Click(sender As Object, e As EventArgs) Handles bExcel.Click
+        Try
 
-			Dim exApp As New Microsoft.Office.Interop.Excel.Application
-			Dim exLibro As Microsoft.Office.Interop.Excel.Workbook
+            Dim exApp As New Microsoft.Office.Interop.Excel.Application
+            Dim exLibro As Microsoft.Office.Interop.Excel.Workbook
 
-			'Añadimos el Libro al programa
-			exLibro = exApp.Workbooks.Add
+            'Añadimos el Libro al programa
+            exLibro = exApp.Workbooks.Add
 
-			' ¿Cuantas columnas y cuantas filas?
-			Dim NCol As Integer = DGVacaciones.ColumnCount
-			Dim NRow As Integer = DGVacaciones.RowCount
+            ' ¿Cuantas columnas y cuantas filas?
+            Dim NCol As Integer = DGVacaciones.ColumnCount
+            Dim NRow As Integer = DGVacaciones.RowCount
 
-			fFormatoExcel(exLibro, NRow)
+            fFormatoExcel(exLibro, NRow)
 
-			'Aqui recorremos todas las filas, y por cada fila todas las columnas y vamos escribiendo.
-			For i As Integer = 1 To NCol
-				exLibro.Worksheets("Hoja1").Cells.Item(4, i) = DGVacaciones.Columns(i - 1).Name.ToString
-			Next
+            'Aqui recorremos todas las filas, y por cada fila todas las columnas y vamos escribiendo.
+            For i As Integer = 1 To NCol
+                exLibro.Worksheets("Hoja1").Cells.Item(4, i) = DGVacaciones.Columns(i - 1).Name.ToString
+            Next
 
-			For Fila As Integer = 0 To NRow - 1
+            For Fila As Integer = 0 To NRow - 1
 
-				For Col As Integer = 0 To NCol - 1
-					exLibro.Worksheets("Hoja1").Cells.Item(Fila + 5, Col + 1) = DGVacaciones.Rows(Fila).Cells(Col).Value
+                For Col As Integer = 0 To NCol - 1
+                    exLibro.Worksheets("Hoja1").Cells.Item(Fila + 5, Col + 1) = DGVacaciones.Rows(Fila).Cells(Col).Value
 
-				Next
-				Estatus.Visible = True
-				ProgressBar1.Value = (Fila * 100) / NRow
-			Next
-			Estatus.Visible = False
+                Next
+                Estatus.Visible = True
+                ProgressBar1.Value = (Fila * 100) / NRow
+            Next
+            Estatus.Visible = False
 
-			'Titulo en negrita, Alineado al centro y que el tamaño de la columna se ajuste al texto
-			exLibro.Worksheets("Hoja1").Rows.Item(4).Font.Bold = 1
-			exLibro.Worksheets("Hoja1").Rows.Item(4).HorizontalAlignment = 3
-			exLibro.Worksheets("Hoja1").Cells.Range("A4:AA4").Interior.ColorIndex = 15
-			exLibro.Worksheets("Hoja1").Rows.Item(4).WrapText = True
-			'exLibro.Worksheets("Hoja1").Columns.AutoFit()
-			exLibro.Worksheets("Hoja1").name = "Reporte de vacaciones"
+            'Titulo en negrita, Alineado al centro y que el tamaño de la columna se ajuste al texto
+            exLibro.Worksheets("Hoja1").Rows.Item(4).Font.Bold = 1
+            exLibro.Worksheets("Hoja1").Rows.Item(4).HorizontalAlignment = 3
+            exLibro.Worksheets("Hoja1").Cells.Range("A4:AA4").Interior.ColorIndex = 15
+            exLibro.Worksheets("Hoja1").Rows.Item(4).WrapText = True
+            'exLibro.Worksheets("Hoja1").Columns.AutoFit()
+            exLibro.Worksheets("Hoja1").name = "Reporte de vacaciones"
 
 
-			'Aplicación visible
-			exLibro.Worksheets.Application.Visible = True
+            'Aplicación visible
+            exLibro.Worksheets.Application.Visible = True
 
-			exLibro = Nothing
-			exApp = Nothing
+            exLibro = Nothing
+            exApp = Nothing
 
-		Catch ex As Exception
+        Catch ex As Exception
 
-		End Try
-	End Sub
+        End Try
+    End Sub
 
-	Private Sub fFormatoExcel(exLibro As Microsoft.Office.Interop.Excel.Workbook, NRow As Integer)
-		Try
-			''Combinamos celdas
-			exLibro.Worksheets("Hoja1").Cells.Range("A1:B1").Merge(True)
-			exLibro.Worksheets("Hoja1").Cells.Range("A2:B2").Merge(True)
-			'exLibro.Worksheets("Hoja1").Cells.Range("A3:B3").Merge(True)
+    Private Sub fFormatoExcel(exLibro As Microsoft.Office.Interop.Excel.Workbook, NRow As Integer)
+        Try
+            ''Combinamos celdas
+            exLibro.Worksheets("Hoja1").Cells.Range("A1:B1").Merge(True)
+            exLibro.Worksheets("Hoja1").Cells.Range("A2:B2").Merge(True)
+            'exLibro.Worksheets("Hoja1").Cells.Range("A3:B3").Merge(True)
 
-			''aplicamos un color de fondo ala celda o rango de celdas
-			exLibro.Worksheets("Hoja1").Cells.Range("A1").Interior.ColorIndex = 15
-			exLibro.Worksheets("Hoja1").Cells.Range("A2").Interior.ColorIndex = 15
-			'exLibro.Worksheets("Hoja1").Cells.Range("A3").Interior.ColorIndex = 15
+            ''aplicamos un color de fondo ala celda o rango de celdas
+            exLibro.Worksheets("Hoja1").Cells.Range("A1").Interior.ColorIndex = 15
+            exLibro.Worksheets("Hoja1").Cells.Range("A2").Interior.ColorIndex = 15
+            'exLibro.Worksheets("Hoja1").Cells.Range("A3").Interior.ColorIndex = 15
 
-			''Cambiamos orientacion ala hola
-			exLibro.Worksheets("Hoja1").Cells.Item(1, 1) = "Reporte de Vacaciones"
-			'exLibro.Worksheets("Hoja1").Cells.Item(2, 1) = "Linea: " + cmbLinea.Text
-			exLibro.Worksheets("Hoja1").Cells.Item(2, 1) = "Fecha: " + Date.Now.ToShortDateString
+            ''Cambiamos orientacion ala hola
+            exLibro.Worksheets("Hoja1").Cells.Item(1, 1) = "Reporte de Vacaciones"
+            'exLibro.Worksheets("Hoja1").Cells.Item(2, 1) = "Linea: " + cmbLinea.Text
+            exLibro.Worksheets("Hoja1").Cells.Item(2, 1) = "Fecha: " + Date.Now.ToShortDateString
 
 
-			exLibro.Worksheets("Hoja1").Cells.Item(1, 1).Font.Bold = 1
-			exLibro.Worksheets("Hoja1").Cells.Item(2, 1).Font.Bold = 1
-			exLibro.Worksheets("Hoja1").Cells.Item(4, 1).Font.Bold = 1
-			'exLibro.Worksheets("Hoja1").Cells.Item(5, 1).Font.Bold = 1
+            exLibro.Worksheets("Hoja1").Cells.Item(1, 1).Font.Bold = 1
+            exLibro.Worksheets("Hoja1").Cells.Item(2, 1).Font.Bold = 1
+            exLibro.Worksheets("Hoja1").Cells.Item(4, 1).Font.Bold = 1
+            'exLibro.Worksheets("Hoja1").Cells.Item(5, 1).Font.Bold = 1
 
-			'exLibro.Worksheets("Hoja1").Columns(11).NumberFormat = "###.0000"
-			'exLibro.Worksheets("Hoja1").Columns("L:U").NumberFormat = "###.0000"
-			'exLibro.Worksheets("Hoja1").Columns("D:G").NumberFormat = "###,###,###"
-			'exLibro.Worksheets("Hoja1").Columns("H").NumberFormat = "$ ###,###.00"
-			'exLibro.Worksheets("Hoja1").Columns("J").NumberFormat = "$ ###,###.00"
-			'exLibro.Worksheets("Hoja1").Columns("L").NumberFormat = "$ ###,###.00"
-			exLibro.Worksheets("Hoja1").Columns("F").NumberFormat = "@"
+            'exLibro.Worksheets("Hoja1").Columns(11).NumberFormat = "###.0000"
+            'exLibro.Worksheets("Hoja1").Columns("L:U").NumberFormat = "###.0000"
+            'exLibro.Worksheets("Hoja1").Columns("D:G").NumberFormat = "###,###,###"
+            'exLibro.Worksheets("Hoja1").Columns("H").NumberFormat = "$ ###,###.00"
+            'exLibro.Worksheets("Hoja1").Columns("J").NumberFormat = "$ ###,###.00"
+            'exLibro.Worksheets("Hoja1").Columns("L").NumberFormat = "$ ###,###.00"
+            exLibro.Worksheets("Hoja1").Columns("F").NumberFormat = "@"
 
-			exLibro.Worksheets("Hoja1").Columns("A").EntireColumn.ColumnWidth = 9
-			exLibro.Worksheets("Hoja1").Columns("B").EntireColumn.ColumnWidth = 28
-			exLibro.Worksheets("Hoja1").Columns("C").EntireColumn.ColumnWidth = 11
-			exLibro.Worksheets("Hoja1").Columns("D").EntireColumn.ColumnWidth = 11
-			exLibro.Worksheets("Hoja1").Columns("E").EntireColumn.ColumnWidth = 10
-			exLibro.Worksheets("Hoja1").Columns("F").EntireColumn.ColumnWidth = 9
-			exLibro.Worksheets("Hoja1").Columns("G").EntireColumn.ColumnWidth = 10
+            exLibro.Worksheets("Hoja1").Columns("A").EntireColumn.ColumnWidth = 9
+            exLibro.Worksheets("Hoja1").Columns("B").EntireColumn.ColumnWidth = 28
+            exLibro.Worksheets("Hoja1").Columns("C").EntireColumn.ColumnWidth = 11
+            exLibro.Worksheets("Hoja1").Columns("D").EntireColumn.ColumnWidth = 11
+            exLibro.Worksheets("Hoja1").Columns("E").EntireColumn.ColumnWidth = 10
+            exLibro.Worksheets("Hoja1").Columns("F").EntireColumn.ColumnWidth = 9
+            exLibro.Worksheets("Hoja1").Columns("G").EntireColumn.ColumnWidth = 10
 
-			exLibro.Worksheets("Hoja1").Columns("H").EntireColumn.ColumnWidth = 11
-			exLibro.Worksheets("Hoja1").Columns("I").EntireColumn.ColumnWidth = 11
-			exLibro.Worksheets("Hoja1").Columns("J").EntireColumn.ColumnWidth = 11
+            exLibro.Worksheets("Hoja1").Columns("H").EntireColumn.ColumnWidth = 11
+            exLibro.Worksheets("Hoja1").Columns("I").EntireColumn.ColumnWidth = 11
+            exLibro.Worksheets("Hoja1").Columns("J").EntireColumn.ColumnWidth = 11
 
-			exLibro.Worksheets("Hoja1").Columns("K").EntireColumn.ColumnWidth = 10
+            exLibro.Worksheets("Hoja1").Columns("K").EntireColumn.ColumnWidth = 10
 
 
-			exLibro.Worksheets("Hoja1").Cells.Range("B5:B" + (NRow + 4).ToString).Interior.Color = RGB(198, 224, 180)
-			exLibro.Worksheets("Hoja1").Cells.Range("D5:D" + (NRow + 4).ToString).Interior.ColorIndex = 6
-			exLibro.Worksheets("Hoja1").Cells.Range("E5:E" + (NRow + 4).ToString).Interior.ColorIndex = 44
-			exLibro.Worksheets("Hoja1").Cells.Range("H5:H" + (NRow + 4).ToString).Interior.Color = RGB(189, 215, 238)
+            exLibro.Worksheets("Hoja1").Cells.Range("B5:B" + (NRow + 4).ToString).Interior.Color = RGB(198, 224, 180)
+            exLibro.Worksheets("Hoja1").Cells.Range("D5:D" + (NRow + 4).ToString).Interior.ColorIndex = 6
+            exLibro.Worksheets("Hoja1").Cells.Range("E5:E" + (NRow + 4).ToString).Interior.ColorIndex = 44
+            exLibro.Worksheets("Hoja1").Cells.Range("H5:H" + (NRow + 4).ToString).Interior.Color = RGB(189, 215, 238)
 
-			'oSheet.Range("A" & Con + 8 & ":" & "V" & Con + 8).INTERIOR.color = RGB(169, 208, 142)
+            'oSheet.Range("A" & Con + 8 & ":" & "V" & Con + 8).INTERIOR.color = RGB(169, 208, 142)
 
-			'exLibro.Worksheets("Hoja1").Columns("K").EntireColumn.ColumnWidth = 6
-
-			'exLibro.Worksheets("Hoja1").Columns("H").EntireColumn.ColumnWidth = 8
-		Catch ex As Exception
-
-		End Try
-
-	End Sub
-
-	Private Sub CBNomEmp_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles CBNomEmp.SelectionChangeCommitted
-
-
-	End Sub
-
-	Private Sub Label2_Click(sender As Object, e As EventArgs)
+            'exLibro.Worksheets("Hoja1").Columns("K").EntireColumn.ColumnWidth = 6
+
+            'exLibro.Worksheets("Hoja1").Columns("H").EntireColumn.ColumnWidth = 8
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub CBNomEmp_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles CBNomEmp.SelectionChangeCommitted
+
+
+    End Sub
+
+    Private Sub Label2_Click(sender As Object, e As EventArgs)
 
-	End Sub
+    End Sub
 
 
-	Private Sub CBNomEmp_KeyUp(sender As Object, e As KeyEventArgs) Handles CBNomEmp.KeyUp
-		Try
-			If e.KeyCode >= Keys.A And e.KeyCode <= Keys.Z Or e.KeyCode = Keys.Back Or e.KeyCode = Keys.Delete Then
-				strTemp = CBNomEmp.Text
-				If strTemp.Trim.CompareTo(String.Empty) = 0 Then
-					DvLP.RowFilter = String.Empty
-					DvLP.RowFilter = "NumEmp <> 1010"
-				Else
-					Dim strRowFilter As String = String.Concat("NomEmp LIKE '%", CBNomEmp.Text, "%' and NumEmp <> 1010 ")
-					DvLP.RowFilter = strRowFilter
-					'MsgBox(DvLP.Count)
-					If DvLP.Count = 0 Then
-						DvLP.RowFilter = "NumEmp = 1010"
-					End If
+    Private Sub CBNomEmp_KeyUp(sender As Object, e As KeyEventArgs) Handles CBNomEmp.KeyUp
+        Try
+            If e.KeyCode >= Keys.A And e.KeyCode <= Keys.Z Or e.KeyCode = Keys.Back Or e.KeyCode = Keys.Delete Then
+                strTemp = CBNomEmp.Text
+                If strTemp.Trim.CompareTo(String.Empty) = 0 Then
+                    DvLP.RowFilter = String.Empty
+                    DvLP.RowFilter = "NumEmp <> 1010"
+                Else
+                    Dim strRowFilter As String = String.Concat("NomEmp LIKE '%", CBNomEmp.Text, "%' and NumEmp <> 1010 ")
+                    DvLP.RowFilter = strRowFilter
+                    'MsgBox(DvLP.Count)
+                    If DvLP.Count = 0 Then
+                        DvLP.RowFilter = "NumEmp = 1010"
+                    End If
 
-				End If
+                End If
 
 
-				CBNomEmp.Text = ""
-				CBNomEmp.Text = strTemp
-				CBNomEmp.SelectionStart = strTemp.Length
-				CBNomEmp.SelectedIndex = -1
-				CBNomEmp.DroppedDown = True
-				CBNomEmp.SelectedIndex = -1
-				CBNomEmp.Text = ""
-				CBNomEmp.Text = strTemp
-				CBNomEmp.SelectionStart = strTemp.Length
+                CBNomEmp.Text = ""
+                CBNomEmp.Text = strTemp
+                CBNomEmp.SelectionStart = strTemp.Length
+                CBNomEmp.SelectedIndex = -1
+                CBNomEmp.DroppedDown = True
+                CBNomEmp.SelectedIndex = -1
+                CBNomEmp.Text = ""
+                CBNomEmp.Text = strTemp
+                CBNomEmp.SelectionStart = strTemp.Length
 
-			End If
+            End If
 
 
 
-			'DvClte.RowFilter = "Nombre2 like '%" & CmbCliente.Text & "%'"
-			'CmbCliente.DroppedDown = True
-		Catch ex As Exception
-			'MsgBox("errror en filtro nuevo " & ex.Message)
-		End Try
-	End Sub
+            'DvClte.RowFilter = "Nombre2 like '%" & CmbCliente.Text & "%'"
+            'CmbCliente.DroppedDown = True
+        Catch ex As Exception
+            'MsgBox("errror en filtro nuevo " & ex.Message)
+        End Try
+    End Sub
 
-	Private Sub CBNomEmp_DropDown(sender As Object, e As EventArgs) Handles CBNomEmp.DropDown
-		Me.Cursor = Cursors.Arrow
+    Private Sub CBNomEmp_DropDown(sender As Object, e As EventArgs) Handles CBNomEmp.DropDown
+        Me.Cursor = Cursors.Arrow
 
-		If strTemp <> "" Then
-			CBNomEmp.Text = strTemp
-			CBNomEmp.SelectionStart = strTemp.Length
-		End If
+        If strTemp <> "" Then
+            CBNomEmp.Text = strTemp
+            CBNomEmp.SelectionStart = strTemp.Length
+        End If
 
-	End Sub
+    End Sub
 
-	Private Sub DGVacaciones_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVacaciones.CellContentClick
-		If e.RowIndex >= 0 Then
-			Try
-				If Me.DGVacaciones.Columns(e.ColumnIndex).Name = "Accion" Then
+    Private Sub DGVacaciones_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVacaciones.CellContentClick
+        If e.RowIndex >= 0 Then
+            Try
+                If Me.DGVacaciones.Columns(e.ColumnIndex).Name = "Accion" Then
 
-					If (DGVacaciones.Rows(e.RowIndex).Cells("Accion").Value.ToString = "Eliminar") Then
-						'MsgBox("voy a surtir")
-						If (MessageBox.Show("¿Esta seguro que desea eliminar el dia seleccionado?",
-																															"Advertencia",
-																															MessageBoxButtons.YesNo,
-																															MessageBoxIcon.Question)) = MsgBoxResult.Yes Then
-							actualizar_registro(DGVacaciones.Rows(e.RowIndex))
-
-
-							'Me.DGVResultado.Rows.Remove(DGVResultado.Rows(e.RowIndex))
-							'TBDiasRest.Text = TBDiasRest.Text + 1
-						End If
-						'ElseIf (DGVacaciones.Rows(e.RowIndex).Cells("Accion").Value.ToString = "Guardar") Then
-						'    'MsgBox("voy a guardar")
-						'    If (MessageBox.Show("¿Esta seguro que desea registrar termino de surtido de la orden " & DGVResultado.Rows(e.RowIndex).Cells("DocNum").Value.ToString & "?", _
-						'            "Advertencia", _
-						'            MessageBoxButtons.YesNo, _
-						'            MessageBoxIcon.Question)) = MsgBoxResult.Yes Then
-						'        actualizar_registro(DGVacaciones.Rows(e.RowIndex))
-
-						'        'Me.DGVResultado.Rows.Remove(DGVResultado.Rows(e.RowIndex))
-						'        'TBDiasRest.Text = TBDiasRest.Text + 1
-						'    End If
-						'ElseIf DGVacaciones.Rows(e.RowIndex).Cells("Accion").Value.ToString = "Descartar" Then
-						'    'MsgBox("descartar")
-						'    If (MessageBox.Show("¿Esta seguro que desea descartar la orden " & DGVResultado.Rows(e.RowIndex).Cells("DocNum").Value.ToString & "?", _
-						'            "Advertencia", _
-						'            MessageBoxButtons.YesNo, _
-						'            MessageBoxIcon.Question)) = MsgBoxResult.Yes Then
-						'        If DGVacaciones.Rows(e.RowIndex).Cells("band").Value.ToString = "0" Then
-						'            descartar_registro(DGVacaciones.Rows(e.RowIndex))
-						'        Else
-						'            descartar_registro2(DGVacaciones.Rows(e.RowIndex))
-						'        End If
-
+                    If (DGVacaciones.Rows(e.RowIndex).Cells("Accion").Value.ToString = "Eliminar") Then
+                        'MsgBox("voy a surtir")
+                        If (MessageBox.Show("¿Esta seguro que desea eliminar el dia seleccionado?",
+                                                                                                                            "Advertencia",
+                                                                                                                            MessageBoxButtons.YesNo,
+                                                                                                                            MessageBoxIcon.Question)) = MsgBoxResult.Yes Then
+                            actualizar_registro(DGVacaciones.Rows(e.RowIndex))
+
+
+                            'Me.DGVResultado.Rows.Remove(DGVResultado.Rows(e.RowIndex))
+                            'TBDiasRest.Text = TBDiasRest.Text + 1
+                        End If
+                        'ElseIf (DGVacaciones.Rows(e.RowIndex).Cells("Accion").Value.ToString = "Guardar") Then
+                        '    'MsgBox("voy a guardar")
+                        '    If (MessageBox.Show("¿Esta seguro que desea registrar termino de surtido de la orden " & DGVResultado.Rows(e.RowIndex).Cells("DocNum").Value.ToString & "?", _
+                        '            "Advertencia", _
+                        '            MessageBoxButtons.YesNo, _
+                        '            MessageBoxIcon.Question)) = MsgBoxResult.Yes Then
+                        '        actualizar_registro(DGVacaciones.Rows(e.RowIndex))
+
+                        '        'Me.DGVResultado.Rows.Remove(DGVResultado.Rows(e.RowIndex))
+                        '        'TBDiasRest.Text = TBDiasRest.Text + 1
+                        '    End If
+                        'ElseIf DGVacaciones.Rows(e.RowIndex).Cells("Accion").Value.ToString = "Descartar" Then
+                        '    'MsgBox("descartar")
+                        '    If (MessageBox.Show("¿Esta seguro que desea descartar la orden " & DGVResultado.Rows(e.RowIndex).Cells("DocNum").Value.ToString & "?", _
+                        '            "Advertencia", _
+                        '            MessageBoxButtons.YesNo, _
+                        '            MessageBoxIcon.Question)) = MsgBoxResult.Yes Then
+                        '        If DGVacaciones.Rows(e.RowIndex).Cells("band").Value.ToString = "0" Then
+                        '            descartar_registro(DGVacaciones.Rows(e.RowIndex))
+                        '        Else
+                        '            descartar_registro2(DGVacaciones.Rows(e.RowIndex))
+                        '        End If
+
 
-						'        'Me.DGVResultado.Rows.Remove(DGVResultado.Rows(e.RowIndex))
-						'        'TBDiasRest.Text = TBDiasRest.Text + 1
-						'    End If
-					End If
-
+                        '        'Me.DGVResultado.Rows.Remove(DGVResultado.Rows(e.RowIndex))
+                        '        'TBDiasRest.Text = TBDiasRest.Text + 1
+                        '    End If
+                    End If
+
 
 
-					'MsgBox("voy a borrar el dia " & row.Cells("DiaSol").Value.ToString)
-
-				End If
-			Catch ex As Exception
-
-			End Try
-		End If
-	End Sub
-
-	Public Sub actualizar_registro(ByVal fila As DataGridViewRow)
-		Dim d_aux As System.DateTime
-		d_aux = fila.Cells("Dia Solicitado").Value
-		Dim text As String = d_aux.ToString("yyyy-MM-dd")
-
-
-		Dim strcadena As String = ""
-		Try
-			Dim SqlConnection As New Data.SqlClient.SqlConnection(StrTpm)
-			SqlConnection.Open()
-			Dim command As New Data.SqlClient.SqlCommand
-			command.Connection = SqlConnection
-			'Dim dia_vac As Date = fila.Cells("Dia Solicitado").Value
-			'MsgBox(fila.Cells("Dia Solicitado").Value.ToString() + " -> " + fila.Cells("Periodo2").Value.ToString + " -> " + fila.Cells("folio").Value.ToString)
-			'MsgBox(text)
+                    'MsgBox("voy a borrar el dia " & row.Cells("DiaSol").Value.ToString)
+
+                End If
+            Catch ex As Exception
+
+            End Try
+        End If
+    End Sub
+
+    Public Sub actualizar_registro(ByVal fila As DataGridViewRow)
+        Dim d_aux As System.DateTime
+        d_aux = fila.Cells("Dia Solicitado").Value
+        Dim text As String = d_aux.ToString("yyyy-MM-dd")
+
+
+        Dim strcadena As String = ""
+        Try
+            Dim SqlConnection As New Data.SqlClient.SqlConnection(StrTpm)
+            SqlConnection.Open()
+            Dim command As New Data.SqlClient.SqlCommand
+            command.Connection = SqlConnection
+            'Dim dia_vac As Date = fila.Cells("Dia Solicitado").Value
+            'MsgBox(fila.Cells("Dia Solicitado").Value.ToString() + " -> " + fila.Cells("Periodo2").Value.ToString + " -> " + fila.Cells("folio").Value.ToString)
+            'MsgBox(text)
 
 
-			strcadena = "delete from SolVacacionesHistorico where folio = " & fila.Cells("folio").Value.ToString & " and NumEmpleado = " & empleado
-			strcadena &= " and Periodo = " & fila.Cells("Periodo2").Value.ToString & " and DiaSol = '" & text & "'"
-			'strcadena = "update Analisis_Almac set HoraSurtido = GETDATE(), Status = 'Surtido' where DocNum = '" & fila.Cells("DocNum").Value.ToString & "'"
-			command.CommandText = strcadena
-			command.ExecuteNonQuery()
+            strcadena = "delete from SolVacacionesHistorico where folio = " & fila.Cells("folio").Value.ToString & " and NumEmpleado = " & empleado
+            strcadena &= " and Periodo = " & fila.Cells("Periodo2").Value.ToString & " and DiaSol = '" & text & "'"
+            'strcadena = "update Analisis_Almac set HoraSurtido = GETDATE(), Status = 'Surtido' where DocNum = '" & fila.Cells("DocNum").Value.ToString & "'"
+            command.CommandText = strcadena
+            command.ExecuteNonQuery()
 
-			MessageBox.Show("Dia eliminado correctamente",
-																																"Aviso.", MessageBoxButtons.OK,
-																																MessageBoxIcon.Information)
+            MessageBox.Show("Dia eliminado correctamente",
+                                                                                                                                "Aviso.", MessageBoxButtons.OK,
+                                                                                                                                MessageBoxIcon.Information)
 
 
-			Try
-				Me.DGVacaciones.Rows.Remove(fila)
+            Try
+                Me.DGVacaciones.Rows.Remove(fila)
 
-				'DGVResultado.CurrentCell = DGVResultado.Rows(0).Cells(0) 'aca entra'
-				'DGVResultado.CurrentCell = DGVResultado.Rows(selected_row1).Cells(selected_column1) 'aca entra'
-				'FiltraDetalle()
+                'DGVResultado.CurrentCell = DGVResultado.Rows(0).Cells(0) 'aca entra'
+                'DGVResultado.CurrentCell = DGVResultado.Rows(selected_row1).Cells(selected_column1) 'aca entra'
+                'FiltraDetalle()
 
-				'If Me.DGVResultado.Rows.Count = 0 Then
-				'    Me.DGVDetalle.DataSource = Nothing
-				'End If
-			Catch ex As Exception
+                'If Me.DGVResultado.Rows.Count = 0 Then
+                '    Me.DGVDetalle.DataSource = Nothing
+                'End If
+            Catch ex As Exception
 
-			End Try
-		Catch ex As Exception
-			MessageBox.Show("Ocurrio un Error: " & ex.Message,
-																																"ERROR.", MessageBoxButtons.OK,
-																																MessageBoxIcon.Error)
-		End Try
-	End Sub
+            End Try
+        Catch ex As Exception
+            MessageBox.Show("Ocurrio un Error: " & ex.Message,
+                                                                                                                                "ERROR.", MessageBoxButtons.OK,
+                                                                                                                                MessageBoxIcon.Error)
+        End Try
+    End Sub
 
-	Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles rbEmpleado.CheckedChanged
-		If rbEmpleado.Checked Then
-			rbPeriodo.Checked = False
-			grbPeriodo.Visible = False
-			grbEmpleado.Visible = True
-			DGVacaciones.Visible = True
-			panelPeriodo.Visible = False
-		ElseIf rbPeriodo.Checked Then
-			rbEmpleado.Checked = False
-			grbEmpleado.Visible = False
-			grbPeriodo.Visible = True
-			GroupBox1.Visible = False
-			GroupBox2.Visible = False
-			DGVacaciones.Visible = False
-			panelPeriodo.Visible = True
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles rbEmpleado.CheckedChanged
+        If rbEmpleado.Checked Then
+            rbPeriodo.Checked = False
+            grbPeriodo.Visible = False
+            grbEmpleado.Visible = True
+            DGVacaciones.Visible = True
+            panelPeriodo.Visible = False
+        ElseIf rbPeriodo.Checked Then
+            rbEmpleado.Checked = False
+            grbEmpleado.Visible = False
+            grbPeriodo.Visible = True
+            GroupBox1.Visible = False
+            GroupBox2.Visible = False
+            DGVacaciones.Visible = False
+            panelPeriodo.Visible = True
 
-		End If
-	End Sub
+        End If
+    End Sub
 
-	Private Sub CBNomEmp_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBNomEmp.SelectedIndexChanged
-		'LlenarComboboxEmpleado()
+    Private Sub CBNomEmp_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBNomEmp.SelectedIndexChanged
+        'LlenarComboboxEmpleado()
 
-	End Sub
+    End Sub
 
-	Private Sub rbPeriodo_CheckedChanged(sender As Object, e As EventArgs) Handles rbPeriodo.CheckedChanged
+    Private Sub rbPeriodo_CheckedChanged(sender As Object, e As EventArgs) Handles rbPeriodo.CheckedChanged
 
-	End Sub
+    End Sub
 
-	Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-		VacacionesporPeriodo()
-		DisenoGridPeriodo()
-	End Sub
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        VacacionesporPeriodo()
+        DisenoGridPeriodo()
+    End Sub
 
-	Public Sub VacacionesporPeriodo()
+    Public Sub VacacionesporPeriodo()
 
-		Dim args As String = conexion_universal.CadenaSQL
+        Dim args As String = conexion_universal.CadenaSQL
 
-		Dim command As SqlCommand
-		Dim adapter As SqlDataAdapter
-		Dim dtTable As DataTable
+        Dim command As SqlCommand
+        Dim adapter As SqlDataAdapter
+        Dim dtTable As DataTable
 
-		Using connection As SqlConnection = New SqlConnection(args)
-			command = New SqlCommand("consultarVacacionesporPeriodo", connection)
-			command.CommandType = CommandType.StoredProcedure
-			adapter = New SqlDataAdapter(command)
-			dtTable = New DataTable
-			With command.Parameters
-				'Envió los parámetros que necesito
-				.Add(New SqlParameter("@fechainicio", SqlDbType.Date)).Value = Convert.ToDateTime(dtpInicio.Value)
-				.Add(New SqlParameter("@fechafinal", SqlDbType.Date)).Value = Convert.ToDateTime(dtpFin.Value)
+        Using connection As SqlConnection = New SqlConnection(args)
+            command = New SqlCommand("consultarVacacionesporPeriodo", connection)
+            command.CommandType = CommandType.StoredProcedure
+            adapter = New SqlDataAdapter(command)
+            dtTable = New DataTable
+            With command.Parameters
+                'Envió los parámetros que necesito
+                .Add(New SqlParameter("@fechainicio", SqlDbType.Date)).Value = Convert.ToDateTime(dtpInicio.Value)
+                .Add(New SqlParameter("@fechafinal", SqlDbType.Date)).Value = Convert.ToDateTime(dtpFin.Value)
 
 
-			End With
+            End With
 
-			Try
-				adapter.Fill(dtTable)
-				dgvPeriodo.DataSource = dtTable
-				'dgvClasificacion.AutoGenerateColumns = True
-			Catch expSQL As SqlException
-				MsgBox(expSQL.ToString, MsgBoxStyle.OkOnly, "SQL Exception")
-				Exit Sub
-			End Try
-		End Using
+            Try
+                adapter.Fill(dtTable)
+                dgvPeriodo.DataSource = dtTable
+                'dgvClasificacion.AutoGenerateColumns = True
+            Catch expSQL As SqlException
+                MsgBox(expSQL.ToString, MsgBoxStyle.OkOnly, "SQL Exception")
+                Exit Sub
+            End Try
+        End Using
 
 
-	End Sub
+    End Sub
 
 
-	Private Sub DisenoGridPeriodo()
-		'-------Diseño de DATAGRID Totales
-		With Me.dgvPeriodo
+    Private Sub DisenoGridPeriodo()
+        '-------Diseño de DATAGRID Totales
+        With Me.dgvPeriodo
 
-			.AlternatingRowsDefaultCellStyle.BackColor = Color.FloralWhite
-			.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.CornflowerBlue
-			.DefaultCellStyle.BackColor = Color.AliceBlue
-			.DefaultCellStyle.SelectionBackColor = Color.CornflowerBlue
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FloralWhite
+            .AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.CornflowerBlue
+            .DefaultCellStyle.BackColor = Color.AliceBlue
+            .DefaultCellStyle.SelectionBackColor = Color.CornflowerBlue
 
-			.RowHeadersVisible = True
-			.RowHeadersWidth = 25
+            .RowHeadersVisible = True
+            .RowHeadersWidth = 25
 
 
-			dgvPeriodo.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            dgvPeriodo.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-			Try
+            Try
 
-				.Columns(0).HeaderText = "Número Empleado"
+                .Columns(0).HeaderText = "Número Empleado"
 
-				.Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-				.Columns(0).ReadOnly = True
+                .Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(0).ReadOnly = True
 
 
-				.Columns(1).HeaderText = "Nombre"
+                .Columns(1).HeaderText = "Nombre"
 
-				.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-				.Columns(1).ReadOnly = True
+                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(1).ReadOnly = True
 
-				.Columns(2).HeaderText = "Día solicitado"
+                .Columns(2).HeaderText = "Día solicitado"
 
-				.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-				.Columns(2).ReadOnly = True
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns(2).ReadOnly = True
 
 
-			Catch ex As Exception
-			End Try
-		End With
-	End Sub
+            Catch ex As Exception
+            End Try
+        End With
+    End Sub
 End Class

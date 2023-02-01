@@ -179,6 +179,7 @@ Partial Class Inicio
 		Me.SMTraspaso = New System.Windows.Forms.ToolStripMenuItem()
 		Me.ClasificaciónPorVentasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
 		Me.PartidasFaltantesTarimaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.TransportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.MInventario = New System.Windows.Forms.ToolStripMenuItem()
 		Me.SMAuditoriaInv = New System.Windows.Forms.ToolStripMenuItem()
 		Me.ClasificaciónPorVentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -218,7 +219,7 @@ Partial Class Inicio
 		Me.lblAlertaUsr = New System.Windows.Forms.Label()
 		Me.lbl_IdAlert = New System.Windows.Forms.Label()
 		Me.panelAvisoAlerta = New System.Windows.Forms.Panel()
-		Me.TransportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.ReimprimirFormatoVacToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.TSMenuInicio.SuspendLayout()
 		Me.ToolStrip1.SuspendLayout()
 		Me.panelAvisoAlerta.SuspendLayout()
@@ -290,7 +291,7 @@ Partial Class Inicio
 		Me.mnu_ActualizarSistema.Tag = "mnu_ActualizarSistema"
 		Me.mnu_ActualizarSistema.Text = "¡¡Actualizar sistema!!"
 		Me.mnu_ActualizarSistema.ToolTipText = "Guarde su información y actualice el sistema en cuanto le sea posible presionando" &
-				" aquí"
+	" aquí"
 		Me.mnu_ActualizarSistema.Visible = False
 		'
 		'MBackO
@@ -961,7 +962,7 @@ Partial Class Inicio
 		'
 		'MVacaciones
 		'
-		Me.MVacaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMConsultaVac, Me.SMAltaEmp, Me.SMOrganigrama, Me.SMPerfilesDePuesto, Me.SMSolicitudVac})
+		Me.MVacaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMConsultaVac, Me.SMAltaEmp, Me.SMOrganigrama, Me.SMPerfilesDePuesto, Me.SMSolicitudVac, Me.ReimprimirFormatoVacToolStripMenuItem})
 		Me.MVacaciones.Image = CType(resources.GetObject("MVacaciones.Image"), System.Drawing.Image)
 		Me.MVacaciones.Name = "MVacaciones"
 		Me.MVacaciones.Size = New System.Drawing.Size(141, 24)
@@ -1415,6 +1416,12 @@ Partial Class Inicio
 		Me.PartidasFaltantesTarimaToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
 		Me.PartidasFaltantesTarimaToolStripMenuItem.Text = "Partidas Faltantes Tarima"
 		'
+		'TransportesToolStripMenuItem
+		'
+		Me.TransportesToolStripMenuItem.Name = "TransportesToolStripMenuItem"
+		Me.TransportesToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+		Me.TransportesToolStripMenuItem.Text = "Transportar"
+		'
 		'MInventario
 		'
 		Me.MInventario.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMAuditoriaInv, Me.ClasificaciónPorVentasToolStripMenuItem, Me.SMControlEnvios, Me.SMFacturaArticulos, Me.SMFactura, Me.SMAuditoriaStock, Me.SMInventarioM, Me.SMNotasC, Me.PackinToolStripMenuItem, Me.SMTransferencia, Me.SMValoracionInv2, Me.Devoluciones2ToolStripMenuItem})
@@ -1732,11 +1739,11 @@ Partial Class Inicio
 		Me.panelAvisoAlerta.Size = New System.Drawing.Size(1931, 101)
 		Me.panelAvisoAlerta.TabIndex = 13
 		'
-		'TransportesToolStripMenuItem
+		'ReimprimirFormatoVacToolStripMenuItem
 		'
-		Me.TransportesToolStripMenuItem.Name = "TransportesToolStripMenuItem"
-		Me.TransportesToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
-		Me.TransportesToolStripMenuItem.Text = "Transportar"
+		Me.ReimprimirFormatoVacToolStripMenuItem.Name = "ReimprimirFormatoVacToolStripMenuItem"
+		Me.ReimprimirFormatoVacToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
+		Me.ReimprimirFormatoVacToolStripMenuItem.Text = "Reimprimir Formato Vac"
 		'
 		'Inicio
 		'
@@ -1963,4 +1970,5 @@ Partial Class Inicio
  Friend WithEvents PagosRecibidosToolStripMenuItem As ToolStripMenuItem
  Friend WithEvents EtiquetasParaCajasDeCamiónToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents TransportesToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents ReimprimirFormatoVacToolStripMenuItem As ToolStripMenuItem
 End Class

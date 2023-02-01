@@ -1475,4 +1475,10 @@ Public Class Inicio
 		PorLotes.MdiParent = Me
 		PorLotes.Show()
 	End Sub
+
+ Private Sub ReimprimirFormatoVacToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReimprimirFormatoVacToolStripMenuItem.Click
+  Dim RF As New ReimpresionFV
+  RF.MdiParent = Me
+  RF.Show()
+ End Sub
 End Class

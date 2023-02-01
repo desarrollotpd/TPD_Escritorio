@@ -733,14 +733,12 @@ Partial Class VacacionesConsulta
         '
         'dgvPeriodo
         '
-        Me.dgvPeriodo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvPeriodo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvPeriodo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPeriodo.Location = New System.Drawing.Point(15, 95)
+        Me.dgvPeriodo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvPeriodo.Location = New System.Drawing.Point(0, 0)
         Me.dgvPeriodo.Name = "dgvPeriodo"
-        Me.dgvPeriodo.Size = New System.Drawing.Size(699, 258)
+        Me.dgvPeriodo.Size = New System.Drawing.Size(741, 525)
         Me.dgvPeriodo.TabIndex = 1
         '
         'VacacionesConsulta

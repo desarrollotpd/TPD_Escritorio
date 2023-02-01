@@ -25,9 +25,9 @@ Partial Class FormatoVacaciones
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormatoVacaciones))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TBFolio = New System.Windows.Forms.TextBox()
@@ -48,21 +48,7 @@ Partial Class FormatoVacaciones
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TBDiasRest = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.CBDiasSol = New System.Windows.Forms.ComboBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.TBDiasAut = New System.Windows.Forms.TextBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.PanelFechas = New System.Windows.Forms.TableLayoutPanel()
-        Me.DTPFec5 = New System.Windows.Forms.DateTimePicker()
-        Me.DTPFec4 = New System.Windows.Forms.DateTimePicker()
-        Me.DTPFec3 = New System.Windows.Forms.DateTimePicker()
-        Me.CKAut5 = New System.Windows.Forms.CheckBox()
-        Me.CKAut4 = New System.Windows.Forms.CheckBox()
-        Me.CKAut3 = New System.Windows.Forms.CheckBox()
-        Me.CKAut2 = New System.Windows.Forms.CheckBox()
-        Me.DTPFec2 = New System.Windows.Forms.DateTimePicker()
         Me.DTPFec1 = New System.Windows.Forms.DateTimePicker()
-        Me.CKAut1 = New System.Windows.Forms.CheckBox()
         Me.BSave = New System.Windows.Forms.Button()
         Me.BtnImprimir = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -70,29 +56,45 @@ Partial Class FormatoVacaciones
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TBAntiguedad = New System.Windows.Forms.TextBox()
         Me.DGVCap = New System.Windows.Forms.DataGridView()
-        Me.Folio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NumEmp = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Periodo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiaSol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Borrar = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.BtnNvo = New System.Windows.Forms.Button()
         Me.TBPeriodoCom = New System.Windows.Forms.ComboBox()
         Me.BtnEmpleados = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.lbltipo = New System.Windows.Forms.Label()
+        Me.txttipo = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.CBDiasSol = New System.Windows.Forms.ComboBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TBDiasAut = New System.Windows.Forms.TextBox()
+        Me.CKAut1 = New System.Windows.Forms.CheckBox()
+        Me.DTPFec2 = New System.Windows.Forms.DateTimePicker()
+        Me.CKAut2 = New System.Windows.Forms.CheckBox()
+        Me.CKAut3 = New System.Windows.Forms.CheckBox()
+        Me.CKAut4 = New System.Windows.Forms.CheckBox()
+        Me.CKAut5 = New System.Windows.Forms.CheckBox()
+        Me.DTPFec3 = New System.Windows.Forms.DateTimePicker()
+        Me.DTPFec4 = New System.Windows.Forms.DateTimePicker()
+        Me.DTPFec5 = New System.Windows.Forms.DateTimePicker()
+        Me.PanelFechas = New System.Windows.Forms.TableLayoutPanel()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.lbltipo = New System.Windows.Forms.Label()
-        Me.txttipo = New System.Windows.Forms.TextBox()
-        Me.PanelFechas.SuspendLayout()
+        Me.Folio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumEmp = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Periodo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiaSol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiasRest = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiasVac = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Borrar = New System.Windows.Forms.DataGridViewLinkColumn()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGVCap, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelFechas.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -271,155 +273,6 @@ Partial Class FormatoVacaciones
         Me.Label10.TabIndex = 506
         Me.Label10.Text = "Días restantes"
         '
-        'CBDiasSol
-        '
-        Me.CBDiasSol.FormattingEnabled = True
-        Me.CBDiasSol.Items.AddRange(New Object() {"", "1", "2", "3", "4", "5"})
-        Me.CBDiasSol.Location = New System.Drawing.Point(115, 407)
-        Me.CBDiasSol.Name = "CBDiasSol"
-        Me.CBDiasSol.Size = New System.Drawing.Size(61, 21)
-        Me.CBDiasSol.TabIndex = 519
-        Me.CBDiasSol.Visible = False
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(17, 410)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(82, 13)
-        Me.Label11.TabIndex = 515
-        Me.Label11.Text = "Días solicitados"
-        Me.Label11.Visible = False
-        '
-        'TBDiasAut
-        '
-        Me.TBDiasAut.Enabled = False
-        Me.TBDiasAut.Location = New System.Drawing.Point(115, 437)
-        Me.TBDiasAut.Name = "TBDiasAut"
-        Me.TBDiasAut.Size = New System.Drawing.Size(61, 20)
-        Me.TBDiasAut.TabIndex = 528
-        Me.TBDiasAut.Visible = False
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(17, 440)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(87, 13)
-        Me.Label12.TabIndex = 527
-        Me.Label12.Text = "Días autorizados"
-        Me.Label12.Visible = False
-        '
-        'PanelFechas
-        '
-        Me.PanelFechas.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
-        Me.PanelFechas.ColumnCount = 5
-        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93.0!))
-        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107.0!))
-        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169.0!))
-        Me.PanelFechas.Controls.Add(Me.DTPFec5, 4, 0)
-        Me.PanelFechas.Controls.Add(Me.DTPFec4, 3, 0)
-        Me.PanelFechas.Controls.Add(Me.DTPFec3, 2, 0)
-        Me.PanelFechas.Controls.Add(Me.CKAut5, 4, 1)
-        Me.PanelFechas.Controls.Add(Me.CKAut4, 3, 1)
-        Me.PanelFechas.Controls.Add(Me.CKAut3, 2, 1)
-        Me.PanelFechas.Controls.Add(Me.CKAut2, 1, 1)
-        Me.PanelFechas.Controls.Add(Me.DTPFec2, 1, 0)
-        Me.PanelFechas.Location = New System.Drawing.Point(495, 204)
-        Me.PanelFechas.Name = "PanelFechas"
-        Me.PanelFechas.RowCount = 2
-        Me.PanelFechas.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33.0!))
-        Me.PanelFechas.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15.0!))
-        Me.PanelFechas.Size = New System.Drawing.Size(210, 54)
-        Me.PanelFechas.TabIndex = 531
-        Me.PanelFechas.Visible = False
-        '
-        'DTPFec5
-        '
-        Me.DTPFec5.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DTPFec5.Location = New System.Drawing.Point(408, 4)
-        Me.DTPFec5.Name = "DTPFec5"
-        Me.DTPFec5.Size = New System.Drawing.Size(84, 20)
-        Me.DTPFec5.TabIndex = 340
-        Me.DTPFec5.Value = New Date(2015, 1, 1, 0, 0, 0, 0)
-        Me.DTPFec5.Visible = False
-        '
-        'DTPFec4
-        '
-        Me.DTPFec4.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DTPFec4.Location = New System.Drawing.Point(307, 4)
-        Me.DTPFec4.Name = "DTPFec4"
-        Me.DTPFec4.Size = New System.Drawing.Size(84, 20)
-        Me.DTPFec4.TabIndex = 339
-        Me.DTPFec4.Value = New Date(2015, 1, 1, 0, 0, 0, 0)
-        Me.DTPFec4.Visible = False
-        '
-        'DTPFec3
-        '
-        Me.DTPFec3.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DTPFec3.Location = New System.Drawing.Point(206, 4)
-        Me.DTPFec3.Name = "DTPFec3"
-        Me.DTPFec3.Size = New System.Drawing.Size(84, 20)
-        Me.DTPFec3.TabIndex = 338
-        Me.DTPFec3.Value = New Date(2015, 1, 1, 0, 0, 0, 0)
-        Me.DTPFec3.Visible = False
-        '
-        'CKAut5
-        '
-        Me.CKAut5.AutoSize = True
-        Me.CKAut5.Location = New System.Drawing.Point(408, 38)
-        Me.CKAut5.Name = "CKAut5"
-        Me.CKAut5.Size = New System.Drawing.Size(70, 12)
-        Me.CKAut5.TabIndex = 337
-        Me.CKAut5.Text = "Confirmar"
-        Me.CKAut5.UseVisualStyleBackColor = True
-        Me.CKAut5.Visible = False
-        '
-        'CKAut4
-        '
-        Me.CKAut4.AutoSize = True
-        Me.CKAut4.Location = New System.Drawing.Point(307, 38)
-        Me.CKAut4.Name = "CKAut4"
-        Me.CKAut4.Size = New System.Drawing.Size(70, 12)
-        Me.CKAut4.TabIndex = 336
-        Me.CKAut4.Text = "Confirmar"
-        Me.CKAut4.UseVisualStyleBackColor = True
-        Me.CKAut4.Visible = False
-        '
-        'CKAut3
-        '
-        Me.CKAut3.AutoSize = True
-        Me.CKAut3.Location = New System.Drawing.Point(206, 38)
-        Me.CKAut3.Name = "CKAut3"
-        Me.CKAut3.Size = New System.Drawing.Size(70, 12)
-        Me.CKAut3.TabIndex = 335
-        Me.CKAut3.Text = "Confirmar"
-        Me.CKAut3.UseVisualStyleBackColor = True
-        Me.CKAut3.Visible = False
-        '
-        'CKAut2
-        '
-        Me.CKAut2.AutoSize = True
-        Me.CKAut2.Location = New System.Drawing.Point(98, 38)
-        Me.CKAut2.Name = "CKAut2"
-        Me.CKAut2.Size = New System.Drawing.Size(70, 12)
-        Me.CKAut2.TabIndex = 334
-        Me.CKAut2.Text = "Confirmar"
-        Me.CKAut2.UseVisualStyleBackColor = True
-        Me.CKAut2.Visible = False
-        '
-        'DTPFec2
-        '
-        Me.DTPFec2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DTPFec2.Location = New System.Drawing.Point(98, 4)
-        Me.DTPFec2.Name = "DTPFec2"
-        Me.DTPFec2.Size = New System.Drawing.Size(84, 20)
-        Me.DTPFec2.TabIndex = 329
-        Me.DTPFec2.Value = New Date(2015, 1, 1, 0, 0, 0, 0)
-        Me.DTPFec2.Visible = False
-        '
         'DTPFec1
         '
         Me.DTPFec1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
@@ -427,18 +280,7 @@ Partial Class FormatoVacaciones
         Me.DTPFec1.Name = "DTPFec1"
         Me.DTPFec1.Size = New System.Drawing.Size(87, 20)
         Me.DTPFec1.TabIndex = 5
-        Me.DTPFec1.Value = New Date(2015, 1, 1, 0, 0, 0, 0)
-        '
-        'CKAut1
-        '
-        Me.CKAut1.AutoSize = True
-        Me.CKAut1.Location = New System.Drawing.Point(124, 379)
-        Me.CKAut1.Name = "CKAut1"
-        Me.CKAut1.Size = New System.Drawing.Size(70, 17)
-        Me.CKAut1.TabIndex = 333
-        Me.CKAut1.Text = "Confirmar"
-        Me.CKAut1.UseVisualStyleBackColor = True
-        Me.CKAut1.Visible = False
+        Me.DTPFec1.Value = New Date(2023, 1, 30, 0, 0, 0, 0)
         '
         'BSave
         '
@@ -511,7 +353,7 @@ Partial Class FormatoVacaciones
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DGVCap.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DGVCap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGVCap.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Folio, Me.NumEmp, Me.Periodo, Me.DiaSol, Me.Borrar})
+        Me.DGVCap.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Folio, Me.NumEmp, Me.Periodo, Me.DiaSol, Me.DiasRest, Me.DiasVac, Me.Borrar})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
@@ -524,46 +366,8 @@ Partial Class FormatoVacaciones
         Me.DGVCap.Name = "DGVCap"
         Me.DGVCap.RowHeadersVisible = False
         Me.DGVCap.RowTemplate.Height = 21
-        Me.DGVCap.Size = New System.Drawing.Size(330, 208)
+        Me.DGVCap.Size = New System.Drawing.Size(434, 208)
         Me.DGVCap.TabIndex = 7
-        '
-        'Folio
-        '
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.Format = "N0"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.Folio.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Folio.HeaderText = "Folio"
-        Me.Folio.Name = "Folio"
-        Me.Folio.Width = 40
-        '
-        'NumEmp
-        '
-        Me.NumEmp.HeaderText = "NumEmp"
-        Me.NumEmp.Name = "NumEmp"
-        Me.NumEmp.ReadOnly = True
-        Me.NumEmp.Width = 55
-        '
-        'Periodo
-        '
-        Me.Periodo.HeaderText = "Periodo"
-        Me.Periodo.Name = "Periodo"
-        Me.Periodo.ReadOnly = True
-        Me.Periodo.Width = 80
-        '
-        'DiaSol
-        '
-        Me.DiaSol.DataPropertyName = "DiaSol"
-        Me.DiaSol.HeaderText = "DiaSol"
-        Me.DiaSol.Name = "DiaSol"
-        Me.DiaSol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DiaSol.Width = 70
-        '
-        'Borrar
-        '
-        Me.Borrar.HeaderText = "Borrar"
-        Me.Borrar.Name = "Borrar"
-        Me.Borrar.Width = 80
         '
         'BtnNvo
         '
@@ -579,12 +383,12 @@ Partial Class FormatoVacaciones
         '
         'TBPeriodoCom
         '
+        Me.TBPeriodoCom.Enabled = False
         Me.TBPeriodoCom.FormattingEnabled = True
-        Me.TBPeriodoCom.Location = New System.Drawing.Point(268, 248)
+        Me.TBPeriodoCom.Location = New System.Drawing.Point(267, 246)
         Me.TBPeriodoCom.Name = "TBPeriodoCom"
-        Me.TBPeriodoCom.Size = New System.Drawing.Size(115, 21)
+        Me.TBPeriodoCom.Size = New System.Drawing.Size(104, 21)
         Me.TBPeriodoCom.TabIndex = 3
-        Me.TBPeriodoCom.Visible = False
         '
         'BtnEmpleados
         '
@@ -616,6 +420,199 @@ Partial Class FormatoVacaciones
         Me.Button1.TabIndex = 6
         Me.Button1.Text = "Agregar Dia"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Enabled = False
+        Me.TextBox1.Location = New System.Drawing.Point(149, 157)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(103, 20)
+        Me.TextBox1.TabIndex = 546
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Enabled = False
+        Me.TextBox2.Location = New System.Drawing.Point(149, 245)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(103, 20)
+        Me.TextBox2.TabIndex = 547
+        '
+        'lbltipo
+        '
+        Me.lbltipo.AutoSize = True
+        Me.lbltipo.Location = New System.Drawing.Point(17, 300)
+        Me.lbltipo.Name = "lbltipo"
+        Me.lbltipo.Size = New System.Drawing.Size(31, 13)
+        Me.lbltipo.TabIndex = 548
+        Me.lbltipo.Text = "Tipo:"
+        '
+        'txttipo
+        '
+        Me.txttipo.Enabled = False
+        Me.txttipo.Location = New System.Drawing.Point(149, 294)
+        Me.txttipo.Name = "txttipo"
+        Me.txttipo.Size = New System.Drawing.Size(100, 20)
+        Me.txttipo.TabIndex = 549
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(17, 410)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(82, 13)
+        Me.Label11.TabIndex = 515
+        Me.Label11.Text = "Días solicitados"
+        Me.Label11.Visible = False
+        '
+        'CBDiasSol
+        '
+        Me.CBDiasSol.FormattingEnabled = True
+        Me.CBDiasSol.Items.AddRange(New Object() {"", "1", "2", "3", "4", "5"})
+        Me.CBDiasSol.Location = New System.Drawing.Point(115, 407)
+        Me.CBDiasSol.Name = "CBDiasSol"
+        Me.CBDiasSol.Size = New System.Drawing.Size(61, 21)
+        Me.CBDiasSol.TabIndex = 519
+        Me.CBDiasSol.Visible = False
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(17, 440)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(87, 13)
+        Me.Label12.TabIndex = 527
+        Me.Label12.Text = "Días autorizados"
+        Me.Label12.Visible = False
+        '
+        'TBDiasAut
+        '
+        Me.TBDiasAut.Enabled = False
+        Me.TBDiasAut.Location = New System.Drawing.Point(115, 437)
+        Me.TBDiasAut.Name = "TBDiasAut"
+        Me.TBDiasAut.Size = New System.Drawing.Size(61, 20)
+        Me.TBDiasAut.TabIndex = 528
+        Me.TBDiasAut.Visible = False
+        '
+        'CKAut1
+        '
+        Me.CKAut1.AutoSize = True
+        Me.CKAut1.Location = New System.Drawing.Point(124, 379)
+        Me.CKAut1.Name = "CKAut1"
+        Me.CKAut1.Size = New System.Drawing.Size(70, 17)
+        Me.CKAut1.TabIndex = 333
+        Me.CKAut1.Text = "Confirmar"
+        Me.CKAut1.UseVisualStyleBackColor = True
+        Me.CKAut1.Visible = False
+        '
+        'DTPFec2
+        '
+        Me.DTPFec2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DTPFec2.Location = New System.Drawing.Point(98, 4)
+        Me.DTPFec2.Name = "DTPFec2"
+        Me.DTPFec2.Size = New System.Drawing.Size(84, 20)
+        Me.DTPFec2.TabIndex = 329
+        Me.DTPFec2.Value = New Date(2015, 1, 1, 0, 0, 0, 0)
+        Me.DTPFec2.Visible = False
+        '
+        'CKAut2
+        '
+        Me.CKAut2.AutoSize = True
+        Me.CKAut2.Location = New System.Drawing.Point(98, 38)
+        Me.CKAut2.Name = "CKAut2"
+        Me.CKAut2.Size = New System.Drawing.Size(70, 17)
+        Me.CKAut2.TabIndex = 334
+        Me.CKAut2.Text = "Confirmar"
+        Me.CKAut2.UseVisualStyleBackColor = True
+        Me.CKAut2.Visible = False
+        '
+        'CKAut3
+        '
+        Me.CKAut3.AutoSize = True
+        Me.CKAut3.Location = New System.Drawing.Point(206, 38)
+        Me.CKAut3.Name = "CKAut3"
+        Me.CKAut3.Size = New System.Drawing.Size(70, 17)
+        Me.CKAut3.TabIndex = 335
+        Me.CKAut3.Text = "Confirmar"
+        Me.CKAut3.UseVisualStyleBackColor = True
+        Me.CKAut3.Visible = False
+        '
+        'CKAut4
+        '
+        Me.CKAut4.AutoSize = True
+        Me.CKAut4.Location = New System.Drawing.Point(307, 38)
+        Me.CKAut4.Name = "CKAut4"
+        Me.CKAut4.Size = New System.Drawing.Size(70, 17)
+        Me.CKAut4.TabIndex = 336
+        Me.CKAut4.Text = "Confirmar"
+        Me.CKAut4.UseVisualStyleBackColor = True
+        Me.CKAut4.Visible = False
+        '
+        'CKAut5
+        '
+        Me.CKAut5.AutoSize = True
+        Me.CKAut5.Location = New System.Drawing.Point(408, 38)
+        Me.CKAut5.Name = "CKAut5"
+        Me.CKAut5.Size = New System.Drawing.Size(70, 17)
+        Me.CKAut5.TabIndex = 337
+        Me.CKAut5.Text = "Confirmar"
+        Me.CKAut5.UseVisualStyleBackColor = True
+        Me.CKAut5.Visible = False
+        '
+        'DTPFec3
+        '
+        Me.DTPFec3.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DTPFec3.Location = New System.Drawing.Point(206, 4)
+        Me.DTPFec3.Name = "DTPFec3"
+        Me.DTPFec3.Size = New System.Drawing.Size(84, 20)
+        Me.DTPFec3.TabIndex = 338
+        Me.DTPFec3.Value = New Date(2015, 1, 1, 0, 0, 0, 0)
+        Me.DTPFec3.Visible = False
+        '
+        'DTPFec4
+        '
+        Me.DTPFec4.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DTPFec4.Location = New System.Drawing.Point(307, 4)
+        Me.DTPFec4.Name = "DTPFec4"
+        Me.DTPFec4.Size = New System.Drawing.Size(84, 20)
+        Me.DTPFec4.TabIndex = 339
+        Me.DTPFec4.Value = New Date(2015, 1, 1, 0, 0, 0, 0)
+        Me.DTPFec4.Visible = False
+        '
+        'DTPFec5
+        '
+        Me.DTPFec5.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DTPFec5.Location = New System.Drawing.Point(408, 4)
+        Me.DTPFec5.Name = "DTPFec5"
+        Me.DTPFec5.Size = New System.Drawing.Size(84, 20)
+        Me.DTPFec5.TabIndex = 340
+        Me.DTPFec5.Value = New Date(2015, 1, 1, 0, 0, 0, 0)
+        Me.DTPFec5.Visible = False
+        '
+        'PanelFechas
+        '
+        Me.PanelFechas.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
+        Me.PanelFechas.ColumnCount = 5
+        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93.0!))
+        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107.0!))
+        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 176.0!))
+        Me.PanelFechas.Controls.Add(Me.DTPFec5, 4, 0)
+        Me.PanelFechas.Controls.Add(Me.DTPFec4, 3, 0)
+        Me.PanelFechas.Controls.Add(Me.DTPFec3, 2, 0)
+        Me.PanelFechas.Controls.Add(Me.CKAut5, 4, 1)
+        Me.PanelFechas.Controls.Add(Me.CKAut4, 3, 1)
+        Me.PanelFechas.Controls.Add(Me.CKAut3, 2, 1)
+        Me.PanelFechas.Controls.Add(Me.CKAut2, 1, 1)
+        Me.PanelFechas.Controls.Add(Me.DTPFec2, 1, 0)
+        Me.PanelFechas.Location = New System.Drawing.Point(415, 193)
+        Me.PanelFechas.Name = "PanelFechas"
+        Me.PanelFechas.RowCount = 2
+        Me.PanelFechas.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33.0!))
+        Me.PanelFechas.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15.0!))
+        Me.PanelFechas.Size = New System.Drawing.Size(273, 68)
+        Me.PanelFechas.TabIndex = 531
+        Me.PanelFechas.Visible = False
         '
         'DataGridViewTextBoxColumn1
         '
@@ -658,44 +655,60 @@ Partial Class FormatoVacaciones
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         Me.DataGridViewTextBoxColumn5.Width = 55
         '
-        'TextBox1
+        'Folio
         '
-        Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(149, 157)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(103, 20)
-        Me.TextBox1.TabIndex = 546
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.Format = "N0"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.Folio.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Folio.HeaderText = "Folio"
+        Me.Folio.Name = "Folio"
+        Me.Folio.Width = 40
         '
-        'TextBox2
+        'NumEmp
         '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(149, 245)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(103, 20)
-        Me.TextBox2.TabIndex = 547
+        Me.NumEmp.HeaderText = "NumEmp"
+        Me.NumEmp.Name = "NumEmp"
+        Me.NumEmp.ReadOnly = True
+        Me.NumEmp.Width = 55
         '
-        'lbltipo
+        'Periodo
         '
-        Me.lbltipo.AutoSize = True
-        Me.lbltipo.Location = New System.Drawing.Point(17, 300)
-        Me.lbltipo.Name = "lbltipo"
-        Me.lbltipo.Size = New System.Drawing.Size(31, 13)
-        Me.lbltipo.TabIndex = 548
-        Me.lbltipo.Text = "Tipo:"
+        Me.Periodo.HeaderText = "Periodo"
+        Me.Periodo.Name = "Periodo"
+        Me.Periodo.ReadOnly = True
+        Me.Periodo.Width = 80
         '
-        'txttipo
+        'DiaSol
         '
-        Me.txttipo.Enabled = False
-        Me.txttipo.Location = New System.Drawing.Point(149, 294)
-        Me.txttipo.Name = "txttipo"
-        Me.txttipo.Size = New System.Drawing.Size(100, 20)
-        Me.txttipo.TabIndex = 549
+        Me.DiaSol.DataPropertyName = "DiaSol"
+        Me.DiaSol.HeaderText = "DiaSol"
+        Me.DiaSol.Name = "DiaSol"
+        Me.DiaSol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DiaSol.Width = 70
+        '
+        'DiasRest
+        '
+        Me.DiasRest.HeaderText = "DiasRes"
+        Me.DiasRest.Name = "DiasRest"
+        '
+        'DiasVac
+        '
+        Me.DiasVac.HeaderText = "DiasVac"
+        Me.DiasVac.Name = "DiasVac"
+        Me.DiasVac.Visible = False
+        '
+        'Borrar
+        '
+        Me.Borrar.HeaderText = "Borrar"
+        Me.Borrar.Name = "Borrar"
+        Me.Borrar.Width = 80
         '
         'FormatoVacaciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(717, 666)
+        Me.ClientSize = New System.Drawing.Size(714, 680)
         Me.Controls.Add(Me.txttipo)
         Me.Controls.Add(Me.lbltipo)
         Me.Controls.Add(Me.TextBox2)
@@ -743,11 +756,11 @@ Partial Class FormatoVacaciones
         Me.Name = "FormatoVacaciones"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Solicitud Vacaciones"
-        Me.PanelFechas.ResumeLayout(False)
-        Me.PanelFechas.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DGVCap, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelFechas.ResumeLayout(False)
+        Me.PanelFechas.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -772,22 +785,8 @@ Partial Class FormatoVacaciones
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents TBDiasRest As System.Windows.Forms.TextBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents CBDiasSol As System.Windows.Forms.ComboBox
-    Friend WithEvents Label11 As System.Windows.Forms.Label
-    Friend WithEvents TBDiasAut As System.Windows.Forms.TextBox
-    Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents PanelFechas As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents CKAut5 As System.Windows.Forms.CheckBox
-    Friend WithEvents CKAut4 As System.Windows.Forms.CheckBox
-    Friend WithEvents CKAut3 As System.Windows.Forms.CheckBox
-    Friend WithEvents CKAut2 As System.Windows.Forms.CheckBox
-    Friend WithEvents DTPFec2 As System.Windows.Forms.DateTimePicker
     Friend WithEvents DTPFec1 As System.Windows.Forms.DateTimePicker
-    Friend WithEvents CKAut1 As System.Windows.Forms.CheckBox
     Friend WithEvents BSave As System.Windows.Forms.Button
-    Friend WithEvents DTPFec5 As System.Windows.Forms.DateTimePicker
-    Friend WithEvents DTPFec4 As System.Windows.Forms.DateTimePicker
-    Friend WithEvents DTPFec3 As System.Windows.Forms.DateTimePicker
     Friend WithEvents BtnImprimir As System.Windows.Forms.Button
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
@@ -804,13 +803,29 @@ Partial Class FormatoVacaciones
     Friend WithEvents BtnEmpleados As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents Folio As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents NumEmp As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Periodo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DiaSol As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Borrar As System.Windows.Forms.DataGridViewLinkColumn
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents lbltipo As System.Windows.Forms.Label
     Friend WithEvents txttipo As System.Windows.Forms.TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents CBDiasSol As ComboBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents TBDiasAut As TextBox
+    Friend WithEvents CKAut1 As CheckBox
+    Friend WithEvents DTPFec2 As DateTimePicker
+    Friend WithEvents CKAut2 As CheckBox
+    Friend WithEvents CKAut3 As CheckBox
+    Friend WithEvents CKAut4 As CheckBox
+    Friend WithEvents CKAut5 As CheckBox
+    Friend WithEvents DTPFec3 As DateTimePicker
+    Friend WithEvents DTPFec4 As DateTimePicker
+    Friend WithEvents DTPFec5 As DateTimePicker
+    Friend WithEvents PanelFechas As TableLayoutPanel
+    Friend WithEvents Folio As DataGridViewTextBoxColumn
+    Friend WithEvents NumEmp As DataGridViewTextBoxColumn
+    Friend WithEvents Periodo As DataGridViewTextBoxColumn
+    Friend WithEvents DiaSol As DataGridViewTextBoxColumn
+    Friend WithEvents DiasRest As DataGridViewTextBoxColumn
+    Friend WithEvents DiasVac As DataGridViewTextBoxColumn
+    Friend WithEvents Borrar As DataGridViewLinkColumn
 End Class
