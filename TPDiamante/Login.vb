@@ -1639,14 +1639,19 @@ Public Class Login
   End If
 
 
-		'CONTROL DE VEHICULOS
-		'Bitacora de Cargas
-		If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
-			Inicio.SMAutosBitacora.Visible = False
-		End If
+  'CONTROL DE VEHICULOS
+  'Denegar acceso a Bitacora de Cargas
+  If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+   Inicio.SMAutosBitacora.Visible = False
+  End If
 
-		'Bitacora de Cargas
-		If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+  'Se otorga acceso a la bitacora de carga
+  If TxtUsuario.Text = "ACONTABLE" Then
+   Inicio.SMAutosBitacora.Visible = True
+  End If
+
+  'Bitacora de Cargas
+  If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
 			Inicio.SMAutosCargar.Visible = False
 		End If
 
