@@ -430,7 +430,6 @@ Public Class Login
 
    'Acceso a estos modulos
    Inicio.EtiquetasParaCajasDeCamiónToolStripMenuItem.Visible = True
-
   End If
 
   'ToolStripEmbarques
