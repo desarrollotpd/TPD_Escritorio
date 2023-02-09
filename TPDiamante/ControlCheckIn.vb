@@ -35,7 +35,7 @@ Public Class ControlCheckIn
                 consulta = "Select SlpName as 'Nombre', SlpCode from Agentes where (SlpCode in (select DISTINCT SlpCode from Clientes) or SlpCode = 104) and SlpCode <> 989 and SlpCode <> 990; select t0.CardCode, CONCAT(t0.CardCode, ' --> ', t0.CardName) as 'Name', t0.SlpCode, t1.Serie from Clientes t0 inner join Agentes t1 on t0.SlpCode = t1.SlpCode order by CONVERT(SUBSTRING(CardCode,LOCATE('-', CardCode) + 1), UNSIGNED INTEGER) "
                 'consulta = "Select SlpName as 'Nombre', SlpCode from Agentes where SlpCode in (select DISTINCT SlpCode from Clientes) and SlpCode <> 990; select t0.CardCode, CONCAT(t0.CardCode, ' --> ', t0.CardName) as 'Name', t0.SlpCode, t1.Serie from Clientes t0 inner join Agentes t1 on t0.SlpCode = t1.SlpCode order by CONVERT(SUBSTRING(CardCode,LOCATE('-', CardCode) + 1), UNSIGNED INTEGER) "
             End If
-            Dim MySqlAdapater As New MySqlDataAdapter(Consulta, conn)
+            Dim MySqlAdapater As New MySqlDataAdapter(consulta, conn)
             Dim Agentes As New DataSet
             MySqlAdapater.Fill(Agentes)
 
