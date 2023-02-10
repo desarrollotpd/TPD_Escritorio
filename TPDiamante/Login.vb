@@ -376,7 +376,7 @@ Public Class Login
       Or TxtUsuario.Text = "COBRANZ3" Or TxtUsuario.Text = "VVERGARA" _
       Or TxtUsuario.Text = "NGOMEZ" Or TxtUsuario.Text = "ASTRIDY" Or TxtUsuario.Text = "VENTAS14" Or TxtUsuario.Text = "VENTAS13" Or TxtUsuario.Text = "VENTAS15" Or TxtUsuario.Text = "VENTAS17" _
       Or TxtUsuario.Text = "VENTAS6" Or TxtUsuario.Text = "DDORANTES" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "VENTAS10" Or TxtUsuario.Text = "VENTAS11" _
-      Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "RHUMANOS" Or TxtUsuario.Text = "OPALMACEN" Then
+      Or TxtUsuario.Text = "COBRANZ2" Or TxtUsuario.Text = "VMERIDA" Or TxtUsuario.Text = "AINVEN" Or TxtUsuario.Text = "RHUMANOS" Or TxtUsuario.Text = "OPALMACEN" Or TxtUsuario.Text = "CGARCIA" Then
 
    Inicio.EstatusOrdenToolStripMenuItem.Visible = True
    Inicio.EstatusOrdenToolStripMenuItem.Enabled = True
@@ -405,11 +405,14 @@ Public Class Login
 
 
   'ToolStripOperacion
-
   If TxtUsuario.Text = "JSANCHEZ" Or TxtUsuario.Text = "AVERACRUZ" _
       Or TxtUsuario.Text = "ABAJIO" Or TxtUsuario.Text = "MCHABLE" Then
-
    Inicio.OperaciónDiamanteToolStripMenuItem.Visible = False
+  End If
+
+  'Nuevas ordenes de venta
+  If TxtUsuario.Text = "CGARCIA" Then
+   Inicio.NuevasOrdenesDeVentaToolStripMenuItem.Visible = False
   End If
 
   'Codigos de Barra
@@ -455,13 +458,13 @@ Public Class Login
    Inicio.MListas.Visible = False
   End If
 
-		'OPERACION DIAMANTE
-		If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
-			Inicio.OperaciónDiamanteToolStripMenuItem.Visible = False
-		End If
+  'OPERACION DIAMANTE
+  'If TxtUsuario.Text = "COMERCIAL" Or TxtUsuario.Text = "CGARCIA" Then
+  '	Inicio.OperaciónDiamanteToolStripMenuItem.Visible = False
+  'End If
 
-		'Surtimiento
-		If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "OPALMACEN" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "ALMACEN1" _
+  'Surtimiento
+  If TxtUsuario.Text = "MANAGER" Or TxtUsuario.Text = "OPALMACEN" Or TxtUsuario.Text = "TESORERIA" Or TxtUsuario.Text = "ALMACEN1" _
       Or TxtUsuario.Text = "MMAZZOCO" Or TxtUsuario.Text = "OPERACIOND" Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "ALMACENS" Or TxtUsuario.Text = "PCOMPRAS" Or TxtUsuario.Text = "CINTER" Or TxtUsuario.Text = "RHUMANOS" _
       Or TxtUsuario.Text = "AMERIDA" Or TxtUsuario.Text = "ALMER" Or TxtUsuario.Text = "VVERGARA" Or TxtUsuario.Text = "VOTNIEL" Then
 

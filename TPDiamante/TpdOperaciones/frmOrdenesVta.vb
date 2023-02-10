@@ -497,7 +497,7 @@ Public Class frmOrdenesVta
   Dim ent As String
   Try
    'Si el usuuario tiene privilegios vera todos los datos de ventas y cobranza
-   If UsrTPM = "MANAGER" Or UsrTPM = "COMPRAS1" Or UsrTPM = "AINVEN" Or UsrTPM = "RHUMANOS" Then
+   If UsrTPM = "MANAGER" Or UsrTPM = "COMPRAS1" Or UsrTPM = "AINVEN" Or UsrTPM = "RHUMANOS" Or UsrTPM = "CGARCIA" Then
     Dtoid = " and (T0.ProcesStat<>'C' AND T0.ProcesStat<>'P') "
     'En caso contrario al usuario solo se le mostraran los productos de venta cada usuario mas no todos
    ElseIf UsrTPM = "COBRANZ2" Then

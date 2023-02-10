@@ -154,6 +154,7 @@ Partial Class Inicio
 		Me.RecursosHumanosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
 		Me.VigilanteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.SMSolicitudVac = New System.Windows.Forms.ToolStripMenuItem()
+		Me.ReimprimirFormatoVacToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.MAutos = New System.Windows.Forms.ToolStripMenuItem()
 		Me.SMAutosActPre = New System.Windows.Forms.ToolStripMenuItem()
 		Me.SMAutoAlta = New System.Windows.Forms.ToolStripMenuItem()
@@ -219,7 +220,6 @@ Partial Class Inicio
 		Me.lblAlertaUsr = New System.Windows.Forms.Label()
 		Me.lbl_IdAlert = New System.Windows.Forms.Label()
 		Me.panelAvisoAlerta = New System.Windows.Forms.Panel()
-		Me.ReimprimirFormatoVacToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.TSMenuInicio.SuspendLayout()
 		Me.ToolStrip1.SuspendLayout()
 		Me.panelAvisoAlerta.SuspendLayout()
@@ -291,7 +291,7 @@ Partial Class Inicio
 		Me.mnu_ActualizarSistema.Tag = "mnu_ActualizarSistema"
 		Me.mnu_ActualizarSistema.Text = "¡¡Actualizar sistema!!"
 		Me.mnu_ActualizarSistema.ToolTipText = "Guarde su información y actualice el sistema en cuanto le sea posible presionando" &
-	" aquí"
+				" aquí"
 		Me.mnu_ActualizarSistema.Visible = False
 		'
 		'MBackO
@@ -1220,6 +1220,12 @@ Partial Class Inicio
 		Me.SMSolicitudVac.Text = "Solicitud Vac."
 		Me.SMSolicitudVac.Visible = False
 		'
+		'ReimprimirFormatoVacToolStripMenuItem
+		'
+		Me.ReimprimirFormatoVacToolStripMenuItem.Name = "ReimprimirFormatoVacToolStripMenuItem"
+		Me.ReimprimirFormatoVacToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
+		Me.ReimprimirFormatoVacToolStripMenuItem.Text = "Reimprimir Formato Vac"
+		'
 		'MAutos
 		'
 		Me.MAutos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMAutosActPre, Me.SMAutoAlta, Me.SMAutosBitacora, Me.SMAutosCargar, Me.SMAutosMasivo, Me.VisitasPorAsesorToolStripMenuItem})
@@ -1738,12 +1744,6 @@ Partial Class Inicio
 		Me.panelAvisoAlerta.Name = "panelAvisoAlerta"
 		Me.panelAvisoAlerta.Size = New System.Drawing.Size(1931, 101)
 		Me.panelAvisoAlerta.TabIndex = 13
-		'
-		'ReimprimirFormatoVacToolStripMenuItem
-		'
-		Me.ReimprimirFormatoVacToolStripMenuItem.Name = "ReimprimirFormatoVacToolStripMenuItem"
-		Me.ReimprimirFormatoVacToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
-		Me.ReimprimirFormatoVacToolStripMenuItem.Text = "Reimprimir Formato Vac"
 		'
 		'Inicio
 		'

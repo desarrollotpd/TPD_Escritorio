@@ -1481,4 +1481,5 @@ Public Class Inicio
   RF.MdiParent = Me
   RF.Show()
  End Sub
+
 End Class
