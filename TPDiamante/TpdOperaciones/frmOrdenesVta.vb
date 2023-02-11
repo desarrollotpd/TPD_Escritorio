@@ -497,7 +497,7 @@ Public Class frmOrdenesVta
   Dim ent As String
   Try
    'Si el usuuario tiene privilegios vera todos los datos de ventas y cobranza
-   If UsrTPM = "MANAGER" Or UsrTPM = "COMPRAS1" Or UsrTPM = "AINVEN" Or UsrTPM = "RHUMANOS" Or UsrTPM = "CGARCIA" Then
+   If UsrTPM = "MANAGER" Or UsrTPM = "COMPRAS1" Or UsrTPM = "AINVEN" Or UsrTPM = "RHUMANOS" Then
     Dtoid = " and (T0.ProcesStat<>'C' AND T0.ProcesStat<>'P') "
     'En caso contrario al usuario solo se le mostraran los productos de venta cada usuario mas no todos
    ElseIf UsrTPM = "COBRANZ2" Then
@@ -685,80 +685,89 @@ Public Class frmOrdenesVta
    StatusTabDetalles.Visible = False
   End If
 
-  'llena a travez de una consulta de sql el gridview detalle
-  Try
-   'VARIABLE DE CADENA DE SQL
-   Dim SQLOrdenes As String
-   'VARIABLES DE CONEXION DE LLENADO
-   Dim cmd As SqlCommand
-   Dim cnn As SqlConnection = Nothing
-   Dim da As SqlDataAdapter
-   Dim DsOrdenes = New DataSet
-   'ALAMACENA LA CONSULTA
-   'SQLOrdenes = "SELECT ROW_NUMBER() OVER(ORDER BY T1.LineNum ASC) AS 'Partidas', T1.ItemCode AS Articulo, T1.Dscription AS Descripcion, T1.Quantity AS Cantidad, "
-   'SQLOrdenes &= "CASE WHEN T4.Status = 'A' THEN NULL WHEN T4.Status = 'S' THEN NULL WHEN T4.Status = 'ST' THEN IIF(T5.Surtido is null,0,T5.Surtido) ELSE NULL END AS Surtido, "
-   'SQLOrdenes &= "CAST(t2.SWeight1*Surtido AS DECIMAL(10,2)) as Peso "
-   'SQLOrdenes &= "FROM  ORDR T0 INNER JOIN  RDR1 T1 ON T0.DocEntry = T1.DocEntry "
-   'SQLOrdenes &= "LEFT JOIN   OITM T2 ON T2.ItemCode = T1.ItemCode "
-   'SQLOrdenes &= "LEFT JOIN   OITB T3 ON T3.ItmsGrpCod = T2.ItmsGrpCod "
-   'SQLOrdenes &= "LEFT JOIN TPM.dbo.Operacion_Orden T4 ON T4.DocEntry = T0.DocEntry "
-   'SQLOrdenes &= "LEFT JOIN TPM.dbo.Operacion_Detalle T5 ON T5.DocEntry = T0.DocEntry AND T5.ItemCode COLLATE SQL_Latin1_General_CP850_CI_AS = T1.ItemCode "
-   'SQLOrdenes &= "WHERE T1.DocEntry ='" + Articulo + "' and T2.ItmsGrpCod <> 150 "
-   'SQLOrdenes &= "GROUP BY T1.LineNum, T1.ItemCode, T1.Dscription, T1.Quantity, Surtido, T4.Status,T4.Status,t2.SWeight1 "
-   SQLOrdenes = "SELECT ROW_NUMBER() OVER(ORDER BY T1.LineNum ASC) AS 'Partidas', T1.ItemCode AS Articulo, T1.Dscription AS Descripcion, T1.Quantity AS Cantidad, "
-   SQLOrdenes &= "CASE WHEN T4.Status = 'A' THEN NULL WHEN T4.Status = 'S' THEN NULL else  IIF(T5.Surtido is null,0,T5.Surtido)  END AS Surtido,  "
-   SQLOrdenes &= "CAST(t2.SWeight1*Surtido AS DECIMAL(10,2)) as Peso "
-   SQLOrdenes &= "FROM  SBO_TPD.DBO.ORDR T0 INNER JOIN  SBO_TPD.DBO.RDR1 T1 ON T0.DocEntry = T1.DocEntry "
-   SQLOrdenes &= "LEFT JOIN   SBO_TPD.DBO.OITM T2 ON T2.ItemCode = T1.ItemCode "
-   SQLOrdenes &= "LEFT JOIN   SBO_TPD.DBO.OITB T3 ON T3.ItmsGrpCod = T2.ItmsGrpCod "
-   SQLOrdenes &= "LEFT JOIN TPM.dbo.Operacion_Orden T4 ON T4.DocEntry = T0.DocEntry "
-   SQLOrdenes &= "LEFT JOIN TPM.dbo.Operacion_Detalle T5 ON T5.DocEntry = T0.DocEntry AND T5.ItemCode COLLATE SQL_Latin1_General_CP850_CI_AS = T1.ItemCode "
-   SQLOrdenes &= "WHERE T1.DocEntry ='" + Articulo + "' and T2.ItmsGrpCod <> 150 "
-   SQLOrdenes &= "GROUP BY T1.LineNum, T1.ItemCode, T1.Dscription, T1.Quantity, Surtido, T4.Status,T4.Status,t2.SWeight1 "
-   cnn = New SqlConnection(StrCon)
-   'ALMACENA LA CONSULTA EN UN COMMAND SQL
-   cmd = New SqlCommand(SQLOrdenes, cnn)
-   'CONVIERTE EL TEXTO EN CONSULTA
-   cmd.CommandType = CommandType.Text
-   'APERTURA LA CONEXION
-   cnn.Open()
-   'INSTANCIA UN ADAPTER
-   da = New SqlDataAdapter
-   'ALMACENA EL COMMAND DE SQL EN EL ADAPTER
-   da.SelectCommand = cmd
-   'LO EJECUTA CON LA CONEXION
-   da.SelectCommand.Connection = cnn
-   'TIEMPO DE ESPERA DE LA CONEXION
-   da.SelectCommand.CommandTimeout = 10000
-   'EJECUTA LA CONSULTA
-   cmd.ExecuteNonQuery()
-   'CIERRA EL COMMAND DE SQL
-   cmd.Connection.Close()
-   'CIERRA LA CONEXION
-   cnn.Close()
-   'LLENA EL ADAPTER A UN DATA SET
-   da.Fill(DsOrdenes)
-   'INSTANCIA EL DATA VIEW EN VARIABLES RESULTADO
-   ResultadoDetalle = New DataView
-   'ALMACENA EN DATA SET DE MODO TABLA
-   ResultadoDetalle.Table = DsOrdenes.Tables(0)
-   'COLOCA EN NADA EL DATASOURCE DEL DATA GRID
-   dgvOperacionDetalle.DataSource = Nothing
-   'ALMACENA EN EL DATASOURCE DEL DATAGRID EL DATAVIEW
-   dgvOperacionDetalle.DataSource = ResultadoDetalle
-   'MANDA A LLAMAR EL ESTILO DEL DATA GRID VIEW DE DETALLE ORDENES
+
+        Try
+
+            dgvOperacionDetalle.DataSource = SQL.EjecutarProcedimiento("TPD_ConMod_Surtir_detalle", "@Orden", 1, Articulo)
+            EstiloDetalleOperacionVta()
+
+        Catch ex As Exception
+            'MessageBox.Show("¡Error al LLenarConsultaDetalle: " + Environment.NewLine + ex.ToString() + "!", "¡Error en TPD!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        'llena a travez de una consulta de sql el gridview detalle
+        'Try
+        ' 'VARIABLE DE CADENA DE SQL
+        ' Dim SQLOrdenes As String
+        ' 'VARIABLES DE CONEXION DE LLENADO
+        ' Dim cmd As SqlCommand
+        ' Dim cnn As SqlConnection = Nothing
+        ' Dim da As SqlDataAdapter
+        ' Dim DsOrdenes = New DataSet
+        ' 'ALAMACENA LA CONSULTA
+        ' 'SQLOrdenes = "SELECT ROW_NUMBER() OVER(ORDER BY T1.LineNum ASC) AS 'Partidas', T1.ItemCode AS Articulo, T1.Dscription AS Descripcion, T1.Quantity AS Cantidad, "
+        ' 'SQLOrdenes &= "CASE WHEN T4.Status = 'A' THEN NULL WHEN T4.Status = 'S' THEN NULL WHEN T4.Status = 'ST' THEN IIF(T5.Surtido is null,0,T5.Surtido) ELSE NULL END AS Surtido, "
+        ' 'SQLOrdenes &= "CAST(t2.SWeight1*Surtido AS DECIMAL(10,2)) as Peso "
+        ' 'SQLOrdenes &= "FROM  ORDR T0 INNER JOIN  RDR1 T1 ON T0.DocEntry = T1.DocEntry "
+        ' 'SQLOrdenes &= "LEFT JOIN   OITM T2 ON T2.ItemCode = T1.ItemCode "
+        ' 'SQLOrdenes &= "LEFT JOIN   OITB T3 ON T3.ItmsGrpCod = T2.ItmsGrpCod "
+        ' 'SQLOrdenes &= "LEFT JOIN TPM.dbo.Operacion_Orden T4 ON T4.DocEntry = T0.DocEntry "
+        ' 'SQLOrdenes &= "LEFT JOIN TPM.dbo.Operacion_Detalle T5 ON T5.DocEntry = T0.DocEntry AND T5.ItemCode COLLATE SQL_Latin1_General_CP850_CI_AS = T1.ItemCode "
+        ' 'SQLOrdenes &= "WHERE T1.DocEntry ='" + Articulo + "' and T2.ItmsGrpCod <> 150 "
+        ' 'SQLOrdenes &= "GROUP BY T1.LineNum, T1.ItemCode, T1.Dscription, T1.Quantity, Surtido, T4.Status,T4.Status,t2.SWeight1 "
+        ' SQLOrdenes = "SELECT ROW_NUMBER() OVER(ORDER BY T1.LineNum ASC) AS 'Partidas', T1.ItemCode AS Articulo, T1.Dscription AS Descripcion, T1.Quantity AS Cantidad, "
+        ' SQLOrdenes &= "CASE WHEN T4.Status = 'A' THEN NULL WHEN T4.Status = 'S' THEN NULL else  IIF(T5.Surtido is null,0,T5.Surtido)  END AS Surtido,  "
+        ' SQLOrdenes &= "CAST(t2.SWeight1*Surtido AS DECIMAL(10,2)) as Peso "
+        ' SQLOrdenes &= "FROM  SBO_TPD.DBO.ORDR T0 INNER JOIN  SBO_TPD.DBO.RDR1 T1 ON T0.DocEntry = T1.DocEntry "
+        ' SQLOrdenes &= "LEFT JOIN   SBO_TPD.DBO.OITM T2 ON T2.ItemCode = T1.ItemCode "
+        ' SQLOrdenes &= "LEFT JOIN   SBO_TPD.DBO.OITB T3 ON T3.ItmsGrpCod = T2.ItmsGrpCod "
+        ' SQLOrdenes &= "LEFT JOIN TPM.dbo.Operacion_Orden T4 ON T4.DocEntry = T0.DocEntry "
+        '          SQLOrdenes &= "LEFT JOIN TPM.dbo.Operacion_Detalle T5 ON T5.DocEntry = T0.DocEntry AND T5.ItemCode COLLATE SQL_Latin1_General_CP850_CI_AS = T1.ItemCode  AND T5.Quantity   = T1.Quantity  "
+        '          SQLOrdenes &= "WHERE T1.DocEntry ='" + Articulo + "' and T2.ItmsGrpCod <> 150 "
+        ' SQLOrdenes &= "GROUP BY T1.LineNum, T1.ItemCode, T1.Dscription, T1.Quantity, Surtido, T4.Status,T4.Status,t2.SWeight1 "
+        ' cnn = New SqlConnection(StrCon)
+        ' 'ALMACENA LA CONSULTA EN UN COMMAND SQL
+        ' cmd = New SqlCommand(SQLOrdenes, cnn)
+        ' 'CONVIERTE EL TEXTO EN CONSULTA
+        ' cmd.CommandType = CommandType.Text
+        ' 'APERTURA LA CONEXION
+        ' cnn.Open()
+        ' 'INSTANCIA UN ADAPTER
+        ' da = New SqlDataAdapter
+        ' 'ALMACENA EL COMMAND DE SQL EN EL ADAPTER
+        ' da.SelectCommand = cmd
+        ' 'LO EJECUTA CON LA CONEXION
+        ' da.SelectCommand.Connection = cnn
+        ' 'TIEMPO DE ESPERA DE LA CONEXION
+        ' da.SelectCommand.CommandTimeout = 10000
+        ' 'EJECUTA LA CONSULTA
+        ' cmd.ExecuteNonQuery()
+        ' 'CIERRA EL COMMAND DE SQL
+        ' cmd.Connection.Close()
+        ' 'CIERRA LA CONEXION
+        ' cnn.Close()
+        ' 'LLENA EL ADAPTER A UN DATA SET
+        ' da.Fill(DsOrdenes)
+        ' 'INSTANCIA EL DATA VIEW EN VARIABLES RESULTADO
+        ' ResultadoDetalle = New DataView
+        ' 'ALMACENA EN DATA SET DE MODO TABLA
+        ' ResultadoDetalle.Table = DsOrdenes.Tables(0)
+        ' 'COLOCA EN NADA EL DATASOURCE DEL DATA GRID
+        ' dgvOperacionDetalle.DataSource = Nothing
+        ' 'ALMACENA EN EL DATASOURCE DEL DATAGRID EL DATAVIEW
+        ' dgvOperacionDetalle.DataSource = ResultadoDetalle
+        ' 'MANDA A LLAMAR EL ESTILO DEL DATA GRID VIEW DE DETALLE ORDENES
 
 
-   EstiloDetalleOperacionVta()
+        ' EstiloDetalleOperacionVta()
 
 
 
 
 
-  Catch ex As Exception
-   MsgBox("Error: " + ex.ToString)
-  End Try
- End Sub
+        'Catch ex As Exception
+        ' MsgBox("Error: " + ex.ToString)
+        'End Try
+    End Sub
 
  Sub LlenarAutorizaciones()
   'llena a travez de una consulta de sql el gridview detalle
@@ -1120,26 +1129,26 @@ Public Class frmOrdenesVta
   Dim GroupCode As String
   CveSucursal = SQL.CampoEspecifico("select Almacen from Usuarios where Id_Usuario = '" + UsrTPM + "'", "Almacen")
 
-		'COMBO DE SUCURSALES
-		If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Or UsrTPM = "CGARCIA" Or UsrTPM = "AINVEN" Then
-			ConsutaListaS = "SELECT GroupCode, GroupName FROM SBO_TPD.dbo.OCRG with (nolock) WHERE GroupType = 'C' AND  GroupCode <> '' ORDER BY GroupCode"
+  'COMBO DE SUCURSALES
+  If UsrTPM = "MANAGER" Or UsrTPM = "COMERCIAL" Or UsrTPM = "AINVEN" Then
+   ConsutaListaS = "SELECT GroupCode, GroupName FROM SBO_TPD.dbo.OCRG with (nolock) WHERE GroupType = 'C' AND  GroupCode <> '' ORDER BY GroupCode"
 
-			Using SqlConnection As New Data.SqlClient.SqlConnection(StrCon)
-				Dim DSetTablas As New DataSet
+   Using SqlConnection As New Data.SqlClient.SqlConnection(StrCon)
+    Dim DSetTablas As New DataSet
 
-				Dim daGSucural As New SqlClient.SqlDataAdapter(ConsutaListaS, SqlConnection)
+    Dim daGSucural As New SqlClient.SqlDataAdapter(ConsutaListaS, SqlConnection)
 
-				'Dim DSetTablas As New DataSet
-				daGSucural.Fill(DSetTablas, "Sucursales")
-				CmbSucursal.DataSource = DSetTablas.Tables("Sucursales")
-				CmbSucursal.DisplayMember = "GroupName"
-				CmbSucursal.ValueMember = "GroupCode"
-				CmbSucursal.SelectedIndex = 0
-				'CveSucursal = Trim(Me.CmbSucursal.SelectedValue.ToString)
-			End Using
-		End If
-		'*********************************************************************************************************************************************
-	End Sub
+    'Dim DSetTablas As New DataSet
+    daGSucural.Fill(DSetTablas, "Sucursales")
+    CmbSucursal.DataSource = DSetTablas.Tables("Sucursales")
+    CmbSucursal.DisplayMember = "GroupName"
+    CmbSucursal.ValueMember = "GroupCode"
+    CmbSucursal.SelectedIndex = 0
+    'CveSucursal = Trim(Me.CmbSucursal.SelectedValue.ToString)
+   End Using
+  End If
+  '*********************************************************************************************************************************************
+ End Sub
 
  Private Sub dgvOperacionOvTA_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvOperacionOvTA.CellContentClick
   'Al dar click en alguna columna del GridView Operacion Vta Se actualizara el Detalle en otro grid
