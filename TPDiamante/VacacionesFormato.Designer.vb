@@ -56,6 +56,7 @@ Partial Class FormatoVacaciones
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TBAntiguedad = New System.Windows.Forms.TextBox()
         Me.DGVCap = New System.Windows.Forms.DataGridView()
+        Me.Borrar = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.BtnNvo = New System.Windows.Forms.Button()
         Me.TBPeriodoCom = New System.Windows.Forms.ComboBox()
         Me.BtnEmpleados = New System.Windows.Forms.Button()
@@ -84,13 +85,13 @@ Partial Class FormatoVacaciones
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Folio = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NumEmp = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Periodo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DiaSol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DiasRest = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DiasVac = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Borrar = New System.Windows.Forms.DataGridViewLinkColumn()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGVCap, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -369,6 +370,12 @@ Partial Class FormatoVacaciones
         Me.DGVCap.Size = New System.Drawing.Size(434, 208)
         Me.DGVCap.TabIndex = 7
         '
+        'Borrar
+        '
+        Me.Borrar.HeaderText = "Borrar"
+        Me.Borrar.Name = "Borrar"
+        Me.Borrar.Width = 80
+        '
         'BtnNvo
         '
         Me.BtnNvo.BackColor = System.Drawing.SystemColors.Control
@@ -596,7 +603,7 @@ Partial Class FormatoVacaciones
         Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107.0!))
         Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 176.0!))
+        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185.0!))
         Me.PanelFechas.Controls.Add(Me.DTPFec5, 4, 0)
         Me.PanelFechas.Controls.Add(Me.DTPFec4, 3, 0)
         Me.PanelFechas.Controls.Add(Me.DTPFec3, 2, 0)
@@ -655,6 +662,12 @@ Partial Class FormatoVacaciones
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         Me.DataGridViewTextBoxColumn5.Width = 55
         '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.HeaderText = "DiasVac"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.Visible = False
+        '
         'Folio
         '
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -697,12 +710,6 @@ Partial Class FormatoVacaciones
         Me.DiasVac.HeaderText = "DiasVac"
         Me.DiasVac.Name = "DiasVac"
         Me.DiasVac.Visible = False
-        '
-        'Borrar
-        '
-        Me.Borrar.HeaderText = "Borrar"
-        Me.Borrar.Name = "Borrar"
-        Me.Borrar.Width = 80
         '
         'FormatoVacaciones
         '
@@ -828,4 +835,5 @@ Partial Class FormatoVacaciones
     Friend WithEvents DiasRest As DataGridViewTextBoxColumn
     Friend WithEvents DiasVac As DataGridViewTextBoxColumn
     Friend WithEvents Borrar As DataGridViewLinkColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
 End Class

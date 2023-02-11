@@ -1083,7 +1083,7 @@ Public Class FormatoVacaciones
                             If i2 = 2 Then
                                 TBFolio.Text = CInt(TBFolio.Text) + 1
                             End If
-
+                            periodo3 = row.Cells("Periodo").Value.ToString.Substring(0, 4)
                         End If
 
                         GenerarDiasVac(row.Cells("DiaSol").Value.ToString, row.Cells("Periodo").Value.ToString.Substring(0, 4))
@@ -1134,12 +1134,13 @@ Public Class FormatoVacaciones
                     Modificado = 0
 
                     TBNumEmp.Enabled = False
-                    CBNomEmp.Enabled = False
+                    ' CBNomEmp.Enabled = False
                     CBDiasSol.Enabled = False
-
+                    txttipo.Text = ""
                     BtnImprimir.Enabled = True
                     BtnNvo.Enabled = True
                     BSave.Enabled = False
+                    CBNomEmp.Text = ""
 
                 Else
                     Modificado = 1
@@ -1177,7 +1178,8 @@ Public Class FormatoVacaciones
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
-
+        LimpiaCampos()
+        TBPeriodoCom.Enabled = False
         'Me.Enabled = False
         'BtnImprimir.Enabled = True
     End Sub
@@ -2252,32 +2254,7 @@ Public Class FormatoVacaciones
 
 
 
-    Private Sub TBPeriodoCom_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TBPeriodoCom.SelectedIndexChanged
 
-        'MsgBox("seleccionaste")
-        ' cargar los datos  
-        'cargar_registros("SELECT ''  AS 'NumEmpleado',0 'Periodo',NULL 'DiaSol',NULL 'DiasTomados'," & TBDiasVac.Text & _
-        '    " 'DiasRest' UNION ALL SELECT NumEmpleado,Periodo,DiaSol,1,0 FROM SolVacacionesHistorico WHERE NumEmpleado='" & _
-        '                 TBNumEmp.Text & "' AND Periodo=" & TBPeriodoCom.SelectedValue.ToString & " ORDER BY NumEmpleado,DiaSol DESC", DGVacaciones)
-
-
-
-        ''Disenogrid()
-
-        ''contar dias de vacaciones
-        'Dim diasRestantes As Integer
-
-        'diasRestantes = TBDiasVac.Text - DGVacaciones.RowCount + 2
-
-        'TBDiasRest.Text = diasRestantes
-
-
-        'If DGVacaciones.RowCount > 1 Then
-        '    For i = 1 To DGVacaciones.RowCount - 2
-        '        DGVacaciones.Item(4, i).Value = TBDiasVac.Text - i
-        '    Next
-        'End If
-    End Sub
 
     Private Sub BtnEmpleados_Click(sender As Object, e As EventArgs) Handles BtnEmpleados.Click
 
@@ -2319,7 +2296,6 @@ Public Class FormatoVacaciones
             '  TBNumEmp.Text = dtTable.Rows(0).Item(0)
 
         Catch ex As Exception
-
             command1 = New SqlCommand("SP_Consultas", conexion2)
             command1.CommandType = CommandType.StoredProcedure
             command1.Parameters.Add(New SqlParameter("@opcion", SqlDbType.NVarChar)).Value = "AYOS"
@@ -2330,9 +2306,27 @@ Public Class FormatoVacaciones
             'DataGridView1.DataSource = Nothing
             ' DataGridView1.DataSource = dtTable
             TBDiasRest.Text = dtTable1.Rows(0).Item(0)
-            TextBox2.Text = TBPeriodoCom.SelectedValue & " - " & CInt(TBPeriodoCom.SelectedValue) + 1
+
+            TextBox2.Text = dtTable1.Rows(0).Item(6) & " - " & CInt(dtTable1.Rows(0).Item(6)) + 1
+            ' TBPeriodoCom.Text = dtTable1.Rows(0).Item(6) & " - " & CInt(dtTable1.Rows(0).Item(6)) + 1
+            'If dtTable1.Rows(0).Item(0) = 0 Then
+            '    TextBox2.Text = dtTable1.Rows(0).Item(6) + 1 & " - " & CInt(dtTable1.Rows(0).Item(6)) + 2
+            '    TBPeriodoCom.Text = dtTable1.Rows(0).Item(6) + & " - " & CInt(dtTable1.Rows(0).Item(6)) + 2
+            'End If
+
             TBDiasVac.Text = dtTable1.Rows(0).Item(0)
+
+
+            TBNumEmp.Text = CBNomEmp.SelectedValue
+
+
+            TextBox1.Text = dtTable1.Rows(0).Item(4).ToString
+            TBAntiguedad.Text = dtTable1.Rows(0).Item(1)
+            TBFecIniVac.Text = dtTable1.Rows(0).Item(7)
+            TBFecCadVac.Text = dtTable1.Rows(0).Item(8)
+            txttipo.Text = dtTable1.Rows(0).Item(5)
             conexion.Close()
+
 
 
 
@@ -2443,303 +2437,104 @@ Public Class FormatoVacaciones
 
     Private Sub CBNomEmp_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles CBNomEmp.SelectionChangeCommitted
         Rutina()
+        CalculoPeriodo()
+
         TBPeriodoCom.Enabled = True
     End Sub
 
-    Private Sub CBNomEmp_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles CBNomEmp.Validating
-        'If (CBNomEmp.Text.ToString <> "") Then
-        '    If (CBNomEmp.FindString(CBNomEmp.Text.ToString).ToString <> "-1") Then
-        '        CBNomEmp.SelectedIndex = CBNomEmp.FindString(CBNomEmp.Text.ToString)
-        '        Rutina()
 
-        '    Else
-        '        TBPeriodoCom.DataSource = Nothing
-        '        TBPeriodoCom.ValueMember = Nothing
-        '        TBPeriodoCom.DisplayMember = Nothing
-        '        LimpiaCampos()
-        '        Return
-
-        '    End If
-
-        'End If
-    End Sub
 
     Public Sub Rutina()
-        'MsgBox("entre")
+
         Dim tope As Integer
         Dim consulta As String = ""
-        ''consulta &= "SELECT NumEmp AS 'NumEmp', FechaIMSS,  case when (DATEADD(YEAR, DATEDIFF(YEAR, FechaIMSS, GETDATE()), FechaIMSS )) <= GETDATE() then YEAR(GETDATE()) "
-        ''CAMBIO: SE AGREGA EL CAMPO TIPO PARA PODER HACER OPERACIONES ABAJO
-        'consulta &= "SELECT NumEmp AS 'NumEmp', Tipo, FechaIMSS,  case when (DATEADD(YEAR, DATEDIFF(YEAR, FechaIMSS, GETDATE()), FechaIMSS )) <= GETDATE() then YEAR(GETDATE()) "
-        'consulta &= "else ( YEAR(GETDATE()) - 1) end as 'Tope' FROM Empleados  where NumEmp = @NumEmp "
-        'consulta &= "update Empleados set Antiguedad = DATEDIFF(day,FechaIMSS, GETDATE())/365   "
-        'consulta &= "update Empleados set DiasVacaCorres =  "
-        'consulta &= "case when Antiguedad = 0 then 0  "
-        'consulta &= "when Antiguedad = 1 then 6   "
-        'consulta &= "when Antiguedad = 2 then 8  "
-        'consulta &= "when Antiguedad = 3 then 10  "
-        'consulta &= "when Antiguedad = 4 then 12  "
-        'consulta &= "when Antiguedad >= 5 and Antiguedad <= 9 then 14  "
-        'consulta &= "when Antiguedad >= 10 and Antiguedad <= 14 then 16  "
-        'consulta &= "when Antiguedad >= 15 and Antiguedad <= 19 then 18  "
-        'consulta &= "when Antiguedad >= 20 and Antiguedad <= 24 then 20  "
-        'consulta &= "when Antiguedad >= 25 and Antiguedad <= 29 then 22  "
-        'consulta &= "when Antiguedad >= 30 and Antiguedad <= 34 then 24  "
-        'consulta &= "when Antiguedad >= 35 and Antiguedad <= 39 then 26  "
-        'consulta &= "end  "
-        ''consulta &= "Create Table #relacion (NumEmp int, NomEmp varchar(50), FechaIng date, Periodo varchar(20), FechaInicioPeriodo date, FechaFinPeriodo date, AntiguedadParaPeriodo int, PeriodoKey varchar(20))   "
-        ''CAMBIO: SE AGRAG EL CAMPO TIPO PARA CALCULAR LOS DATOS DE VACACIONES
-        'consulta &= "Create Table #relacion (NumEmp int, tipo varchar(2), NomEmp varchar(50), FechaIng date, Periodo varchar(20), FechaInicioPeriodo date, FechaFinPeriodo date, AntiguedadParaPeriodo int, PeriodoKey varchar(20))   "
-        'consulta &= "DECLARE @indice INT   "
-        'consulta &= "DECLARE @fin_indice INT   "
-        'consulta &= "if((select DATEADD(YEAR, DATEDIFF(YEAR, FechaIMSS, GETDATE()), FechaIMSS )  from Empleados where NumEmp =   @NumEmp   ) <= GETDATE() )   "
-        'consulta &= "set @fin_indice = YEAR(GETDATE());   "
-        'consulta &= "else   "
-        'consulta &= "set @fin_indice = (YEAR(GETDATE())) - 1;   "
-        'consulta &= "set @indice = (select YEAR(FechaIMSS) from Empleados where NumEmp =   @NumEmp   )   "
-        'consulta &= "while (@indice <= @fin_indice)   "
-        'consulta &= "begin   "
-        ''consulta &= "insert into #relacion(NumEmp, NomEmp, FechaIng, Periodo, FechaInicioPeriodo, FechaFinPeriodo, AntiguedadParaPeriodo, PeriodoKey)   "
-        ''CAMBIO: SE AGRAGA LA COLUMNA TIPO PARA CALCULAR LOS DATOS DE EMPLEADOS DE 3 DIAS
-        'consulta &= "insert into #relacion(NumEmp, Tipo, NomEmp, FechaIng, Periodo, FechaInicioPeriodo, FechaFinPeriodo, AntiguedadParaPeriodo, PeriodoKey)   "
-
-        'consulta &= "values ((select NumEmp from Empleados where NumEmp =    @NumEmp    ),   "
-        ''CAMBIO: AGREGA EL TIPO DE EMPLEADO PARA SABER SACAR LOS DATOS DE VACACIONES
-        'consulta &= "(select Tipo from Empleados where NumEmp =    @NumEmp    ),   "
-
-        'consulta &= "((select NomEmp + ' ' + AppEmp + ' ' + ApmMat from Empleados where NumEmp =   @NumEmp    )),   "
-        'consulta &= "(select FechaIMSS from Empleados where NumEmp =   @NumEmp  ),  "
-        'consulta &= "CAST(@indice as varchar) + ' - ' + CAST((@indice + 1) as varchar),   "
-        'consulta &= "(select DATEADD(YEAR, (@indice - YEAR(FechaIMSS)), FechaIMSS ) from Empleados where NumEmp =   @NumEmp    ),  "
-        'consulta &= "(select DATEADD(YEAR, (@indice - YEAR(FechaIMSS)) + 1, FechaIMSS ) from Empleados where NumEmp =   @NumEmp    ),  "
-        'consulta &= "case when (select DATEADD(YEAR, (@indice - YEAR(FechaIMSS)), FechaIMSS ) from Empleados where NumEmp =   @NumEmp  ) > GETDATE()   "
-        'consulta &= "then (select (DATEDIFF(DAY, (select FechaIMSS from Empleados where NumEmp =   @NumEmp  ), (select DATEADD(YEAR, (@indice - YEAR(FechaIMSS)), FechaIMSS ) from Empleados where NumEmp =   @NumEmp  ) )/365) - 1)   "
-        'consulta &= "when (select DATEADD(YEAR, (@indice - YEAR(FechaIMSS)), FechaIMSS ) from Empleados where NumEmp =   @NumEmp  ) <= GETDATE()   "
-        'consulta &= "then (select (DATEDIFF(DAY, (select FechaIMSS from Empleados where NumEmp =   @NumEmp  ), (select DATEADD(YEAR, (@indice - YEAR(FechaIMSS)), FechaIMSS ) from Empleados where NumEmp =   @NumEmp  ) )/365))  "
-        'consulta &= "end, @indice )  "
-        'consulta &= "set @indice = @indice + 1   "
-        'consulta &= "end  "
-        'consulta &= "select *,    "
-        'consulta &= "case when AntiguedadParaPeriodo = 0 then 0   "
-        'consulta &= "when AntiguedadParaPeriodo = 1 then 6    "
-        'consulta &= "when AntiguedadParaPeriodo = 2 then 8   "
-        'consulta &= "when AntiguedadParaPeriodo = 3 then 10   "
-        'consulta &= "when AntiguedadParaPeriodo = 4 then 12   "
-        'consulta &= "when AntiguedadParaPeriodo >= 5 and AntiguedadParaPeriodo <= 9 then 14   "
-        'consulta &= "when AntiguedadParaPeriodo >= 10 and AntiguedadParaPeriodo <= 14 then 16   "
-        'consulta &= "when AntiguedadParaPeriodo >= 15 and AntiguedadParaPeriodo <= 19 then 18   "
-        'consulta &= "when AntiguedadParaPeriodo >= 20 and AntiguedadParaPeriodo <= 24 then 20   "
-        'consulta &= "when AntiguedadParaPeriodo >= 25 and AntiguedadParaPeriodo <= 29 then 22   "
-        'consulta &= "when AntiguedadParaPeriodo >= 30 and AntiguedadParaPeriodo <= 34 then 24   "
-        'consulta &= "when AntiguedadParaPeriodo >= 35 and AntiguedadParaPeriodo <= 39 then 26   "
-        'consulta &= "end as 'DiasVacaParaPeriodo',   "
-
-        'consulta &= "(select COUNT(*) from SolVacacionesHistorico t0 where t0.NumEmpleado =   @NumEmp   and t0.Periodo = PeriodoKey) as 'DiasTomados',  "
-        'consulta &= "0 as 'DiasRestantes'  "
-
-        'consulta &= "into #relacion2   "
-        'consulta &= "from #relacion   "
-        'consulta &= "DECLARE @indice2 INT   "
-        'consulta &= "DECLARE @fin_indice2 INT   "
-        'consulta &= "if((select DATEADD(YEAR, DATEDIFF(YEAR, FechaIMSS, GETDATE()), FechaIMSS )  from Empleados where NumEmp =     @NumEmp    ) <= GETDATE() )   "
-        'consulta &= "set @fin_indice2 = YEAR(GETDATE());   "
-        'consulta &= "else   "
-        'consulta &= "set @fin_indice2 = (YEAR(GETDATE())) - 1;   "
-        'consulta &= "set @indice2 = (select YEAR(FechaIMSS) from Empleados where NumEmp =   @NumEmp   )   "
-        'consulta &= "while (@indice2 <= @fin_indice2)   "
-        'consulta &= "begin  "
-        'consulta &= "if @indice2 = (select YEAR(FechaIMSS) from Empleados where NumEmp =   @NumEmp   )   "
-        'consulta &= "update #relacion2 set DiasRestantes = DiasVacaParaPeriodo - DiasTomados where PeriodoKey = @indice2;  "
-        'consulta &= "else   "
-        'consulta &= "if (select r0.DiasRestantes from #relacion2 r0 where r0.PeriodoKey = @indice2 - 1) < 0  "
-        'consulta &= "update #relacion2 set DiasRestantes = DiasVacaParaPeriodo - DiasTomados + (select r0.DiasRestantes from #relacion2 r0 where r0.PeriodoKey = @indice2 - 1) where PeriodoKey = @indice2;  "
-        'consulta &= "else  "
-        'consulta &= "update #relacion2 set DiasRestantes = DiasVacaParaPeriodo - DiasTomados where PeriodoKey = @indice2;  "
-        'consulta &= "set @indice2 = @indice2 + 1   "
-        'consulta &= "end  "
-        'consulta &= "select *, (DiasRestantes * -1) + (DiasVacaParaPeriodo - DiasTomados) as 'DiasXAdelantado'   "
-        'consulta &= "into #Header  "
-        'consulta &= "from #relacion2 "
-
-        'consulta &= "select PeriodoKey as 'Periodo', (DiasTomados + DiasXAdelantado) as 'DiasTomados'    "
-        'consulta &= "from #Header "
-
-        'consulta &= "drop table #Header "
-        'consulta &= "drop table #relacion "
-        'consulta &= "drop table #relacion2 "
+        Dim da = New SqlDataAdapter
 
         Try
             LimpiaCampos()
-            dt = New DataSet
-            'Dim cmd As SqlCommand = New SqlCommand("SELECT NumEmp AS 'NumEmp',FechaIMSS, " & _
-            '                                       "case when (DATEADD(YEAR, DATEDIFF(YEAR, FechaIMSS, GETDATE()), FechaIMSS )) <= GETDATE() then YEAR(GETDATE()) " & _
-            '                                       "else ( YEAR(GETDATE()) - 1) end as 'Tope' " & _
-            '                                       "FROM Empleados " & _
-            '"where NumEmp = @NumEmp  select Periodo, COUNT(DiaSol) as 'DiasTomados' from SolVacacionesHistorico where NumEmpleado = @NumEmp group by Periodo", conexion)
+            'conexion = New SqlConnection(StrTpm) 'ORIGINAL
+            'Dim cmd = New SqlCommand("SP_Consultas", conexion)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlParameter("@opcion", SqlDbType.NVarChar)).Value = "SELECCION"
+            'cmd.Parameters.Add(New SqlParameter("@id", SqlDbType.Int)).Value = CBNomEmp.SelectedValue
+            'cmd.Parameters.Add(New SqlParameter("@Periodo", SqlDbType.NVarChar)).Value = ""
+            'conexion.Open()
+
+            ''da.SelectCommand = cmd
+            ''da.SelectCommand.Connection = conexion
+            ''da.SelectCommand.CommandTimeout = 10000
+            ''cmd.ExecuteNonQuery()
+            'da = New SqlDataAdapter(cmd)
+            ' da.Fill(dt)
+
+            '' da.Fill(dt)
 
 
-            conexion = New SqlConnection(StrTpm) 'ORIGINAL
-            Dim cmd = New SqlCommand("SP_CalculoConsultaVacaciones", conexion)
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Parameters.AddWithValue("@NumEmp", CBNomEmp.SelectedValue)
-            cmd.Parameters.AddWithValue("@TipoEmpleado", "")
-            cmd.Parameters.AddWithValue("@SoloConsulta", "N")
-            conexion.Open()
-            Dim da = New SqlDataAdapter
-            da.SelectCommand = cmd
-            da.SelectCommand.Connection = conexion
-            da.SelectCommand.CommandTimeout = 10000
-            cmd.ExecuteNonQuery()
-
-            da.Fill(dt)
-
-            If dt.Tables(0).Rows.Count > 0 Then
-
-                Dim row As DataRow = dt.Tables(0).Rows(0)
-                TBNumEmp.Text = CStr(row("NumEmp"))
-                DTPFecIng.Value = CStr(row("FechaIMSS"))
-                TextBox1.Text = CStr(row("FechaIMSS"))
-                FechaIngreso = CStr(row("FechaIMSS"))
-                Antiguedad = DateDiff("d", CStr(row("FechaIMSS")), Date.Now) / 365
-                TBAntiguedad.Text = Format(Antiguedad, "##.#0")
-                txttipo.Text = CStr(row("Tipo"))
-
-                ''VALIDA QUE SEA DE TIPO INTENDENCIA
-                'If txttipo.Text = "I" Then
-                '	'MsgBox("El tipo es: " & txttipo.Text)
-                '	If Antiguedad < 1 Then
-                '		NumDiasVac = 0
-                '	ElseIf Antiguedad >= 1 And Antiguedad < 2 Then
-                '		NumDiasVac = 3
-                '	ElseIf Antiguedad >= 2 And Antiguedad < 3 Then
-                '		NumDiasVac = 4
-                '	ElseIf Antiguedad >= 3 And Antiguedad < 4 Then
-                '		NumDiasVac = 4
-                '	ElseIf Antiguedad >= 4 And Antiguedad < 5 Then
-                '		NumDiasVac = 5
-                '	ElseIf Antiguedad >= 5 And Antiguedad < 10 Then
-                '		NumDiasVac = 6
-                '	ElseIf Antiguedad >= 10 Then
-                '		NumDiasVac = 7
-                '	End If
-                '	'ELSE VALIDA QUE SEA DE TIPO INTENDENCIA
-                'Else
-                '	If Antiguedad < 1 Then
-                '		NumDiasVac = 0
-                '	ElseIf Antiguedad >= 1 And Antiguedad < 2 Then
-                '		NumDiasVac = 6
-                '	ElseIf Antiguedad >= 2 And Antiguedad < 3 Then
-                '		NumDiasVac = 8
-                '	ElseIf Antiguedad >= 3 And Antiguedad < 4 Then
-                '		NumDiasVac = 10
-                '	ElseIf Antiguedad >= 4 And Antiguedad < 5 Then
-                '		NumDiasVac = 12
-                '	ElseIf Antiguedad >= 5 And Antiguedad < 10 Then
-                '		NumDiasVac = 14
-                '	ElseIf Antiguedad >= 10 And Antiguedad < 15 Then
-                '		NumDiasVac = 16
-                '	ElseIf Antiguedad >= 15 And Antiguedad < 20 Then
-                '		NumDiasVac = 18
-                '	ElseIf Antiguedad >= 20 And Antiguedad < 25 Then
-                '		NumDiasVac = 20
-                '	ElseIf Antiguedad >= 25 And Antiguedad < 30 Then
-                '		NumDiasVac = 22
-                '	ElseIf Antiguedad >= 30 And Antiguedad < 35 Then
-                '		NumDiasVac = 24
-                '	End If
-                'End If
-
-                tope = Integer.Parse(row("Tope"))
-
-                'TBDiasVac.Text = NumDiasVac
-                TBDiasVac.Text = row("NumDiasVac")
-
-                'If DatePart("m", Date.Now) < DatePart("m", DTPFecIng.Value) Then
-                '    AñosTrascurridos = DatePart("yyyy", Date.Now) - DatePart("yyyy", DTPFecIng.Value) - 1
-
-                'ElseIf DatePart("m", Date.Now) = DatePart("m", DTPFecIng.Value) Then
-                '    If DatePart("d", Date.Now) < DatePart("d", DTPFecIng.Value) Then
-                '        AñosTrascurridos = DatePart("yyyy", Date.Now) - DatePart("yyyy", DTPFecIng.Value) - 1
-                '    Else
-                '        AñosTrascurridos = DatePart("yyyy", Date.Now) - DatePart("yyyy", DTPFecIng.Value)
-                '    End If
-
-                'Else
-                '    AñosTrascurridos = DatePart("yyyy", Date.Now) - DatePart("yyyy", DTPFecIng.Value)
-                'End If
 
 
-                'If AñosTrascurridos = 0 Then
-                '    AñosTrascurridos = 1
-                'End If
+            conexion2.Close()
 
-                'Dim FecImaginaria As Date = Me.DTPFecIng.Value.Date.AddYears(AñosTrascurridos)
+            conexion2.Open()
+            Dim command As SqlCommand
+            Dim adapter As SqlDataAdapter
+            Dim dtTable As DataTable = New DataTable
+            command = New SqlCommand("SP_Consultas", conexion2)
+            command.CommandType = CommandType.StoredProcedure
+            command.Parameters.Add(New SqlParameter("@opcion", SqlDbType.NVarChar)).Value = "SELECCION"
+            command.Parameters.Add(New SqlParameter("@id", SqlDbType.Int)).Value = CBNomEmp.SelectedValue
+            command.Parameters.Add(New SqlParameter("@Periodo", SqlDbType.NVarChar)).Value = ""
+            adapter = New SqlDataAdapter(command)
+            adapter.Fill(dtTable)
 
+            If dtTable.Rows.Count > 0 Then
+
+                DTPFecIng.Value = dtTable.Rows(0).Item(2) ' CStr(row("FechaIMSS"))
+                FechaIngreso = dtTable.Rows(0).Item(2)  ' CStr(row("FechaIMSS"))
+                txttipo.Text = dtTable.Rows(0).Item(3) 'CStr(row("Tipo"))
+                tope = Integer.Parse(dtTable.Rows(0).Item(4)) 'Integer.Parse(row("Tope"))
                 AñosTrascurridos = tope - DTPFecIng.Value.Year
-                'MsgBox(AñosTrascurridos)
-
-                TBFecIniVac.Text = Me.DTPFecIng.Value.Date.AddYears(AñosTrascurridos)
-                TBFecCadVac.Text = Me.DTPFecIng.Value.Date.AddYears(AñosTrascurridos + 1)
-
                 Dim dt2 As DataTable
                 Dim dr2 As DataRow
                 Dim currentyear As Integer
-
                 Dim bandera_entero As Integer = 123
-                'Dim diasRestantes As Integer
                 dt2 = New DataTable("Tabla")
                 dt2.Columns.Add("Codigo")
                 dt2.Columns.Add("Descripcion")
                 currentyear = Integer.Parse(DatePart("yyyy", DTPFecIng.Value))
-                'If (Antiguedad < 1) Then
-                '    tope = Integer.Parse(row("Tope")) + 1
-                'Else
-                '    tope = Integer.Parse(row("Tope"))
-                'End If
-
-
-                'MsgBox("TOPE " & tope)
                 TextBox2.Text = tope.ToString & " - " & (tope + 1).ToString
-                TopeGlobal = Integer.Parse(row("Tope"))
+                TopeGlobal = Integer.Parse(dtTable.Rows(0).Item(4)) 'Integer.Parse(row("Tope"))
                 For y As Integer = currentyear To tope Step 1
                     dr2 = dt2.NewRow()
                     dr2("Codigo") = y
                     dr2("Descripcion") = y & " - " & y + 1
                     dt2.Rows.Add(dr2)
                 Next
+                If AñosTrascurridos <= -1 Then
+                    dr2 = dt2.NewRow()
+                    dr2("Codigo") = Year(Today)
+                    dr2("Descripcion") = Year(Today) & " - " & Year(Today) + 1
+                    dt2.Rows.Add(dr2)
+                    TBDiasRest.Text = "0"
+                End If
 
                 TBPeriodoCom.DataSource = dt2
                 TBPeriodoCom.ValueMember = "Codigo"
                 TBPeriodoCom.DisplayMember = "Descripcion"
                 TBPeriodoCom.SelectedValue = TopeGlobal.ToString
-                TBDiasRest.Text = "0"
-                For indice2 As Integer = 0 To dt.Tables(1).Rows.Count - 1
-                    If (CStr(dt.Tables(1).Rows(indice2)(0)) = TBPeriodoCom.SelectedValue.ToString) Then
-                        bandera_entero = Integer.Parse(dt.Tables(1).Rows(indice2)(1))
-                    End If
+                TBPeriodoCom.Text = tope.ToString & " - " & (tope + 1).ToString
 
-                Next
 
-                If (bandera_entero = 123) Then
-                    TBDiasRest.Text = TBDiasVac.Text
-                Else
-                    TBDiasRest.Text = Integer.Parse(TBDiasVac.Text.ToString) - bandera_entero
-                End If
-                'DTPFec1.Focus()
 
-            Else
-                'MsgBox("No hay Empleado")
-                'LimpiaCampos()
             End If
-            conexion.Close()
+            conexion2.Close()
 
         Catch exsql As SqlException
             MsgBox("eror sql: " & exsql.Message)
         Catch ex As Exception
             MsgBox("exception: " & ex.Message)
         Finally
-            If conexion IsNot Nothing AndAlso conexion.State <> ConnectionState.Closed Then
-                conexion.Close()
+            If conexion2 IsNot Nothing AndAlso conexion.State <> ConnectionState.Closed Then
+                conexion2.Close()
             End If
         End Try
 
@@ -2886,73 +2681,75 @@ Public Class FormatoVacaciones
         End If
     End Sub
 
-    Private Sub CBNomEmp_KeyUp(sender As Object, e As KeyEventArgs) Handles CBNomEmp.KeyUp
-        Try
-            If e.KeyCode >= Keys.A And e.KeyCode <= Keys.Z Or e.KeyCode = Keys.Back Or e.KeyCode = Keys.Delete Then
-                strTemp = CBNomEmp.Text
-                If strTemp.Trim.CompareTo(String.Empty) = 0 Then
-                    DvLP.RowFilter = String.Empty
-                    DvLP.RowFilter = "NumEmp <> 1010"
-                Else
-                    Dim strRowFilter As String = String.Concat("NomEmp LIKE '%", CBNomEmp.Text, "%' and NumEmp <> 1010 ")
-                    DvLP.RowFilter = strRowFilter
-                    'MsgBox(DvLP.Count)
-                    If DvLP.Count = 0 Then
-                        DvLP.RowFilter = "NumEmp = 1010"
-                    End If
+    Private Sub TBPeriodoCom_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TBPeriodoCom.SelectedIndexChanged
 
-                End If
-
-
-                CBNomEmp.Text = ""
-                CBNomEmp.Text = strTemp
-                CBNomEmp.SelectionStart = strTemp.Length
-                CBNomEmp.SelectedIndex = -1
-                CBNomEmp.DroppedDown = True
-                CBNomEmp.SelectedIndex = -1
-                CBNomEmp.Text = ""
-                CBNomEmp.Text = strTemp
-                CBNomEmp.SelectionStart = strTemp.Length
-
-            End If
-
-
-
-            'DvClte.RowFilter = "Nombre2 like '%" & CmbCliente.Text & "%'"
-            'CmbCliente.DroppedDown = True
-        Catch ex As Exception
-            'MsgBox("errror en filtro nuevo " & ex.Message)
-        End Try
     End Sub
 
-    Private Sub CBNomEmp_DropDown(sender As Object, e As EventArgs) Handles CBNomEmp.DropDown
-        Me.Cursor = Cursors.Arrow
+    'Private Sub CBNomEmp_KeyUp(sender As Object, e As KeyEventArgs) Handles CBNomEmp.KeyUp
+    '    Try
+    '        If e.KeyCode >= Keys.A And e.KeyCode <= Keys.Z Or e.KeyCode = Keys.Back Or e.KeyCode = Keys.Delete Then
+    '            strTemp = CBNomEmp.Text
+    '            If strTemp.Trim.CompareTo(String.Empty) = 0 Then
+    '                DvLP.RowFilter = String.Empty
+    '                DvLP.RowFilter = "NumEmp <> 1010"
+    '            Else
+    '                Dim strRowFilter As String = String.Concat("NomEmp LIKE '%", CBNomEmp.Text, "%' and NumEmp <> 1010 ")
+    '                DvLP.RowFilter = strRowFilter
+    '                'MsgBox(DvLP.Count)
+    '                If DvLP.Count = 0 Then
+    '                    DvLP.RowFilter = "NumEmp = 1010"
+    '                End If
 
-        If strTemp <> "" Then
-            CBNomEmp.Text = strTemp
-            CBNomEmp.SelectionStart = strTemp.Length
-        End If
-        'CBNomEmp.SelectionStart = strTemp.Length
-    End Sub
-
-    Private Sub CBNomEmp_Leave(sender As Object, e As EventArgs) Handles CBNomEmp.Leave
-        Try
-            If CBNomEmp.SelectedIndex.ToString = "-1" Or CBNomEmp.SelectedValue = 1010 Then
-                If strTemp <> "" Then
-                    CBNomEmp.Text = strTemp
-                    CBNomEmp.SelectionStart = strTemp.Length
-                End If
-                'MessageBox.Show("Por favor elige a un empleado", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                CBNomEmp.SelectedIndex = -1
-                LimpiaCampos()
-                Return
-            End If
-            Rutina()
-        Catch ex As Exception
-
-        End Try
-    End Sub
+    '            End If
 
 
+    '            CBNomEmp.Text = ""
+    '            CBNomEmp.Text = strTemp
+    '            CBNomEmp.SelectionStart = strTemp.Length
+    '            CBNomEmp.SelectedIndex = -1
+    '            CBNomEmp.DroppedDown = True
+    '            CBNomEmp.SelectedIndex = -1
+    '            CBNomEmp.Text = ""
+    '            CBNomEmp.Text = strTemp
+    '            CBNomEmp.SelectionStart = strTemp.Length
+
+    '        End If
+
+
+
+    '        'DvClte.RowFilter = "Nombre2 like '%" & CmbCliente.Text & "%'"
+    '        'CmbCliente.DroppedDown = True
+    '    Catch ex As Exception
+    '        'MsgBox("errror en filtro nuevo " & ex.Message)
+    '    End Try
+    'End Sub
+
+    'Private Sub CBNomEmp_DropDown(sender As Object, e As EventArgs) Handles CBNomEmp.DropDown
+    '    Me.Cursor = Cursors.Arrow
+
+    '    If strTemp <> "" Then
+    '        CBNomEmp.Text = strTemp
+    '        CBNomEmp.SelectionStart = strTemp.Length
+    '    End If
+    '    'CBNomEmp.SelectionStart = strTemp.Length
+    'End Sub
+
+    'Private Sub CBNomEmp_Leave(sender As Object, e As EventArgs) Handles CBNomEmp.Leave
+    '    Try
+    '        If CBNomEmp.SelectedIndex.ToString = "-1" Or CBNomEmp.SelectedValue = 1010 Then
+    '            If strTemp <> "" Then
+    '                CBNomEmp.Text = strTemp
+    '                CBNomEmp.SelectionStart = strTemp.Length
+    '            End If
+    '            'MessageBox.Show("Por favor elige a un empleado", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '            CBNomEmp.SelectedIndex = -1
+    '            LimpiaCampos()
+    '            Return
+    '        End If
+    '        Rutina()
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Sub
 
 End Class
