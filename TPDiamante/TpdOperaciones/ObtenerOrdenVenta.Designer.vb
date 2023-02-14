@@ -58,6 +58,7 @@ Partial Class ObtenerOrdenVenta
         Me.panelOV.Controls.Add(Me.dgvNuevaOV)
         Me.panelOV.Controls.Add(Me.Label5)
         Me.panelOV.Location = New System.Drawing.Point(7, 13)
+        Me.panelOV.Margin = New System.Windows.Forms.Padding(0)
         Me.panelOV.Name = "panelOV"
         Me.panelOV.Size = New System.Drawing.Size(762, 561)
         Me.panelOV.TabIndex = 10
@@ -77,10 +78,14 @@ Partial Class ObtenerOrdenVenta
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.Control
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.DataGridView1.EnableHeadersVisualStyles = False
+        Me.DataGridView1.GridColor = System.Drawing.SystemColors.Control
         Me.DataGridView1.Location = New System.Drawing.Point(514, 84)
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.Size = New System.Drawing.Size(233, 93)
         Me.DataGridView1.TabIndex = 11
         Me.DataGridView1.VirtualMode = True
@@ -161,6 +166,7 @@ Partial Class ObtenerOrdenVenta
         '
         'dgvNuevaOV
         '
+        Me.dgvNuevaOV.AllowUserToAddRows = False
         Me.dgvNuevaOV.AllowUserToResizeColumns = False
         Me.dgvNuevaOV.AllowUserToResizeRows = False
         Me.dgvNuevaOV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill

@@ -17,6 +17,8 @@ Public Class ObtenerOrdenVenta
             DataGridView1.DataSource = SQL.EjecutarProcedimiento("SP_OrdenVentas", "@opcion,@id", 2, "ALMACEN" & "," & UsrTPM)
             DataGridView1.Columns("ID_USUARIO").Visible = False
             DataGridView1.DefaultCellStyle.Font = New Font("Arial", 7)
+            DataGridView1.Columns(1).HeaderCell.Style.BackColor = System.Drawing.Color.Red
+            ' ColorTranslator.FromHtml(“#bfdbff”)
             ' AddCheckBoxColumn()
         Catch ex As Exception
             'MessageBox.Show("¡Error al LLenarConsultaDetalle: " + Environment.NewLine + ex.ToString() + "!", "¡Error en TPD!", MessageBoxButtons.OK, MessageBoxIcon.Error)
