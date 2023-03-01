@@ -32,7 +32,7 @@
     <SccProvider>
     </SccProvider>
     <TargetFrameworkProfile />
-    <PublishUrl>D:\Programacion\GitLab\tpdiamante\tpd_diamante\Publicacion\</PublishUrl>
+    <PublishUrl>C:\Programacion\git2023\TPD_Escritorio\Publicacion\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -44,7 +44,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://www.clienteleal.com/updatesTPD/</UpdateUrl>
     <MinimumRequiredVersion>1.0.0.85</MinimumRequiredVersion>
-    <ApplicationRevision>389</ApplicationRevision>
+    <ApplicationRevision>392</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
