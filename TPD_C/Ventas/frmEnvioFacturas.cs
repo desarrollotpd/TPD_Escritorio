@@ -484,6 +484,7 @@
          DateTime fecha01082018 = Convert.ToDateTime("2018-08-01").Date;
          DateTime fechainvoice = Convert.ToDateTime("2019-02-11").Date;
          DateTime fechaMigracionAgo2020 = Convert.ToDateTime("2020-08-23").Date;
+         DateTime fechaMigracionCFDI_40 = Convert.ToDateTime("2023-02-21").Date;
          DateTime DocDate;
          VMarcada = false;
 
@@ -522,20 +523,30 @@
                      else if(DocDate > fechainvoice & DocDate < fechaMigracionAgo2020) { //Formato pre migracion AGO-2020
                        DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\TPD\Factura 3.3-93_6_AddOn_DLL.rpt"); //RUTA DEL ARCHIVO .rpt
                      }
-                     else{
-                       DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\Factura 3.3-93_6AddOn9NF2020.rpt"); //Formato post Migracion AGo 2020
+                     else if (DocDate >= fechaMigracionCFDI_40)
+                     { //Migracion CFDI 4.0
+                       DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\Factura40ADDONSAP_Revisar.rpt"); //RUTA DEL ARCHIVO .rpt
                      }
-
+                     else
+                     {
+                      DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\Factura 3.3-93_6AddOn9NF2020.rpt"); //Formato post Migracion AGo 2020
+                     }
 
                  //VALIDA QUE SOLO SEAN NOTAS DE CREDITO
                  }else if (Tipo == "NC")
                  {
                      if (DocDate <= fecha11082018){
                          DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\TPD\NC 3_3 19ABR2018.rpt"); //RUTA DEL ARCHIVO .rpt
-                     }else if (DocDate < fechaMigracionAgo2020)            {
+                     }else if (DocDate < fechaMigracionAgo2020){
                          DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\TPD\NC 3.3_93_05.rpt"); //ruta del archivo .rpt
-                     }else{
-                         DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\NC 3.3-93_6AddOn9NF2020.rpt"); //Formato post Migracion AGo 2020
+                     }
+                     else if (DocDate >= fechaMigracionCFDI_40)
+                     {
+                        DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\NC_Abr2023_4.0.rpt"); //ruta del archivo para migracion CFDI 4.0
+                     }
+                     else
+                     {
+                        DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\NC 3.3-93_6AddOn9NF2020.rpt"); //Formato post Migracion AGo 2020
                      }
 
                  //VALIDA QUW SOLO SEAN PAGOS
@@ -545,7 +556,13 @@
                          //CARGA EL FORMATO DE CRYSTAL REPORTS DE LOS PAGOS
                          DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\TPD\PAGOS.rpt"); //ruta del archivo .rpt
                      }
-                     else{
+                    else if (DocDate >= fechaMigracionCFDI_40)
+                    {
+                        //CARGA EL FORMATO DE CRYSTAL REPORTS DE LOS PAGOS PARA LA MIGRACION DE CFDI 4.0
+                        DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\Pago_Abr2023_4.0.rpt"); //ruta del archivo .rpt
+                    }
+                    else
+                    {
                        DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\Pago 33_DLL_ModV2NF2020.rpt"); //Formato post Migracion AGo 2020
                      }
                  }

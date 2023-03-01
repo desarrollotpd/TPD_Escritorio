@@ -23,9 +23,10 @@ Public Class frmadjuntar
     Dim fecha11082018 As DateTime = Convert.ToDateTime("2018-08-11").Date '//VARIABLES PARA VALIDAR QUE FORMATO CREAR
     Dim fecha01082018 As DateTime = Convert.ToDateTime("2018-08-01").Date
     Dim fechainvoice As DateTime = Convert.ToDateTime("2019-02-11").Date
-    Dim fechaMigracionAgo2020 As DateTime = Convert.ToDateTime("2020-08-23").Date
+  Dim fechaMigracionAgo2020 As DateTime = Convert.ToDateTime("2020-08-23").Date
+  Dim fechaMigracionCFDI_40 As DateTime = Convert.ToDateTime("2023-02-21").Date
 
-    Dim DocDate As DateTime = Convert.ToDateTime("2018-10-16").Date '//VARIABLES PARA VALIDAR QUE FORMATO CREAR
+  Dim DocDate As DateTime = Convert.ToDateTime("2018-10-16").Date '//VARIABLES PARA VALIDAR QUE FORMATO CREAR
 
     '//VARIABLE PARA LA EL CORREO
     Dim msg As System.Net.Mail.MailMessage = New System.Net.Mail.MailMessage()
@@ -35,26 +36,28 @@ Public Class frmadjuntar
 
     E_Mail = "asistemas@tractopartesdiamante.com.mx"
 
-    '//VALIDA LA FECHA PARA SABER QUE FORMATO EJECUTAR
+  '//VALIDA LA FECHA PARA SABER QUE FORMATO EJECUTAR
 
-    If (DocDate <= fecha11082018) Then
-      DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3_3 19ABR2018.rpt") ' //RUTA DEL ARCHIVO .rpt
-    ElseIf (DocDate > fecha11082018 And DocDate < fechainvoice) Then
-      DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3.3-93_5.rpt") ' //RUTA DEL ARCHIVO .rpt
-    ElseIf (DocDate > fechainvoice And DocDate < fechaMigracionAgo2020) Then  'Formato pre migracion AGO-2020
-      DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3.3-93_6_AddOn_DLL.rpt") ' //RUTA DEL ARCHIVO .rpt
-    Else
-      DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3.3-93_6AddOn9NF2020.rpt") ' //RUTA DEL ARCHIVO .rpt
-    End If
+  If (DocDate <= fecha11082018) Then
+   DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3_3 19ABR2018.rpt") ' //RUTA DEL ARCHIVO .rpt
+  ElseIf (DocDate > fecha11082018 And DocDate < fechainvoice) Then
+   DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3.3-93_5.rpt") ' //RUTA DEL ARCHIVO .rpt
+  ElseIf (DocDate > fechainvoice And DocDate < fechaMigracionAgo2020) Then  'Formato pre migracion AGO-2020
+   DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3.3-93_6_AddOn_DLL.rpt") ' //RUTA DEL ARCHIVO .rpt
+  ElseIf (DocDate >= fechaMigracionCFDI_40) Then  'Formato pre migracion AGO-2020
+   DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\xml\TPD\Factura40ADDONSAP_Revisar.rpt") ' //RUTA DEL ARCHIVO .rpt
+  Else
+   DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3.3-93_6AddOn9NF2020.rpt") ' //RUTA DEL ARCHIVO .rpt
+  End If
 
-    'If (DocDate <= fecha11082018) Then
-    '  DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3_3 19ABR2018.rpt") ' //RUTA DEL ARCHIVO .rpt
-    'Else
-    '  DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3.3-93_5.rpt") ' //ruta del archivo .rpt
-    'End If
+  'If (DocDate <= fecha11082018) Then
+  '  DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3_3 19ABR2018.rpt") ' //RUTA DEL ARCHIVO .rpt
+  'Else
+  '  DocFacturas.Load("\\" & conexion_universal.RutaReportes & "\b1_shr\TPD\Factura 3.3-93_5.rpt") ' //ruta del archivo .rpt
+  'End If
 
-    '//PARAMETROS DE CONEXION PARA EL RPT
-    Dim tInfo As TableLogOnInfo = New TableLogOnInfo()
+  '//PARAMETROS DE CONEXION PARA EL RPT
+  Dim tInfo As TableLogOnInfo = New TableLogOnInfo()
     Dim ConnectionInfo As ConnectionInfo = tInfo.ConnectionInfo
 
     ConnectionInfo.Password = conexion_universal.cPassword
