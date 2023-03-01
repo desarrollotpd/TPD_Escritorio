@@ -62,7 +62,7 @@ Public Class frmAdminBarCode
             Dim DsBC As New DataSet
 
             Dim Consulta As String = "SELECT t0.articulo, t0.Categoria, t0.Descripcion, t0.Linea, t0.Proveedor, 
-            t0.BARCODE_INTERNO, t0.BARCODE_BLI, t0.BARCODE_PZI, t0.BARCODE_CJI, t0.BARCODE_TRI, t0.BARCODE_PZE,t0.CantPzasBL,t0.CantPzasCJ,t0.CantPzasTR
+            t0.BARCODE_INTERNO, t0.BARCODE_BLI, t0.BARCODE_PZI, t0.BARCODE_CJI, t0.BARCODE_TRI, t0.BARCODE_PZE,t0.CantPzasBL,t0.CantPzasCJ,t0.CantPzasTR, isnull (t0.BARCODE_BLE,'') as BARCODE_BLE, isnull ( t0.BARCODE_CJE,'') as BARCODE_CJE , isnull ( t0.BARCODE_TRE,'') as BARCODE_TRE
             From Barcode t0
             FULL Join Proveedores t1 ON t0.articulo = t1.ItemCode
             And t1.ItmsGrpNam Not IN ('INACTIVOS')
@@ -216,6 +216,9 @@ Public Class frmAdminBarCode
             txtCantBolsa.Text = row.Cells("CantPzasBL").Value
             txtCantCaja.Text = row.Cells("CantPzasCJ").Value
             txtCantTR.Text = row.Cells("CantPzasTR").Value
+            TextBox2.Text = row.Cells("BARCODE_BLE").Value
+            TextBox5.Text = row.Cells("BARCODE_CJE").Value
+            TextBox3.Text = row.Cells("BARCODE_TRE").Value
 
             NuevoCódigoDeBarrasToolStripMenuItem.Enabled = True
             ModificarCódigoToolStripMenuItem.Enabled = True

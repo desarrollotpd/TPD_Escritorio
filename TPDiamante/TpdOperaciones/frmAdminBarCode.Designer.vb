@@ -89,6 +89,12 @@ Partial Class frmAdminBarCode
         Me.txtDesc_CodAlterno = New System.Windows.Forms.TextBox()
         Me.txtArt_CodAlterno = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.PanelDatos.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -157,10 +163,16 @@ Partial Class frmAdminBarCode
         '
         Me.PanelDatos.BackColor = System.Drawing.Color.White
         Me.PanelDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanelDatos.Controls.Add(Me.TextBox2)
         Me.PanelDatos.Controls.Add(Me.Label20)
+        Me.PanelDatos.Controls.Add(Me.Label26)
+        Me.PanelDatos.Controls.Add(Me.TextBox3)
         Me.PanelDatos.Controls.Add(Me.txtCantTR)
+        Me.PanelDatos.Controls.Add(Me.TextBox5)
         Me.PanelDatos.Controls.Add(Me.txtCantCaja)
+        Me.PanelDatos.Controls.Add(Me.Label27)
         Me.PanelDatos.Controls.Add(Me.txtCantBolsa)
+        Me.PanelDatos.Controls.Add(Me.Label28)
         Me.PanelDatos.Controls.Add(Me.Label15)
         Me.PanelDatos.Controls.Add(Me.Label14)
         Me.PanelDatos.Controls.Add(Me.Label13)
@@ -204,21 +216,21 @@ Partial Class frmAdminBarCode
         '
         'txtCantTR
         '
-        Me.txtCantTR.Location = New System.Drawing.Point(937, 192)
+        Me.txtCantTR.Location = New System.Drawing.Point(925, 143)
         Me.txtCantTR.Name = "txtCantTR"
         Me.txtCantTR.Size = New System.Drawing.Size(64, 20)
         Me.txtCantTR.TabIndex = 48
         '
         'txtCantCaja
         '
-        Me.txtCantCaja.Location = New System.Drawing.Point(937, 165)
+        Me.txtCantCaja.Location = New System.Drawing.Point(925, 116)
         Me.txtCantCaja.Name = "txtCantCaja"
         Me.txtCantCaja.Size = New System.Drawing.Size(64, 20)
         Me.txtCantCaja.TabIndex = 47
         '
         'txtCantBolsa
         '
-        Me.txtCantBolsa.Location = New System.Drawing.Point(937, 136)
+        Me.txtCantBolsa.Location = New System.Drawing.Point(925, 87)
         Me.txtCantBolsa.Name = "txtCantBolsa"
         Me.txtCantBolsa.Size = New System.Drawing.Size(64, 20)
         Me.txtCantBolsa.TabIndex = 46
@@ -226,7 +238,7 @@ Partial Class frmAdminBarCode
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(870, 195)
+        Me.Label15.Location = New System.Drawing.Point(858, 146)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(49, 13)
         Me.Label15.TabIndex = 45
@@ -235,7 +247,7 @@ Partial Class frmAdminBarCode
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(870, 167)
+        Me.Label14.Location = New System.Drawing.Point(858, 118)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(49, 13)
         Me.Label14.TabIndex = 44
@@ -244,7 +256,7 @@ Partial Class frmAdminBarCode
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(870, 139)
+        Me.Label13.Location = New System.Drawing.Point(858, 90)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(49, 13)
         Me.Label13.TabIndex = 43
@@ -252,7 +264,7 @@ Partial Class frmAdminBarCode
         '
         'txtCBBolsa
         '
-        Me.txtCBBolsa.Location = New System.Drawing.Point(716, 136)
+        Me.txtCBBolsa.Location = New System.Drawing.Point(684, 84)
         Me.txtCBBolsa.Name = "txtCBBolsa"
         Me.txtCBBolsa.ReadOnly = True
         Me.txtCBBolsa.Size = New System.Drawing.Size(135, 20)
@@ -261,7 +273,7 @@ Partial Class frmAdminBarCode
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(614, 139)
+        Me.Label12.Location = New System.Drawing.Point(582, 87)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(79, 13)
         Me.Label12.TabIndex = 41
@@ -269,14 +281,14 @@ Partial Class frmAdminBarCode
         '
         'txtCBProveedor
         '
-        Me.txtCBProveedor.Location = New System.Drawing.Point(717, 54)
+        Me.txtCBProveedor.Location = New System.Drawing.Point(685, 2)
         Me.txtCBProveedor.Name = "txtCBProveedor"
         Me.txtCBProveedor.Size = New System.Drawing.Size(135, 20)
         Me.txtCBProveedor.TabIndex = 39
         '
         'txtCBTarima
         '
-        Me.txtCBTarima.Location = New System.Drawing.Point(716, 192)
+        Me.txtCBTarima.Location = New System.Drawing.Point(684, 140)
         Me.txtCBTarima.Name = "txtCBTarima"
         Me.txtCBTarima.ReadOnly = True
         Me.txtCBTarima.Size = New System.Drawing.Size(135, 20)
@@ -284,7 +296,7 @@ Partial Class frmAdminBarCode
         '
         'txtCBCaja
         '
-        Me.txtCBCaja.Location = New System.Drawing.Point(716, 164)
+        Me.txtCBCaja.Location = New System.Drawing.Point(684, 112)
         Me.txtCBCaja.Name = "txtCBCaja"
         Me.txtCBCaja.ReadOnly = True
         Me.txtCBCaja.Size = New System.Drawing.Size(135, 20)
@@ -292,7 +304,7 @@ Partial Class frmAdminBarCode
         '
         'txtCBPieza
         '
-        Me.txtCBPieza.Location = New System.Drawing.Point(716, 109)
+        Me.txtCBPieza.Location = New System.Drawing.Point(684, 57)
         Me.txtCBPieza.Name = "txtCBPieza"
         Me.txtCBPieza.ReadOnly = True
         Me.txtCBPieza.Size = New System.Drawing.Size(135, 20)
@@ -300,7 +312,7 @@ Partial Class frmAdminBarCode
         '
         'txtCBInterno
         '
-        Me.txtCBInterno.Location = New System.Drawing.Point(716, 80)
+        Me.txtCBInterno.Location = New System.Drawing.Point(684, 28)
         Me.txtCBInterno.Name = "txtCBInterno"
         Me.txtCBInterno.Size = New System.Drawing.Size(135, 20)
         Me.txtCBInterno.TabIndex = 35
@@ -347,7 +359,7 @@ Partial Class frmAdminBarCode
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(615, 57)
+        Me.Label10.Location = New System.Drawing.Point(583, 5)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(102, 13)
         Me.Label10.TabIndex = 29
@@ -356,7 +368,7 @@ Partial Class frmAdminBarCode
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(615, 195)
+        Me.Label9.Location = New System.Drawing.Point(583, 143)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(82, 13)
         Me.Label9.TabIndex = 28
@@ -365,7 +377,7 @@ Partial Class frmAdminBarCode
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(614, 168)
+        Me.Label8.Location = New System.Drawing.Point(582, 116)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(74, 13)
         Me.Label8.TabIndex = 27
@@ -374,7 +386,7 @@ Partial Class frmAdminBarCode
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(615, 113)
+        Me.Label7.Location = New System.Drawing.Point(583, 61)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(79, 13)
         Me.Label7.TabIndex = 26
@@ -383,7 +395,7 @@ Partial Class frmAdminBarCode
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(614, 84)
+        Me.Label6.Location = New System.Drawing.Point(582, 32)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(86, 13)
         Me.Label6.TabIndex = 25
@@ -467,9 +479,9 @@ Partial Class frmAdminBarCode
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.PanelSeleccion)
         Me.Panel1.Controls.Add(Me.DtGInfCB)
-        Me.Panel1.Location = New System.Drawing.Point(0, 252)
+        Me.Panel1.Location = New System.Drawing.Point(0, 275)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1671, 570)
+        Me.Panel1.Size = New System.Drawing.Size(1671, 547)
         Me.Panel1.TabIndex = 41
         '
         'PanelSeleccion
@@ -484,7 +496,7 @@ Partial Class frmAdminBarCode
         Me.PanelSeleccion.Controls.Add(Me.Label11)
         Me.PanelSeleccion.Location = New System.Drawing.Point(3, 3)
         Me.PanelSeleccion.Name = "PanelSeleccion"
-        Me.PanelSeleccion.Size = New System.Drawing.Size(1665, 527)
+        Me.PanelSeleccion.Size = New System.Drawing.Size(1665, 504)
         Me.PanelSeleccion.TabIndex = 41
         Me.PanelSeleccion.Visible = False
         '
@@ -518,7 +530,7 @@ Partial Class frmAdminBarCode
         Me.dgSeleccion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgSeleccion.Location = New System.Drawing.Point(3, 43)
         Me.dgSeleccion.Name = "dgSeleccion"
-        Me.dgSeleccion.Size = New System.Drawing.Size(1653, 481)
+        Me.dgSeleccion.Size = New System.Drawing.Size(1653, 458)
         Me.dgSeleccion.TabIndex = 1
         '
         'Label11
@@ -539,7 +551,7 @@ Partial Class frmAdminBarCode
         Me.DtGInfCB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DtGInfCB.Location = New System.Drawing.Point(3, 3)
         Me.DtGInfCB.Name = "DtGInfCB"
-        Me.DtGInfCB.Size = New System.Drawing.Size(1619, 527)
+        Me.DtGInfCB.Size = New System.Drawing.Size(1619, 504)
         Me.DtGInfCB.TabIndex = 21
         '
         'Panel2
@@ -629,7 +641,7 @@ Partial Class frmAdminBarCode
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(1022, 109)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(649, 140)
+        Me.Panel3.Size = New System.Drawing.Size(649, 163)
         Me.Panel3.TabIndex = 54
         '
         'Button6
@@ -637,7 +649,7 @@ Partial Class frmAdminBarCode
         Me.Button6.BackColor = System.Drawing.SystemColors.Control
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.Black
-        Me.Button6.Location = New System.Drawing.Point(542, 77)
+        Me.Button6.Location = New System.Drawing.Point(542, 90)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(102, 26)
         Me.Button6.TabIndex = 63
@@ -649,7 +661,7 @@ Partial Class frmAdminBarCode
         Me.cmbCodigoAlterno.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmbCodigoAlterno.FormattingEnabled = True
-        Me.cmbCodigoAlterno.Location = New System.Drawing.Point(141, 81)
+        Me.cmbCodigoAlterno.Location = New System.Drawing.Point(141, 94)
         Me.cmbCodigoAlterno.Name = "cmbCodigoAlterno"
         Me.cmbCodigoAlterno.Size = New System.Drawing.Size(390, 21)
         Me.cmbCodigoAlterno.TabIndex = 61
@@ -657,7 +669,7 @@ Partial Class frmAdminBarCode
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(17, 79)
+        Me.Label25.Location = New System.Drawing.Point(17, 92)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(89, 13)
         Me.Label25.TabIndex = 60
@@ -667,7 +679,7 @@ Partial Class frmAdminBarCode
         '
         Me.Button4.BackgroundImage = CType(resources.GetObject("Button4.BackgroundImage"), System.Drawing.Image)
         Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.Location = New System.Drawing.Point(607, 30)
+        Me.Button4.Location = New System.Drawing.Point(607, 48)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(37, 33)
         Me.Button4.TabIndex = 59
@@ -676,7 +688,7 @@ Partial Class frmAdminBarCode
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(17, 108)
+        Me.Label24.Location = New System.Drawing.Point(17, 121)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(111, 13)
         Me.Label24.TabIndex = 58
@@ -686,7 +698,7 @@ Partial Class frmAdminBarCode
         '
         Me.TextBox4.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TextBox4.Enabled = False
-        Me.TextBox4.Location = New System.Drawing.Point(141, 108)
+        Me.TextBox4.Location = New System.Drawing.Point(141, 121)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(390, 20)
         Me.TextBox4.TabIndex = 57
@@ -694,7 +706,7 @@ Partial Class frmAdminBarCode
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(17, 53)
+        Me.Label23.Location = New System.Drawing.Point(17, 66)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(66, 13)
         Me.Label23.TabIndex = 54
@@ -703,7 +715,7 @@ Partial Class frmAdminBarCode
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(17, 28)
+        Me.Label22.Location = New System.Drawing.Point(17, 41)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(83, 13)
         Me.Label22.TabIndex = 54
@@ -712,7 +724,7 @@ Partial Class frmAdminBarCode
         'txtDesc_CodAlterno
         '
         Me.txtDesc_CodAlterno.Enabled = False
-        Me.txtDesc_CodAlterno.Location = New System.Drawing.Point(141, 54)
+        Me.txtDesc_CodAlterno.Location = New System.Drawing.Point(141, 67)
         Me.txtDesc_CodAlterno.Name = "txtDesc_CodAlterno"
         Me.txtDesc_CodAlterno.Size = New System.Drawing.Size(390, 20)
         Me.txtDesc_CodAlterno.TabIndex = 56
@@ -720,7 +732,7 @@ Partial Class frmAdminBarCode
         'txtArt_CodAlterno
         '
         Me.txtArt_CodAlterno.Enabled = False
-        Me.txtArt_CodAlterno.Location = New System.Drawing.Point(141, 28)
+        Me.txtArt_CodAlterno.Location = New System.Drawing.Point(141, 41)
         Me.txtArt_CodAlterno.Name = "txtArt_CodAlterno"
         Me.txtArt_CodAlterno.Size = New System.Drawing.Size(390, 20)
         Me.txtArt_CodAlterno.TabIndex = 55
@@ -734,6 +746,57 @@ Partial Class frmAdminBarCode
         Me.Label21.Size = New System.Drawing.Size(181, 13)
         Me.Label21.TabIndex = 54
         Me.Label21.Text = "AGREGAR CÓDIGO ALTERNO"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(684, 168)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = True
+        Me.TextBox2.Size = New System.Drawing.Size(135, 20)
+        Me.TextBox2.TabIndex = 59
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(582, 171)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(77, 13)
+        Me.Label26.TabIndex = 58
+        Me.Label26.Text = "BarCode BLE :"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(684, 224)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.ReadOnly = True
+        Me.TextBox3.Size = New System.Drawing.Size(135, 20)
+        Me.TextBox3.TabIndex = 57
+        '
+        'TextBox5
+        '
+        Me.TextBox5.Location = New System.Drawing.Point(684, 196)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.ReadOnly = True
+        Me.TextBox5.Size = New System.Drawing.Size(135, 20)
+        Me.TextBox5.TabIndex = 56
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(583, 227)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(76, 13)
+        Me.Label27.TabIndex = 55
+        Me.Label27.Text = "BarCode TRE:"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(582, 200)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(73, 13)
+        Me.Label28.TabIndex = 54
+        Me.Label28.Text = "BarCode CJE:"
         '
         'frmAdminBarCode
         '
@@ -832,4 +895,10 @@ Partial Class frmAdminBarCode
     Friend WithEvents Button4 As Button
     Friend WithEvents AgregarCódigoAlternoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Button6 As Button
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Label26 As Label
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents Label27 As Label
+    Friend WithEvents Label28 As Label
 End Class
