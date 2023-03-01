@@ -25,9 +25,9 @@ Partial Class FormatoVacaciones
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormatoVacaciones))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TBFolio = New System.Windows.Forms.TextBox()
@@ -56,6 +56,12 @@ Partial Class FormatoVacaciones
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TBAntiguedad = New System.Windows.Forms.TextBox()
         Me.DGVCap = New System.Windows.Forms.DataGridView()
+        Me.Folio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumEmp = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Periodo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiaSol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiasRest = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiasVac = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Borrar = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.BtnNvo = New System.Windows.Forms.Button()
         Me.TBPeriodoCom = New System.Windows.Forms.ComboBox()
@@ -86,12 +92,6 @@ Partial Class FormatoVacaciones
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Folio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NumEmp = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Periodo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiaSol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiasRest = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiasVac = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGVCap, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -370,6 +370,49 @@ Partial Class FormatoVacaciones
         Me.DGVCap.Size = New System.Drawing.Size(434, 208)
         Me.DGVCap.TabIndex = 7
         '
+        'Folio
+        '
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.Format = "N0"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.Folio.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Folio.HeaderText = "Folio"
+        Me.Folio.Name = "Folio"
+        Me.Folio.Width = 40
+        '
+        'NumEmp
+        '
+        Me.NumEmp.HeaderText = "NumEmp"
+        Me.NumEmp.Name = "NumEmp"
+        Me.NumEmp.ReadOnly = True
+        Me.NumEmp.Width = 55
+        '
+        'Periodo
+        '
+        Me.Periodo.HeaderText = "Periodo"
+        Me.Periodo.Name = "Periodo"
+        Me.Periodo.ReadOnly = True
+        Me.Periodo.Width = 80
+        '
+        'DiaSol
+        '
+        Me.DiaSol.DataPropertyName = "DiaSol"
+        Me.DiaSol.HeaderText = "DiaSol"
+        Me.DiaSol.Name = "DiaSol"
+        Me.DiaSol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DiaSol.Width = 70
+        '
+        'DiasRest
+        '
+        Me.DiasRest.HeaderText = "DiasRes"
+        Me.DiasRest.Name = "DiasRest"
+        '
+        'DiasVac
+        '
+        Me.DiasVac.HeaderText = "DiasVac"
+        Me.DiasVac.Name = "DiasVac"
+        Me.DiasVac.Visible = False
+        '
         'Borrar
         '
         Me.Borrar.HeaderText = "Borrar"
@@ -603,7 +646,7 @@ Partial Class FormatoVacaciones
         Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107.0!))
         Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185.0!))
+        Me.PanelFechas.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 186.0!))
         Me.PanelFechas.Controls.Add(Me.DTPFec5, 4, 0)
         Me.PanelFechas.Controls.Add(Me.DTPFec4, 3, 0)
         Me.PanelFechas.Controls.Add(Me.DTPFec3, 2, 0)
@@ -667,49 +710,6 @@ Partial Class FormatoVacaciones
         Me.DataGridViewTextBoxColumn6.HeaderText = "DiasVac"
         Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
         Me.DataGridViewTextBoxColumn6.Visible = False
-        '
-        'Folio
-        '
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.Format = "N0"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.Folio.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Folio.HeaderText = "Folio"
-        Me.Folio.Name = "Folio"
-        Me.Folio.Width = 40
-        '
-        'NumEmp
-        '
-        Me.NumEmp.HeaderText = "NumEmp"
-        Me.NumEmp.Name = "NumEmp"
-        Me.NumEmp.ReadOnly = True
-        Me.NumEmp.Width = 55
-        '
-        'Periodo
-        '
-        Me.Periodo.HeaderText = "Periodo"
-        Me.Periodo.Name = "Periodo"
-        Me.Periodo.ReadOnly = True
-        Me.Periodo.Width = 80
-        '
-        'DiaSol
-        '
-        Me.DiaSol.DataPropertyName = "DiaSol"
-        Me.DiaSol.HeaderText = "DiaSol"
-        Me.DiaSol.Name = "DiaSol"
-        Me.DiaSol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DiaSol.Width = 70
-        '
-        'DiasRest
-        '
-        Me.DiasRest.HeaderText = "DiasRes"
-        Me.DiasRest.Name = "DiasRest"
-        '
-        'DiasVac
-        '
-        Me.DiasVac.HeaderText = "DiasVac"
-        Me.DiasVac.Name = "DiasVac"
-        Me.DiasVac.Visible = False
         '
         'FormatoVacaciones
         '

@@ -40,6 +40,26 @@ Partial Class Inicio
         Me.SMBOLineas = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListadoEspecialDePrecios = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OperaciónDiamanteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SurtimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SurtirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConsultaModificaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EstatusOrdenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EmpaqueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LiberacionDeEntregaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LiberacionDeGuiasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SalidaDeMaterialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SeguimientoDeEntregaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CódigoDeBarrasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdministrarCódigosDeBarraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BarCodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImpresiónDeUbicacionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EtiquetasParaCajasDeCamiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NuevasOrdenesDeVentaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ADMINISTRARToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ComentariosPedidoDiarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdministrarUbicacionesSurtidoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdministraciónDePesosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MVtas = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMAgentes2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMAgentes = New System.Windows.Forms.ToolStripMenuItem()
@@ -83,26 +103,6 @@ Partial Class Inicio
         Me.AnalisisDeVentaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MEmbarques = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMFletes = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OperaciónDiamanteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SurtimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SurtirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ConsultaModificaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EstatusOrdenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EmpaqueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LiberacionDeEntregaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LiberacionDeGuiasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SalidaDeMaterialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SeguimientoDeEntregaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CódigoDeBarrasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AdministrarCódigosDeBarraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BarCodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImpresiónDeUbicacionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EtiquetasParaCajasDeCamiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NuevasOrdenesDeVentaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ADMINISTRARToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ComentariosPedidoDiarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AdministrarUbicacionesSurtidoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AdministraciónDePesosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MCobranza = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMAntiguedadCli = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMCobRec = New System.Windows.Forms.ToolStripMenuItem()
@@ -220,6 +220,7 @@ Partial Class Inicio
         Me.lblAlertaUsr = New System.Windows.Forms.Label()
         Me.lbl_IdAlert = New System.Windows.Forms.Label()
         Me.panelAvisoAlerta = New System.Windows.Forms.Panel()
+        Me.PlantillaConcultaVacToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMenuInicio.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.panelAvisoAlerta.SuspendLayout()
@@ -357,6 +358,156 @@ Partial Class Inicio
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(126, 24)
         Me.ToolStripMenuItem2.Tag = "mnu_AdminUsuario"
         Me.ToolStripMenuItem2.Text = "Admin. Usuarios"
+        '
+        'OperaciónDiamanteToolStripMenuItem
+        '
+        Me.OperaciónDiamanteToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SurtimientoToolStripMenuItem, Me.EstatusOrdenToolStripMenuItem, Me.EmpaqueToolStripMenuItem, Me.LiberacionDeEntregaToolStripMenuItem, Me.LiberacionDeGuiasToolStripMenuItem, Me.SalidaDeMaterialToolStripMenuItem, Me.SeguimientoDeEntregaToolStripMenuItem, Me.CódigoDeBarrasToolStripMenuItem, Me.NuevasOrdenesDeVentaToolStripMenuItem, Me.ADMINISTRARToolStripMenuItem, Me.ComentariosPedidoDiarioToolStripMenuItem, Me.AdministrarUbicacionesSurtidoToolStripMenuItem, Me.AdministraciónDePesosToolStripMenuItem})
+        Me.OperaciónDiamanteToolStripMenuItem.Image = Global.TPDiamante.My.Resources.Resources.diper_logo
+        Me.OperaciónDiamanteToolStripMenuItem.Name = "OperaciónDiamanteToolStripMenuItem"
+        Me.OperaciónDiamanteToolStripMenuItem.Size = New System.Drawing.Size(148, 24)
+        Me.OperaciónDiamanteToolStripMenuItem.Tag = "mnu_OperacionDiamante"
+        Me.OperaciónDiamanteToolStripMenuItem.Text = "Operación Diamante"
+        '
+        'SurtimientoToolStripMenuItem
+        '
+        Me.SurtimientoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SurtirToolStripMenuItem, Me.ConsultaModificaciónToolStripMenuItem})
+        Me.SurtimientoToolStripMenuItem.Name = "SurtimientoToolStripMenuItem"
+        Me.SurtimientoToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.SurtimientoToolStripMenuItem.Tag = "mnu_Surtimiento"
+        Me.SurtimientoToolStripMenuItem.Text = "Surtimiento"
+        Me.SurtimientoToolStripMenuItem.Visible = False
+        '
+        'SurtirToolStripMenuItem
+        '
+        Me.SurtirToolStripMenuItem.Name = "SurtirToolStripMenuItem"
+        Me.SurtirToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.SurtirToolStripMenuItem.Tag = "mnu_Surtir"
+        Me.SurtirToolStripMenuItem.Text = "Surtir"
+        Me.SurtirToolStripMenuItem.Visible = False
+        '
+        'ConsultaModificaciónToolStripMenuItem
+        '
+        Me.ConsultaModificaciónToolStripMenuItem.Name = "ConsultaModificaciónToolStripMenuItem"
+        Me.ConsultaModificaciónToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.ConsultaModificaciónToolStripMenuItem.Tag = "mnu_ConsultaActualizacion"
+        Me.ConsultaModificaciónToolStripMenuItem.Text = "Consulta/Actualización"
+        Me.ConsultaModificaciónToolStripMenuItem.Visible = False
+        '
+        'EstatusOrdenToolStripMenuItem
+        '
+        Me.EstatusOrdenToolStripMenuItem.Name = "EstatusOrdenToolStripMenuItem"
+        Me.EstatusOrdenToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.EstatusOrdenToolStripMenuItem.Tag = "mnu_EstatusOrdenVentaAutorizaciones"
+        Me.EstatusOrdenToolStripMenuItem.Text = "Estatus Orden Vta /Autorizaciones"
+        Me.EstatusOrdenToolStripMenuItem.Visible = False
+        '
+        'EmpaqueToolStripMenuItem
+        '
+        Me.EmpaqueToolStripMenuItem.Name = "EmpaqueToolStripMenuItem"
+        Me.EmpaqueToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.EmpaqueToolStripMenuItem.Tag = "mnu_Empaque"
+        Me.EmpaqueToolStripMenuItem.Text = "Empaque"
+        Me.EmpaqueToolStripMenuItem.Visible = False
+        '
+        'LiberacionDeEntregaToolStripMenuItem
+        '
+        Me.LiberacionDeEntregaToolStripMenuItem.Name = "LiberacionDeEntregaToolStripMenuItem"
+        Me.LiberacionDeEntregaToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.LiberacionDeEntregaToolStripMenuItem.Tag = "mnu_LiberacionDematerial"
+        Me.LiberacionDeEntregaToolStripMenuItem.Text = "Liberación de material"
+        Me.LiberacionDeEntregaToolStripMenuItem.Visible = False
+        '
+        'LiberacionDeGuiasToolStripMenuItem
+        '
+        Me.LiberacionDeGuiasToolStripMenuItem.Name = "LiberacionDeGuiasToolStripMenuItem"
+        Me.LiberacionDeGuiasToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.LiberacionDeGuiasToolStripMenuItem.Tag = "mnu_LiberacionDeGuias"
+        Me.LiberacionDeGuiasToolStripMenuItem.Text = "Liberacion de Guias"
+        Me.LiberacionDeGuiasToolStripMenuItem.Visible = False
+        '
+        'SalidaDeMaterialToolStripMenuItem
+        '
+        Me.SalidaDeMaterialToolStripMenuItem.Name = "SalidaDeMaterialToolStripMenuItem"
+        Me.SalidaDeMaterialToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.SalidaDeMaterialToolStripMenuItem.Tag = "mnu_SalidaDeMaterial"
+        Me.SalidaDeMaterialToolStripMenuItem.Text = "Salida de Material"
+        Me.SalidaDeMaterialToolStripMenuItem.Visible = False
+        '
+        'SeguimientoDeEntregaToolStripMenuItem
+        '
+        Me.SeguimientoDeEntregaToolStripMenuItem.Name = "SeguimientoDeEntregaToolStripMenuItem"
+        Me.SeguimientoDeEntregaToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.SeguimientoDeEntregaToolStripMenuItem.Tag = "mnu_SeguimientoDeEntrega"
+        Me.SeguimientoDeEntregaToolStripMenuItem.Text = "Seguimiento de Entrega"
+        Me.SeguimientoDeEntregaToolStripMenuItem.Visible = False
+        '
+        'CódigoDeBarrasToolStripMenuItem
+        '
+        Me.CódigoDeBarrasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdministrarCódigosDeBarraToolStripMenuItem, Me.BarCodeToolStripMenuItem, Me.ImpresiónDeUbicacionesToolStripMenuItem, Me.EtiquetasParaCajasDeCamiónToolStripMenuItem})
+        Me.CódigoDeBarrasToolStripMenuItem.Name = "CódigoDeBarrasToolStripMenuItem"
+        Me.CódigoDeBarrasToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.CódigoDeBarrasToolStripMenuItem.Tag = "mnu_CodigoBarrasMenu"
+        Me.CódigoDeBarrasToolStripMenuItem.Text = "Código de barras"
+        '
+        'AdministrarCódigosDeBarraToolStripMenuItem
+        '
+        Me.AdministrarCódigosDeBarraToolStripMenuItem.Name = "AdministrarCódigosDeBarraToolStripMenuItem"
+        Me.AdministrarCódigosDeBarraToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.AdministrarCódigosDeBarraToolStripMenuItem.Tag = "mnu_AdminCodigoBarras"
+        Me.AdministrarCódigosDeBarraToolStripMenuItem.Text = "Administrar Códigos de barra"
+        '
+        'BarCodeToolStripMenuItem
+        '
+        Me.BarCodeToolStripMenuItem.Name = "BarCodeToolStripMenuItem"
+        Me.BarCodeToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.BarCodeToolStripMenuItem.Tag = "mnu_BarCode"
+        Me.BarCodeToolStripMenuItem.Text = "BarCode"
+        '
+        'ImpresiónDeUbicacionesToolStripMenuItem
+        '
+        Me.ImpresiónDeUbicacionesToolStripMenuItem.Name = "ImpresiónDeUbicacionesToolStripMenuItem"
+        Me.ImpresiónDeUbicacionesToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.ImpresiónDeUbicacionesToolStripMenuItem.Tag = "mnu_ImpresionUbicaciones"
+        Me.ImpresiónDeUbicacionesToolStripMenuItem.Text = "Impresión de ubicaciones"
+        '
+        'EtiquetasParaCajasDeCamiónToolStripMenuItem
+        '
+        Me.EtiquetasParaCajasDeCamiónToolStripMenuItem.Name = "EtiquetasParaCajasDeCamiónToolStripMenuItem"
+        Me.EtiquetasParaCajasDeCamiónToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.EtiquetasParaCajasDeCamiónToolStripMenuItem.Text = "Etiquetas para cajas de Camión"
+        '
+        'NuevasOrdenesDeVentaToolStripMenuItem
+        '
+        Me.NuevasOrdenesDeVentaToolStripMenuItem.Name = "NuevasOrdenesDeVentaToolStripMenuItem"
+        Me.NuevasOrdenesDeVentaToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.NuevasOrdenesDeVentaToolStripMenuItem.Tag = "mnu_NuevasOrdenesVenta"
+        Me.NuevasOrdenesDeVentaToolStripMenuItem.Text = "Nuevas Ordenes de venta"
+        '
+        'ADMINISTRARToolStripMenuItem
+        '
+        Me.ADMINISTRARToolStripMenuItem.Name = "ADMINISTRARToolStripMenuItem"
+        Me.ADMINISTRARToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.ADMINISTRARToolStripMenuItem.Tag = "mnu_AdministradorOrdenSurtido"
+        Me.ADMINISTRARToolStripMenuItem.Text = "Administrador para orden de surtido"
+        '
+        'ComentariosPedidoDiarioToolStripMenuItem
+        '
+        Me.ComentariosPedidoDiarioToolStripMenuItem.Name = "ComentariosPedidoDiarioToolStripMenuItem"
+        Me.ComentariosPedidoDiarioToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.ComentariosPedidoDiarioToolStripMenuItem.Tag = "mnu_ComentariosSurtido"
+        Me.ComentariosPedidoDiarioToolStripMenuItem.Text = "Comentarios Surtido"
+        '
+        'AdministrarUbicacionesSurtidoToolStripMenuItem
+        '
+        Me.AdministrarUbicacionesSurtidoToolStripMenuItem.Name = "AdministrarUbicacionesSurtidoToolStripMenuItem"
+        Me.AdministrarUbicacionesSurtidoToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.AdministrarUbicacionesSurtidoToolStripMenuItem.Text = "Administrar ubicaciones Surtido"
+        '
+        'AdministraciónDePesosToolStripMenuItem
+        '
+        Me.AdministraciónDePesosToolStripMenuItem.Name = "AdministraciónDePesosToolStripMenuItem"
+        Me.AdministraciónDePesosToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.AdministraciónDePesosToolStripMenuItem.Text = "Administración de pesos"
         '
         'MVtas
         '
@@ -680,156 +831,6 @@ Partial Class Inicio
         Me.SMFletes.Text = "Fletes"
         Me.SMFletes.Visible = False
         '
-        'OperaciónDiamanteToolStripMenuItem
-        '
-        Me.OperaciónDiamanteToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SurtimientoToolStripMenuItem, Me.EstatusOrdenToolStripMenuItem, Me.EmpaqueToolStripMenuItem, Me.LiberacionDeEntregaToolStripMenuItem, Me.LiberacionDeGuiasToolStripMenuItem, Me.SalidaDeMaterialToolStripMenuItem, Me.SeguimientoDeEntregaToolStripMenuItem, Me.CódigoDeBarrasToolStripMenuItem, Me.NuevasOrdenesDeVentaToolStripMenuItem, Me.ADMINISTRARToolStripMenuItem, Me.ComentariosPedidoDiarioToolStripMenuItem, Me.AdministrarUbicacionesSurtidoToolStripMenuItem, Me.AdministraciónDePesosToolStripMenuItem})
-        Me.OperaciónDiamanteToolStripMenuItem.Image = Global.TPDiamante.My.Resources.Resources.diper_logo
-        Me.OperaciónDiamanteToolStripMenuItem.Name = "OperaciónDiamanteToolStripMenuItem"
-        Me.OperaciónDiamanteToolStripMenuItem.Size = New System.Drawing.Size(148, 24)
-        Me.OperaciónDiamanteToolStripMenuItem.Tag = "mnu_OperacionDiamante"
-        Me.OperaciónDiamanteToolStripMenuItem.Text = "Operación Diamante"
-        '
-        'SurtimientoToolStripMenuItem
-        '
-        Me.SurtimientoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SurtirToolStripMenuItem, Me.ConsultaModificaciónToolStripMenuItem})
-        Me.SurtimientoToolStripMenuItem.Name = "SurtimientoToolStripMenuItem"
-        Me.SurtimientoToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.SurtimientoToolStripMenuItem.Tag = "mnu_Surtimiento"
-        Me.SurtimientoToolStripMenuItem.Text = "Surtimiento"
-        Me.SurtimientoToolStripMenuItem.Visible = False
-        '
-        'SurtirToolStripMenuItem
-        '
-        Me.SurtirToolStripMenuItem.Name = "SurtirToolStripMenuItem"
-        Me.SurtirToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.SurtirToolStripMenuItem.Tag = "mnu_Surtir"
-        Me.SurtirToolStripMenuItem.Text = "Surtir"
-        Me.SurtirToolStripMenuItem.Visible = False
-        '
-        'ConsultaModificaciónToolStripMenuItem
-        '
-        Me.ConsultaModificaciónToolStripMenuItem.Name = "ConsultaModificaciónToolStripMenuItem"
-        Me.ConsultaModificaciónToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.ConsultaModificaciónToolStripMenuItem.Tag = "mnu_ConsultaActualizacion"
-        Me.ConsultaModificaciónToolStripMenuItem.Text = "Consulta/Actualización"
-        Me.ConsultaModificaciónToolStripMenuItem.Visible = False
-        '
-        'EstatusOrdenToolStripMenuItem
-        '
-        Me.EstatusOrdenToolStripMenuItem.Name = "EstatusOrdenToolStripMenuItem"
-        Me.EstatusOrdenToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.EstatusOrdenToolStripMenuItem.Tag = "mnu_EstatusOrdenVentaAutorizaciones"
-        Me.EstatusOrdenToolStripMenuItem.Text = "Estatus Orden Vta /Autorizaciones"
-        Me.EstatusOrdenToolStripMenuItem.Visible = False
-        '
-        'EmpaqueToolStripMenuItem
-        '
-        Me.EmpaqueToolStripMenuItem.Name = "EmpaqueToolStripMenuItem"
-        Me.EmpaqueToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.EmpaqueToolStripMenuItem.Tag = "mnu_Empaque"
-        Me.EmpaqueToolStripMenuItem.Text = "Empaque"
-        Me.EmpaqueToolStripMenuItem.Visible = False
-        '
-        'LiberacionDeEntregaToolStripMenuItem
-        '
-        Me.LiberacionDeEntregaToolStripMenuItem.Name = "LiberacionDeEntregaToolStripMenuItem"
-        Me.LiberacionDeEntregaToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.LiberacionDeEntregaToolStripMenuItem.Tag = "mnu_LiberacionDematerial"
-        Me.LiberacionDeEntregaToolStripMenuItem.Text = "Liberación de material"
-        Me.LiberacionDeEntregaToolStripMenuItem.Visible = False
-        '
-        'LiberacionDeGuiasToolStripMenuItem
-        '
-        Me.LiberacionDeGuiasToolStripMenuItem.Name = "LiberacionDeGuiasToolStripMenuItem"
-        Me.LiberacionDeGuiasToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.LiberacionDeGuiasToolStripMenuItem.Tag = "mnu_LiberacionDeGuias"
-        Me.LiberacionDeGuiasToolStripMenuItem.Text = "Liberacion de Guias"
-        Me.LiberacionDeGuiasToolStripMenuItem.Visible = False
-        '
-        'SalidaDeMaterialToolStripMenuItem
-        '
-        Me.SalidaDeMaterialToolStripMenuItem.Name = "SalidaDeMaterialToolStripMenuItem"
-        Me.SalidaDeMaterialToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.SalidaDeMaterialToolStripMenuItem.Tag = "mnu_SalidaDeMaterial"
-        Me.SalidaDeMaterialToolStripMenuItem.Text = "Salida de Material"
-        Me.SalidaDeMaterialToolStripMenuItem.Visible = False
-        '
-        'SeguimientoDeEntregaToolStripMenuItem
-        '
-        Me.SeguimientoDeEntregaToolStripMenuItem.Name = "SeguimientoDeEntregaToolStripMenuItem"
-        Me.SeguimientoDeEntregaToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.SeguimientoDeEntregaToolStripMenuItem.Tag = "mnu_SeguimientoDeEntrega"
-        Me.SeguimientoDeEntregaToolStripMenuItem.Text = "Seguimiento de Entrega"
-        Me.SeguimientoDeEntregaToolStripMenuItem.Visible = False
-        '
-        'CódigoDeBarrasToolStripMenuItem
-        '
-        Me.CódigoDeBarrasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdministrarCódigosDeBarraToolStripMenuItem, Me.BarCodeToolStripMenuItem, Me.ImpresiónDeUbicacionesToolStripMenuItem, Me.EtiquetasParaCajasDeCamiónToolStripMenuItem})
-        Me.CódigoDeBarrasToolStripMenuItem.Name = "CódigoDeBarrasToolStripMenuItem"
-        Me.CódigoDeBarrasToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.CódigoDeBarrasToolStripMenuItem.Tag = "mnu_CodigoBarrasMenu"
-        Me.CódigoDeBarrasToolStripMenuItem.Text = "Código de barras"
-        '
-        'AdministrarCódigosDeBarraToolStripMenuItem
-        '
-        Me.AdministrarCódigosDeBarraToolStripMenuItem.Name = "AdministrarCódigosDeBarraToolStripMenuItem"
-        Me.AdministrarCódigosDeBarraToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
-        Me.AdministrarCódigosDeBarraToolStripMenuItem.Tag = "mnu_AdminCodigoBarras"
-        Me.AdministrarCódigosDeBarraToolStripMenuItem.Text = "Administrar Códigos de barra"
-        '
-        'BarCodeToolStripMenuItem
-        '
-        Me.BarCodeToolStripMenuItem.Name = "BarCodeToolStripMenuItem"
-        Me.BarCodeToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
-        Me.BarCodeToolStripMenuItem.Tag = "mnu_BarCode"
-        Me.BarCodeToolStripMenuItem.Text = "BarCode"
-        '
-        'ImpresiónDeUbicacionesToolStripMenuItem
-        '
-        Me.ImpresiónDeUbicacionesToolStripMenuItem.Name = "ImpresiónDeUbicacionesToolStripMenuItem"
-        Me.ImpresiónDeUbicacionesToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
-        Me.ImpresiónDeUbicacionesToolStripMenuItem.Tag = "mnu_ImpresionUbicaciones"
-        Me.ImpresiónDeUbicacionesToolStripMenuItem.Text = "Impresión de ubicaciones"
-        '
-        'EtiquetasParaCajasDeCamiónToolStripMenuItem
-        '
-        Me.EtiquetasParaCajasDeCamiónToolStripMenuItem.Name = "EtiquetasParaCajasDeCamiónToolStripMenuItem"
-        Me.EtiquetasParaCajasDeCamiónToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
-        Me.EtiquetasParaCajasDeCamiónToolStripMenuItem.Text = "Etiquetas para cajas de Camión"
-        '
-        'NuevasOrdenesDeVentaToolStripMenuItem
-        '
-        Me.NuevasOrdenesDeVentaToolStripMenuItem.Name = "NuevasOrdenesDeVentaToolStripMenuItem"
-        Me.NuevasOrdenesDeVentaToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.NuevasOrdenesDeVentaToolStripMenuItem.Tag = "mnu_NuevasOrdenesVenta"
-        Me.NuevasOrdenesDeVentaToolStripMenuItem.Text = "Nuevas Ordenes de venta"
-        '
-        'ADMINISTRARToolStripMenuItem
-        '
-        Me.ADMINISTRARToolStripMenuItem.Name = "ADMINISTRARToolStripMenuItem"
-        Me.ADMINISTRARToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.ADMINISTRARToolStripMenuItem.Tag = "mnu_AdministradorOrdenSurtido"
-        Me.ADMINISTRARToolStripMenuItem.Text = "Administrador para orden de surtido"
-        '
-        'ComentariosPedidoDiarioToolStripMenuItem
-        '
-        Me.ComentariosPedidoDiarioToolStripMenuItem.Name = "ComentariosPedidoDiarioToolStripMenuItem"
-        Me.ComentariosPedidoDiarioToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.ComentariosPedidoDiarioToolStripMenuItem.Tag = "mnu_ComentariosSurtido"
-        Me.ComentariosPedidoDiarioToolStripMenuItem.Text = "Comentarios Surtido"
-        '
-        'AdministrarUbicacionesSurtidoToolStripMenuItem
-        '
-        Me.AdministrarUbicacionesSurtidoToolStripMenuItem.Name = "AdministrarUbicacionesSurtidoToolStripMenuItem"
-        Me.AdministrarUbicacionesSurtidoToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.AdministrarUbicacionesSurtidoToolStripMenuItem.Text = "Administrar ubicaciones Surtido"
-        '
-        'AdministraciónDePesosToolStripMenuItem
-        '
-        Me.AdministraciónDePesosToolStripMenuItem.Name = "AdministraciónDePesosToolStripMenuItem"
-        Me.AdministraciónDePesosToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
-        Me.AdministraciónDePesosToolStripMenuItem.Text = "Administración de pesos"
-        '
         'MCobranza
         '
         Me.MCobranza.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMAntiguedadCli, Me.SMCobRec, Me.SMCobClientes, Me.SMPagoCom, Me.DefinicionDeLimitesDeCreditoToolStripMenuItem, Me.SMEstatusCli, Me.SMNotCredito})
@@ -962,7 +963,7 @@ Partial Class Inicio
         '
         'MVacaciones
         '
-        Me.MVacaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMConsultaVac, Me.SMAltaEmp, Me.SMOrganigrama, Me.SMPerfilesDePuesto, Me.SMSolicitudVac, Me.ReimprimirFormatoVacToolStripMenuItem})
+        Me.MVacaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMConsultaVac, Me.SMAltaEmp, Me.SMOrganigrama, Me.SMPerfilesDePuesto, Me.SMSolicitudVac, Me.ReimprimirFormatoVacToolStripMenuItem, Me.PlantillaConcultaVacToolStripMenuItem})
         Me.MVacaciones.Image = CType(resources.GetObject("MVacaciones.Image"), System.Drawing.Image)
         Me.MVacaciones.Name = "MVacaciones"
         Me.MVacaciones.Size = New System.Drawing.Size(141, 24)
@@ -1745,6 +1746,12 @@ Partial Class Inicio
         Me.panelAvisoAlerta.Size = New System.Drawing.Size(1931, 101)
         Me.panelAvisoAlerta.TabIndex = 13
         '
+        'PlantillaConcultaVacToolStripMenuItem
+        '
+        Me.PlantillaConcultaVacToolStripMenuItem.Name = "PlantillaConcultaVacToolStripMenuItem"
+        Me.PlantillaConcultaVacToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
+        Me.PlantillaConcultaVacToolStripMenuItem.Text = "Plantilla Conculta Vac."
+        '
         'Inicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1971,4 +1978,5 @@ Partial Class Inicio
  Friend WithEvents EtiquetasParaCajasDeCamiónToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents TransportesToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents ReimprimirFormatoVacToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PlantillaConcultaVacToolStripMenuItem As ToolStripMenuItem
 End Class

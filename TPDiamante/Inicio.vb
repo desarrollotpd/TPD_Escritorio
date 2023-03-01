@@ -1482,4 +1482,9 @@ Public Class Inicio
   RF.Show()
  End Sub
 
+    Private Sub PlantillaConcultaVacToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlantillaConcultaVacToolStripMenuItem.Click
+        ConsultaVacPlantilla.MdiParent = Me
+        ConsultaVacPlantilla.Show()
+
+    End Sub
 End Class

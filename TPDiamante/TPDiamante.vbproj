@@ -363,6 +363,10 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="RecursosHumanos\ConsultaVacPlantilla.Designer.vb" />
+    <Compile Include="RecursosHumanos\ConsultaVacPlantilla.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RecursosHumanos\ReimpresionFV.Designer.vb" />
     <Compile Include="RecursosHumanos\ReimpresionFV.vb">
       <SubType>Form</SubType>
@@ -1833,6 +1837,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrCotizacionEspecial.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="RecursosHumanos\ConsultaVacPlantilla.resx" />
     <EmbeddedResource Include="RecursosHumanos\ReimpresionFV.resx" />
     <EmbeddedResource Include="rpteOV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
