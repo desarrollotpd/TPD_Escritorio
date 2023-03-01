@@ -78,6 +78,7 @@ Partial Class frmAdminBarCode
         Me.txtCodigo = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.cmbCodigoAlterno = New System.Windows.Forms.ComboBox()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -104,7 +105,7 @@ Partial Class frmAdminBarCode
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TodosToolStripMenuItem, Me.NuevoCódigoDeBarrasToolStripMenuItem, Me.ModificarCódigoToolStripMenuItem, Me.GrabarToolStripMenuItem, Me.AgregarCódigoAlternoToolStripMenuItem, Me.SalirToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1609, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1671, 24)
         Me.MenuStrip1.TabIndex = 21
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -188,7 +189,7 @@ Partial Class frmAdminBarCode
         Me.PanelDatos.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelDatos.Location = New System.Drawing.Point(0, 24)
         Me.PanelDatos.Name = "PanelDatos"
-        Me.PanelDatos.Size = New System.Drawing.Size(1022, 787)
+        Me.PanelDatos.Size = New System.Drawing.Size(1022, 749)
         Me.PanelDatos.TabIndex = 22
         '
         'Label20
@@ -468,7 +469,7 @@ Partial Class frmAdminBarCode
         Me.Panel1.Controls.Add(Me.DtGInfCB)
         Me.Panel1.Location = New System.Drawing.Point(0, 252)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1609, 608)
+        Me.Panel1.Size = New System.Drawing.Size(1671, 570)
         Me.Panel1.TabIndex = 41
         '
         'PanelSeleccion
@@ -483,7 +484,7 @@ Partial Class frmAdminBarCode
         Me.PanelSeleccion.Controls.Add(Me.Label11)
         Me.PanelSeleccion.Location = New System.Drawing.Point(3, 3)
         Me.PanelSeleccion.Name = "PanelSeleccion"
-        Me.PanelSeleccion.Size = New System.Drawing.Size(1603, 565)
+        Me.PanelSeleccion.Size = New System.Drawing.Size(1665, 527)
         Me.PanelSeleccion.TabIndex = 41
         Me.PanelSeleccion.Visible = False
         '
@@ -508,6 +509,7 @@ Partial Class frmAdminBarCode
         '
         'dgSeleccion
         '
+        Me.dgSeleccion.AllowUserToAddRows = False
         Me.dgSeleccion.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -516,7 +518,7 @@ Partial Class frmAdminBarCode
         Me.dgSeleccion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgSeleccion.Location = New System.Drawing.Point(3, 43)
         Me.dgSeleccion.Name = "dgSeleccion"
-        Me.dgSeleccion.Size = New System.Drawing.Size(1591, 519)
+        Me.dgSeleccion.Size = New System.Drawing.Size(1653, 481)
         Me.dgSeleccion.TabIndex = 1
         '
         'Label11
@@ -537,7 +539,7 @@ Partial Class frmAdminBarCode
         Me.DtGInfCB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DtGInfCB.Location = New System.Drawing.Point(3, 3)
         Me.DtGInfCB.Name = "DtGInfCB"
-        Me.DtGInfCB.Size = New System.Drawing.Size(1557, 565)
+        Me.DtGInfCB.Size = New System.Drawing.Size(1619, 527)
         Me.DtGInfCB.TabIndex = 21
         '
         'Panel2
@@ -555,7 +557,7 @@ Partial Class frmAdminBarCode
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(1022, 24)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(587, 85)
+        Me.Panel2.Size = New System.Drawing.Size(649, 85)
         Me.Panel2.TabIndex = 53
         '
         'Label19
@@ -613,6 +615,7 @@ Partial Class frmAdminBarCode
         '
         Me.Panel3.BackColor = System.Drawing.Color.White
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel3.Controls.Add(Me.Button6)
         Me.Panel3.Controls.Add(Me.cmbCodigoAlterno)
         Me.Panel3.Controls.Add(Me.Label25)
         Me.Panel3.Controls.Add(Me.Button4)
@@ -626,8 +629,20 @@ Partial Class frmAdminBarCode
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(1022, 109)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(587, 140)
+        Me.Panel3.Size = New System.Drawing.Size(649, 140)
         Me.Panel3.TabIndex = 54
+        '
+        'Button6
+        '
+        Me.Button6.BackColor = System.Drawing.SystemColors.Control
+        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button6.ForeColor = System.Drawing.Color.Black
+        Me.Button6.Location = New System.Drawing.Point(542, 77)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(102, 26)
+        Me.Button6.TabIndex = 63
+        Me.Button6.Text = "ELIMINAR"
+        Me.Button6.UseVisualStyleBackColor = False
         '
         'cmbCodigoAlterno
         '
@@ -652,7 +667,7 @@ Partial Class frmAdminBarCode
         '
         Me.Button4.BackgroundImage = CType(resources.GetObject("Button4.BackgroundImage"), System.Drawing.Image)
         Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.Location = New System.Drawing.Point(546, 28)
+        Me.Button4.Location = New System.Drawing.Point(607, 30)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(37, 33)
         Me.Button4.TabIndex = 59
@@ -724,7 +739,7 @@ Partial Class frmAdminBarCode
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1609, 811)
+        Me.ClientSize = New System.Drawing.Size(1671, 773)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
@@ -816,4 +831,5 @@ Partial Class frmAdminBarCode
     Friend WithEvents Label25 As Label
     Friend WithEvents Button4 As Button
     Friend WithEvents AgregarCódigoAlternoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Button6 As Button
 End Class

@@ -17,11 +17,14 @@ Public Class Comandos_SQL
     Public dv As New DataView
 
     Public Consulta As String
-  Public StrTpm As String = conexion_universal.CadenaSQL
+    Public StrTpm As String = conexion_universal.CadenaSQL
+    Public dtTable As DataTable = New DataTable
+    ' Dim DSetTablas As New DataSet
+    Public fila As Data.DataRow
 
 
-  'CONECTAR A CUALQUIER BASE DE DATOS.
-  Public Function conectarSBO_TPD()
+    'CONECTAR A CUALQUIER BASE DE DATOS.
+    Public Function conectarSBO_TPD()
     conec = New SqlConnection(conexion_universal.CadenaSQLSAP)
     Try
             conec.Open()
@@ -31,19 +34,35 @@ Public Class Comandos_SQL
         End Try
     End Function
 
-  'CONECTAR A CUALQUIER BASE DE DATOS.
-  Public Function conectarTPM()
-    conec = New SqlConnection(conexion_universal.CadenaSQL)
-    Try
-      conec.Open()
-      Return True
-    Catch ex As Exception
-      Return False
-    End Try
-  End Function
+    'CONECTAR A CUALQUIER BASE DE DATOS.
+    Public Function conectarTPM()
+        conec = New SqlConnection(conexion_universal.CadenaSQL)
+        Try
+            conec.Open()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+    Public Function LlenarComboBox2(Consulta As String, Combobox1 As ComboBox)
+        conec.Close()
+        conec = New SqlConnection(StrTpm)
+        conec.Open()
+        dv = New DataView
+        ds = New DataSet
+        cmd = New SqlCommand(Consulta, conec)
+        adaptador = New SqlDataAdapter(cmd)
+        adaptador.Fill(dtTable)
+        adaptador.Fill(ds, "Tabla")
+        fila = ds.Tables("Tabla").NewRow
+        dv.Table = ds.Tables("Tabla")
+        Combobox1.DataSource = dv
+        Combobox1.DisplayMember = "Nombre"
+        Combobox1.ValueMember = "Codigo"
+    End Function
 
-  'CERRAR CUALQUIER CONEXION ABIERTA
-  Public Sub Cerrar()
+    'CERRAR CUALQUIER CONEXION ABIERTA
+    Public Sub Cerrar()
     conec.Close()
   End Sub
 

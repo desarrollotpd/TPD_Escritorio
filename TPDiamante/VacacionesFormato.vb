@@ -8,99 +8,75 @@ Public Class FormatoVacaciones
     'Public StrTpm As String = conexion_universal.CadenaSQL
     Public conexion As New SqlConnection(StrTpm)
     'Public conexion2 As New SqlConnection(conexion_universal.CadenaSQL)
-
     Public DvDetalle As New DataView
     Dim DvLP As New DataView
     Dim strTemp As String = ""
     Dim NumOVta As Long
     Dim NumAuto As Integer
-
     Dim Antiguedad As Decimal
     Dim NumDiasVac As Integer
     Dim AñosTrascurridos As Integer
     Dim DiaVac As Integer
-
     Dim Modificado As Integer = 0
-
     Dim DiasSol As Integer
     Dim FechaIngreso As String
     Dim TopeGlobal As Integer
     Public conexion2 As New SqlConnection(StrTpm)
     Dim dt As DataSet
     Dim DiasRest1 As Integer
-
     Dim FolioInicio As Integer
-
-
-    ' Espacios de nombres  
-    ' ''''''''''''''''''''''''''''''''''''''''' 
-
     Dim DvAgentes As New DataView
-
     'BindingSource  
     Private WithEvents bs As New BindingSource
-
     ' Adaptador de datos sql  
     Private SqlDataAdapter As SqlDataAdapter
-
     ' Cadena de conexión  
     Private cs As String = conexion_universal.cConstanteTPM
-
     ' flag  
     Private bEdit As Boolean
-
     Public StrCon As String = conexion_universal.CadenaSQLSAP
-
     Private FolioMax As Integer
+    Dim SQL As New Comandos_SQL()
+    Dim periodoCorrespondiente As String
+
 
     Private Sub FormatoVacaciones_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim ConsutaLista As String
+        SQL.LlenarComboBox2("	SELECT DISTINCT  TPDW1.dbo.dat_empleado.numero_empleado AS Codigo,  TPDW1.dbo.dat_empleado.nombre + ' ' + TPDW1.dbo.dat_empleado.apellido_paterno + ' ' + TPDW1.dbo.dat_empleado.apellido_materno  AS Nombre FROM  TPDW1.dbo.dat_empleado LEFT OUTER JOIN Empleados ON TPDW1.dbo.dat_empleado.numero_empleado = Empleados.NumEmp WHERE  (TPDW1.dbo.dat_empleado.estatus = 0) ORDER BY Nombre", CBNomEmp)
 
-
-        Using SqlConnection As New Data.SqlClient.SqlConnection(StrTpm)
-
-
-            'Dim DSetTablas As New DataSet
-            'ConsutaLista = "SELECT NumEmp,NomEmp+' '+AppEmp+' '+ApmMat AS 'NomEmp' FROM Empleados where Status = 'Activo' and Vacaciones = 'Si' ORDER BY NomEmp "
-            'Dim daGEmpleado As New SqlClient.SqlDataAdapter(ConsutaLista, SqlConnection)
-
-            ''Dim DSetTablas As New DataSet
-            conexion2.Open()
-            Dim command As SqlCommand
-            Dim adapter As SqlDataAdapter
-            Dim dtTable As DataTable = New DataTable
-            command = New SqlCommand("SP_Consultas", conexion2)
-            command.CommandType = CommandType.StoredProcedure
-            command.Parameters.Add(New SqlParameter("@opcion", SqlDbType.NVarChar)).Value = "ACTIVOS"
-            command.Parameters.Add(New SqlParameter("@id", SqlDbType.Int)).Value = 1
-            command.Parameters.Add(New SqlParameter("@Periodo", SqlDbType.NVarChar)).Value = ""
-            adapter = New SqlDataAdapter(command)
-            adapter.Fill(dtTable)
-            Dim DSetTablas As New DataSet
-            adapter.Fill(DSetTablas, "Empleados")
-
-
-            'AGREGAR FILA
-            Dim fila As Data.DataRow
-            'Asignamos a fila la nueva Row(Fila)del Dataset
-            fila = DSetTablas.Tables("Empleados").NewRow
-            'Agregamos los valores a los campos de la tabla
-            fila("NomEmp") = "--Ningun Resultado--"
-            fila("NumEmp") = 1010
-            'Agregamos la fila que acabamos de crear a nuestra tabla del DataSet
-            DSetTablas.Tables("Empleados").Rows.Add(fila)
-
-
-            DvLP.Table = DSetTablas.Tables("Empleados")
-            DvLP.RowFilter = "NumEmp <> 1010"
-
-            Me.CBNomEmp.DataSource = DvLP
-            Me.CBNomEmp.DisplayMember = "NomEmp"
-            Me.CBNomEmp.ValueMember = "NumEmp"
-
-            Me.CBNomEmp.SelectedIndex = -1
-
-        End Using
+        'Using SqlConnection As New Data.SqlClient.SqlConnection(StrTpm)
+        '    'Dim DSetTablas As New DataSet
+        '    'ConsutaLista = "SELECT NumEmp,NomEmp+' '+AppEmp+' '+ApmMat AS 'NomEmp' FROM Empleados where Status = 'Activo' and Vacaciones = 'Si' ORDER BY NomEmp "
+        '    'Dim daGEmpleado As New SqlClient.SqlDataAdapter(ConsutaLista, SqlConnection)
+        '    'Dim DSetTablas As New DataSet
+        '    conexion2.Open()
+        '    Dim command As SqlCommand
+        '    Dim adapter As SqlDataAdapter
+        '    Dim dtTable As DataTable = New DataTable
+        '    command = New SqlCommand("SP_Consultas", conexion2)
+        '    command.CommandType = CommandType.StoredProcedure
+        '    command.Parameters.Add(New SqlParameter("@opcion", SqlDbType.NVarChar)).Value = "ACTIVOS"
+        '    command.Parameters.Add(New SqlParameter("@id", SqlDbType.Int)).Value = 1
+        '    command.Parameters.Add(New SqlParameter("@Periodo", SqlDbType.NVarChar)).Value = ""
+        '    adapter = New SqlDataAdapter(command)
+        '    adapter.Fill(dtTable)
+        '    Dim DSetTablas As New DataSet
+        '    'AGREGAR FILA
+        '    Dim fila As Data.DataRow
+        '    'Asignamos a fila la nueva Row(Fila)del Dataset
+        '    fila = DSetTablas.Tables("Empleados").NewRow
+        '    'Agregamos los valores a los campos de la tabla
+        '    fila("NomEmp") = "--Ningun Resultado--"
+        '    fila("NumEmp") = 1010
+        '    'Agregamos la fila que acabamos de crear a nuestra tabla del DataSet
+        '    DSetTablas.Tables("Empleados").Rows.Add(fila)
+        '    DvLP.Table = DSetTablas.Tables("Empleados")
+        '    DvLP.RowFilter = "NumEmp <> 1010"
+        '    Me.CBNomEmp.DataSource = DvLP
+        '    Me.CBNomEmp.DisplayMember = "NomEmp"
+        '    Me.CBNomEmp.ValueMember = "NumEmp"
+        '    Me.CBNomEmp.SelectedIndex = -1
+        'End Using
 
         'Procedimiento para obtener el número de transacción más actual
         Dim cmdCuenta As New Data.SqlClient.SqlCommand
@@ -130,13 +106,13 @@ Public Class FormatoVacaciones
 
         'DisenoGridVArt()
 
-        CBDiasSol.SelectedIndex = 0
+        'CBDiasSol.SelectedIndex = 0
 
-        DTPFec1.Value = Date.Now
-        DTPFec2.Value = Date.Now
-        DTPFec3.Value = Date.Now
-        DTPFec4.Value = Date.Now
-        DTPFec5.Value = Date.Now
+        'DTPFec1.Value = Date.Now
+        'DTPFec2.Value = Date.Now
+        'DTPFec3.Value = Date.Now
+        'DTPFec4.Value = Date.Now
+        'DTPFec5.Value = Date.Now
 
         CBNomEmp.Focus()
 
@@ -150,13 +126,9 @@ Public Class FormatoVacaciones
 
     End Sub
 
-    Private Sub TBNumEmp_Leave(sender As Object, e As EventArgs) Handles TBNumEmp.Leave
-
-    End Sub
 
     Private Sub LimpiaCampos()
         Try
-
             TBNumEmp.Text = ""
             CBDiasSol.SelectedValue = 99
             DTPFecIng.Value = Date.Now
@@ -167,38 +139,23 @@ Public Class FormatoVacaciones
             TBDiasRest.Text = ""
             TextBox1.Text = ""
             TextBox2.Text = ""
-
-            DTPFec1.Value = Date.Now
-            DTPFec2.Value = Date.Now
-            DTPFec3.Value = Date.Now
-            DTPFec4.Value = Date.Now
-            DTPFec5.Value = Date.Now
-
-            CKAut1.Checked = False
-            CKAut2.Checked = False
-            CKAut3.Checked = False
-            CKAut4.Checked = False
-            CKAut5.Checked = False
-
-            'DGVCap.DataSource = ""
-            DGVCap.Rows.Clear()
-
+            'DTPFec1.Value = Date.Now
+            'DTPFec2.Value = Date.Now
+            'DTPFec3.Value = Date.Now
+            'DTPFec4.Value = Date.Now
+            'DTPFec5.Value = Date.Now
+            'CKAut1.Checked = False
+            'CKAut2.Checked = False
+            'CKAut3.Checked = False
+            'CKAut4.Checked = False
+            'CKAut5.Checked = False
+            'DGVCap.Rows.Clear()
         Catch ex As Exception
 
         End Try
 
-        'DGVCap.DataSource = String.Empty
     End Sub
 
-
-    Private Sub CBNomEmp_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBNomEmp.SelectedIndexChanged
-        'Try
-        '    Rutina()
-        'Catch ex As Exception
-
-        'End Try
-
-    End Sub
 
 
     Private Sub CBDiasSol_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBDiasSol.SelectedIndexChanged
@@ -2253,6 +2210,41 @@ Public Class FormatoVacaciones
     End Sub
 
 
+    Private Sub Datos()
+
+        Dim command As SqlCommand
+        Dim adapter As SqlDataAdapter
+        Dim dtTable As DataTable = New DataTable
+        Dim command1 As SqlCommand
+        Dim adapter1 As SqlDataAdapter
+        Dim dtTable1 As DataTable = New DataTable
+
+
+        conexion.Close()
+            conexion.Open()
+
+        '   dtTable = New DataTable
+        command = New SqlCommand("SP_ConsultaVac", conexion2)
+        command.CommandType = CommandType.StoredProcedure
+        command.Parameters.Add(New SqlParameter("@NumEmp", SqlDbType.Int)).Value = CBNomEmp.SelectedValue
+
+        adapter = New SqlDataAdapter(command)
+            adapter.Fill(dtTable)
+            'DataGridView1.DataSource = Nothing
+            ' DataGridView1.DataSource = dtTable
+            conexion.Close()
+        TBNumEmp.Text = dtTable.Rows(0).Item(0)
+        TextBox1.Text = dtTable.Rows(0).Item(5)
+        TBAntiguedad.Text = dtTable.Rows(0).Item(6)
+        TBDiasVac.Text = dtTable.Rows(0).Item(12)
+        TBFecIniVac.Text = dtTable.Rows(0).Item(13)
+        TBFecCadVac.Text = dtTable.Rows(0).Item(14)
+        TextBox2.Text = dtTable.Rows(0).Item(7) & " - " & (dtTable.Rows(0).Item(9) + 1)
+        periodoCorrespondiente = dtTable.Rows(0).Item(7)
+        TBDiasRest.Text = dtTable.Rows(0).Item(8)
+        '  TBNumEmp.Text = dtTable.Rows(0).Item(0)
+        '  TBNumEmp.Text = dtTable.Rows(0).Item(0)
+    End Sub
 
 
 
@@ -2336,8 +2328,12 @@ Public Class FormatoVacaciones
     End Sub
 
     Private Sub TBPeriodoCom_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles TBPeriodoCom.SelectionChangeCommitted
+        If TBPeriodoCom.SelectedValue = periodoCorrespondiente Then
+            Datos()
+        Else
+            CalculoPeriodo()
+        End If
 
-        CalculoPeriodo()
 
 
 
@@ -2437,7 +2433,11 @@ Public Class FormatoVacaciones
 
     Private Sub CBNomEmp_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles CBNomEmp.SelectionChangeCommitted
         Rutina()
-        CalculoPeriodo()
+
+        Datos()
+
+
+        'CalculoPeriodo()
 
         TBPeriodoCom.Enabled = True
     End Sub
@@ -2682,6 +2682,10 @@ Public Class FormatoVacaciones
     End Sub
 
     Private Sub TBPeriodoCom_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TBPeriodoCom.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub CBNomEmp_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBNomEmp.SelectedIndexChanged
 
     End Sub
 
