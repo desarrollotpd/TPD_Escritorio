@@ -165,6 +165,7 @@
     <Compile Include="ControlVehiculo\DTOs\LoginParams.cs" />
     <Compile Include="ControlVehiculo\DTOs\ResponseCollection.cs" />
     <Compile Include="ControlVehiculo\DTOs\VehicleRutes.cs" />
+    <Compile Include="FuncionesC.cs" />
     <Compile Include="GPSImport\ImportGPS.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -771,10 +771,10 @@ Public Class frmrefactura
     Try
       'ABRE LA CONEXION AL TPD
       conexion_universal.conectar_sap()
-      'CONSULTA PARA VALIDAR QUE LA REFACTURA SEA VALIDA
-      'FORMAT(T0.DocDate, 'yyyy-MM-dd')
-      SQLBuscar = "SELECT T0.DocEntry AS DocEntry, T0.DocNum AS Refactura, FORMAT(T0.DocDate, 'yyyy-MM-dd') AS FechaRefactura, T0.Comments "
-      SQLBuscar &= "FROM OINV T0 "
+   'CONSULTA PARA VALIDAR QUE LA REFACTURA SEA VALIDA
+   'FORMAT(T0.DocDate, 'yyyy-MM-dd')
+   SQLBuscar = "SELECT T0.DocEntry AS DocEntry, T0.DocNum AS Refactura, FORMAT(T0.DocDate, 'yyyy-MM-dd') AS FechaRefactura, CASE WHEN T0.Comments IS NULL THEN '' ELSE T0.Comments END Comments "
+   SQLBuscar &= "FROM OINV T0 "
       SQLBuscar &= "WHERE T0.DocNum =  '" + txtref.Text + "' "
       'ALMACENA LA CONSULTA EN UN COMANDO PARA PODER HACER LA EJECUCION
       conexion_universal.slq_con = New SqlCommand(SQLBuscar, conexion_universal.conexion_uni_sap)

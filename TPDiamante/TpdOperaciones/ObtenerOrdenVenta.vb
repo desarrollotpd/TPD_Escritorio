@@ -4,153 +4,66 @@ Public Class ObtenerOrdenVenta
 
  Dim ResultadoOrden As DataView
  Dim Renglonactual As Integer
-    Dim SQL As New Comandos_SQL()
-    Dim K As Integer
-    Private Sub btnCancelarOV_Click(sender As Object, e As EventArgs) Handles btnCancelarOV.Click
+ Dim SQL As New Comandos_SQL()
+ Dim K As Integer
+ Dim sUsuarios As String
+ Private Sub btnCancelarOV_Click(sender As Object, e As EventArgs) Handles btnCancelarOV.Click
   Timer1.Enabled = False
   Me.Close()
  End Sub
 
-    Private Sub ObtenerOrdenVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
+ Private Sub ObtenerOrdenVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+  Try
 
-            DataGridView1.DataSource = SQL.EjecutarProcedimiento("SP_OrdenVentas", "@opcion,@id", 2, "ALMACEN" & "," & UsrTPM)
-            DataGridView1.Columns("ID_USUARIO").Visible = False
-            DataGridView1.DefaultCellStyle.Font = New Font("Arial", 7)
-            DataGridView1.Columns(1).HeaderCell.Style.BackColor = System.Drawing.Color.Red
-            ' ColorTranslator.FromHtml(“#bfdbff”)
-            ' AddCheckBoxColumn()
-        Catch ex As Exception
-            'MessageBox.Show("¡Error al LLenarConsultaDetalle: " + Environment.NewLine + ex.ToString() + "!", "¡Error en TPD!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+   DataGridView1.DataSource = SQL.EjecutarProcedimiento("SP_OrdenVentas", "@opcion,@id", 2, "ALMACEN" & "," & UsrTPM)
+   DataGridView1.Columns("ID_USUARIO").Visible = False
+   DataGridView1.DefaultCellStyle.Font = New Font("Arial", 7)
+   DataGridView1.Columns(1).HeaderCell.Style.BackColor = System.Drawing.Color.Red
+   ' ColorTranslator.FromHtml(“#bfdbff”)
+   ' AddCheckBoxColumn()
+  Catch ex As Exception
+   'MessageBox.Show("¡Error al LLenarConsultaDetalle: " + Environment.NewLine + ex.ToString() + "!", "¡Error en TPD!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+  End Try
 
-        BuscarNuevasOV(UsrTPM, 1)
-        Timer1.Enabled = True
-    End Sub
+  sUsuarios = ""
+  BuscarNuevasOV(UsrTPM, 1)
+  Timer1.Enabled = True
+ End Sub
 
-    'Private Sub AddCheckBoxColumn()
-    '    Dim column As New DataGridViewCheckBoxColumn()
-    '    With column
-    '        .HeaderText = "Agregar"
-    '        .Name = "Agregar"
-    '        .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-    '        .FlatStyle = FlatStyle.Standard
-    '        .CellTemplate = New DataGridViewCheckBoxCell()
-    '        '  .CellTemplate.Style.BackColor = Color.Azure
-    '        '  .ReadOnly = True
-    '    End With
-    '    For Each Row As DataGridViewRow In DataGridView1.Rows
-    '        If Convert.ToString(Row.Cells(1).Value) = UsrTPM Then
-    '            Row.Cells(0).Value = True
-    '        Else
-    '            Row.Cells(0).Value = False
-    '        End If
-    '    Next
-    'End Sub
+ Sub BuscarNuevasOV(USUARIO As String, J As Integer)
+  'Este metodo llena el gridOperacionVta  con un procedimiento almacenado
+  Try
 
-    Sub BuscarNuevasOV(USUARIO As String, J As Integer)
-        'Este metodo llena el gridOperacionVta  con un procedimiento almacenado
-        Try
+   If USUARIO = UsrTPM Then Exit Sub
 
-            If J = 1 Then
-                dgvNuevaOV.DataSource = SQL.EjecutarProcedimiento("TPD_GETOrdenesVenta", "@AgenteTelemarketing,@Opcion", 2, USUARIO & "," & "PRIMERO")
+   If J = 1 Then
+    dgvNuevaOV.DataSource = SQL.EjecutarProcedimiento("TPD_GETOrdenesVenta", "@AgenteTelemarketing,@Opcion", 2, USUARIO & "," & "PRIMERO")
+   Else
+    dgvNuevaOV.DataSource = SQL.EjecutarProcedimiento("TPD_GETOrdenesVenta", "@AgenteTelemarketing,@Opcion", 2, USUARIO & "," & "MASDEDOS")
+   End If
 
-            Else
-                dgvNuevaOV.DataSource = SQL.EjecutarProcedimiento("TPD_GETOrdenesVenta", "@AgenteTelemarketing,@Opcion", 2, USUARIO & "," & "MASDEDOS")
+   'Aqui
+   For Each usr As String In USUARIO.Split(",")
+    If sUsuarios = "" Then
+     sUsuarios = "'" & usr & "'"
+    Else
+     sUsuarios = sUsuarios & ",'" & usr & "'"
+    End If
+   Next
 
-            End If
-            'VARIABLES DE CONEXION DE LLENADO
-            'Dim cmd As SqlCommand
-            'Dim cnn As SqlConnection = Nothing
-            'Dim daOV As SqlDataAdapter
-            'Dim DsOrdenesVenta = New DataSet
-            'cnn = New SqlConnection(StrTpm)
+   AgregarmeEnAvisos(sUsuarios)
 
+   EstiloDgvOrdenesVenta()
 
-            ''ALMACENA LA CONSULTA EN UN COMMAND
-            'cmd = New SqlCommand("TPD_GETOrdenesVenta", cnn)
-            ''Pasa los parametros del procedimiento almacenado 
-            'cmd.CommandType = CommandType.StoredProcedure
-            ''Id del telemarketing actual
+   txtSerie.Text = ""
+   txtFolio.Text = ""
 
-            'Try
+  Catch ex As Exception
+   MsgBox("Error: " + ex.ToString)
+  End Try
+ End Sub
 
-
-            '    If J = 1 Then
-
-            '        cmd.Parameters.AddWithValue("@AgenteTelemarketing", USUARIO)
-            '        cmd.Parameters.AddWithValue("@Opcion", "PRIMERO")
-            '        cnn.Open()
-            '        'INSTANCIA UN ADAPTER
-            '        daOV = New SqlDataAdapter
-            '        'ALMACENA EL COMMAND DE SQL EN EL ADAPTER
-            '        daOV.SelectCommand = cmd
-            '        dgvNuevaOV.DataSource = (dt)
-            '        dt = New DataTable
-            '        daOV.Fill(dt)
-            '        dgvNuevaOV.DataSource = (dt)
-            '    Else
-            '        cmd.Parameters.AddWithValue("@AgenteTelemarketing", USUARIO)
-            '        cmd.Parameters.AddWithValue("@Opcion", "MASDEDOS")
-            '        cnn.Open()
-            '        'INSTANCIA UN ADAPTER
-            '        daOV = New SqlDataAdapter
-            '        'ALMACENA EL COMMAND DE SQL EN EL ADAPTER
-            '        daOV.SelectCommand = cmd
-
-            '        dt = New DataTable
-            '        daOV.Fill(dt)
-            '        dgvNuevaOV.DataSource = (dt)
-
-            '    End If
-            '    ' 
-
-
-
-
-
-
-
-
-
-            '    'dgvNuevaOV.DataSource = dt
-            'Catch ex As Exception
-            '    MsgBox("Problemas al conectar con al base de datos ")
-            'End Try
-            ''LO EJECUTA CON LA CONEXION
-            'daOV.SelectCommand.Connection = cnn
-            ''TIEMPO DE ESPERA DE LA CONEXION
-            'daOV.SelectCommand.CommandTimeout = 10000
-            ''EJECUTA LA CONSULTA
-            'cmd.ExecuteNonQuery()
-            ''CIERRA EL COMMAND DE SQL
-            'cmd.Connection.Close()
-            ''CIERRA LA CONEXION
-            'cnn.Close()
-            ''LLENA EL ADAPTER A UN DATA SET
-            'daOV.Fill(DsOrdenesVenta, "OVs")
-
-            ''INSTANCIA EL DATA VIEW EN VARIABLES RESULTADO
-            'ResultadoOrden = New DataView
-            ''ALMACENA EN DATA SET DE MODO TABLA
-
-            'ResultadoOrden.Table = DsOrdenesVenta.Tables(0)
-
-            '' ResultadoOrden.Table = DsOrdenesVenta.Tables(dgvNuevaOV.RowCount - 1)
-            ''ALMACENA EN EL DATASOURCE DEL DATAGRID EL DATAVIEW
-            'dgvNuevaOV.DataSource = ResultadoOrden
-            ''MANDA A LLAMAR EL ESTILO DEL DATA GRID VIEW DE ORDENES DE VENTA
-            EstiloDgvOrdenesVenta()
-
-            txtSerie.Text = ""
-            txtFolio.Text = ""
-
-        Catch ex As Exception
-            MsgBox("Error: " + ex.ToString)
-        End Try
-    End Sub
-
-    Sub EstiloDgvOrdenesVenta()
+ Sub EstiloDgvOrdenesVenta()
   'cambia el estilo de las columnas del gridview detalle operacion  
   'Cambiar el estido del campo Orden de Venta a Negritas
   Dim style As New DataGridViewCellStyle
@@ -202,18 +115,17 @@ Public Class ObtenerOrdenVenta
  End Sub
 
  Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        dgvNuevaOV.DataSource = Nothing
-        K = 1
-        For Each Row As DataGridViewRow In DataGridView1.Rows
-            If Convert.ToString(Row.Cells(0).Value) = True Then
-                BuscarNuevasOV(Row.Cells(1).Value, K)
-                K = K + 1
-            End If
+  dgvNuevaOV.DataSource = Nothing
+  K = 1
+  sUsuarios = ""
+  For Each Row As DataGridViewRow In DataGridView1.Rows
+   If Convert.ToString(Row.Cells(0).Value) = True Then
+    BuscarNuevasOV(Row.Cells(1).Value, K)
+    K = K + 1
+   End If
+  Next
 
-        Next
-
-
-        Try
+  Try
    dgvNuevaOV.Rows(Renglonactual).Selected = True
   Catch ex As Exception
 
@@ -268,8 +180,8 @@ Public Class ObtenerOrdenVenta
  Private Sub ImprimirOV(Serie As String, Folio As Integer)
   'CAMPOS DEL DATASET 
   Dim ErrOV As Integer = 0
-        K = 1
-        Try
+  K = 1
+  Try
    Dim DtOVta As New DataTable("OrdVenta")
    Dim dTable As New DataTable
    Dim detTable As New DataTable
@@ -444,14 +356,15 @@ Public Class ObtenerOrdenVenta
    'una vez impresa grabo la fecha y hora de su revision y cierro panel de orden de venta
    If (ActualizaInf(Serie, Folio)) Then
     dgvNuevaOV.DataSource = Nothing
-                For Each Row As DataGridViewRow In DataGridView1.Rows
-                    If Convert.ToString(Row.Cells(0).Value) = True Then
-                        BuscarNuevasOV(Row.Cells(2).Value, K)
-                        K = K + 1
-                    End If
+    sUsuarios = ""
+    For Each Row As DataGridViewRow In DataGridView1.Rows
+     If Convert.ToString(Row.Cells(0).Value) = True Then
+      BuscarNuevasOV(Row.Cells(2).Value, K)
+      K = K + 1
+     End If
 
-                Next
-                Renglonactual = 0
+    Next
+    Renglonactual = 0
    End If
 
   Catch
@@ -483,6 +396,28 @@ Public Class ObtenerOrdenVenta
   End Try
  End Function
 
+
+ Private Function AgregarmeEnAvisos(Usuarios As String) As Boolean
+  Try
+   Dim SqlConnection As New Data.SqlClient.SqlConnection(StrTpm)
+   SqlConnection.Open()
+   Dim command As New Data.SqlClient.SqlCommand
+   command.Connection = SqlConnection
+
+   Dim strcadena As String = "UPDATE Alerta_usuarios SET otrosUsuarios = '" & UsrTPM & "' WHERE idUsuarioResp IN (" & Usuarios & ") AND ConfirmacionLectura is NULL AND ConfirmacionLecturaOtrosUsuarios is NULL"
+   command.CommandText = strcadena
+   command.ExecuteNonQuery()
+
+   Inicio.ChecaAviso()
+
+   Return True
+
+  Catch ex As Exception
+   Return False
+
+  End Try
+ End Function
+
  Private Sub Label7_Click(sender As Object, e As EventArgs) Handles Label7.Click
 
  End Sub
@@ -507,24 +442,24 @@ Public Class ObtenerOrdenVenta
 
  End Sub
 
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-        dt = New DataTable
-        dgvNuevaOV.DataSource = Nothing
-        K = 1
-        For Each Row As DataGridViewRow In DataGridView1.Rows
+ Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+  dt = New DataTable
+  dgvNuevaOV.DataSource = Nothing
+  K = 1
+  sUsuarios = ""
+  For Each Row As DataGridViewRow In DataGridView1.Rows
+   If Convert.ToString(Row.Cells(0).Value) = True Then
+    BuscarNuevasOV(Row.Cells(1).Value, K)
+    K = K + 1
+   End If
 
-            If Convert.ToString(Row.Cells(0).Value) = True Then
-                BuscarNuevasOV(Row.Cells(1).Value, K)
-                K = K + 1
-            End If
+  Next
+ End Sub
 
-        Next
-    End Sub
+ Private Sub DataGridView1_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles DataGridView1.CurrentCellDirtyStateChanged
+  If (DataGridView1.IsCurrentCellDirty) Then
 
-    Private Sub DataGridView1_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles DataGridView1.CurrentCellDirtyStateChanged
-        If (DataGridView1.IsCurrentCellDirty) Then
-
-            DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
-        End If
-    End Sub
+   DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
+  End If
+ End Sub
 End Class

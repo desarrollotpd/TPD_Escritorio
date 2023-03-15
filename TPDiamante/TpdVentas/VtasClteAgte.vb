@@ -720,8 +720,8 @@ Public Class VtasClteAgte
 
 
     With comando
-      .CommandTimeout = 200
-      .Parameters.AddWithValue("@FechaIni", Me.DtpFechaIni.Value)
+   .CommandTimeout = 10000
+   .Parameters.AddWithValue("@FechaIni", Me.DtpFechaIni.Value)
       .Parameters.AddWithValue("@FechaTer", Me.DtpFechaTer.Value)
       ' Asignar el sql para seleccionar los datos de la tabla Maestro   
       .CommandText = SQLTPD
@@ -738,17 +738,15 @@ Public Class VtasClteAgte
       .Fill(DsVtasDet, "Ventas")
     End With
 
-    DsVtasDet.Tables(1).TableName = "VtaAgtes"
-    DsVtasDet.Tables(2).TableName = "VtaCltes"
+  DsVtasDet.Tables(1).TableName = "VtaAgtes"
+  DsVtasDet.Tables(2).TableName = "VtaCltes"
     DsVtasDet.Tables(3).TableName = "VtaLineas"
     DsVtasDet.Tables(4).TableName = "VtaArticulo"
     DsVtasDet.Tables(5).TableName = "VtaMesClte"
 
+  '**********************************************************************************************************************************
 
-
-    '**********************************************************************************************************************************
-
-    Dim DtAgte As New DataTable
+  Dim DtAgte As New DataTable
     DtAgte = DsVtasDet.Tables("VtaAgtes")
 
     'DataGridView1.DataSource = DtAgte

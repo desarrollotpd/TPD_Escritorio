@@ -1318,7 +1318,7 @@ Public Class Inicio
  End Sub
 
 
- Private Sub ChecaAviso()
+ Public Sub ChecaAviso()
   Dim vComent As String
   Dim con As New SqlConnection
   Dim cmd As New SqlCommand

@@ -7,43 +7,60 @@ Public Class frmFNCPSinCancelados
 
  Sub Consultar()
 
-  If (dtpFechaFin.Value <= "2020-07-31") Then
-   dgvFNCPSinCanceladas.DataSource = SQL.EjecutarProcedimiento("TPD_F_NC_P_Cancelados", "@FechaInicio,@FechaFin", 2, dtpFechaInicio.Value.ToString("yyyy-MM-dd") + "," + dtpFechaFin.Value.ToString("yyyy-MM-dd"))
-   If dgvFNCPSinCanceladas.Rows.Count <> 0 Then
-    Dim column As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("MONTO TOTAL")
-    column.DefaultCellStyle.Format = "C2"
-    column.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
+  dgvFNCPSinCanceladas.DataSource = SQL.EjecutarProcedimiento("TPD_F_NC_P_Cancelados_UNION", "@FechaInicio,@FechaFin", 2, dtpFechaInicio.Value.ToString("yyyy-MM-dd") + "," + dtpFechaFin.Value.ToString("yyyy-MM-dd"))
+  If dgvFNCPSinCanceladas.Rows.Count <> 0 Then
+   Dim column As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("MONTO TOTAL")
+   column.DefaultCellStyle.Format = "C2"
+   column.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
 
-    Dim column2 As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("DocSAP")
-    'column2.DefaultCellStyle.Format = "C2"
-    column2.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
-    column2.DefaultCellStyle.ForeColor = Color.DarkRed
+   Dim column2 As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("DocSAP")
+   'column2.DefaultCellStyle.Format = "C2"
+   column2.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
+   column2.DefaultCellStyle.ForeColor = Color.DarkRed
 
-    Dim column3 As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("Documento")
-    'column3.DefaultCellStyle.Format = "C2"
-    column3.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
-    'column3.DefaultCellStyle.ForeColor = Color.DarkRed
-
-   End If
-  Else
-   dgvFNCPSinCanceladas.DataSource = SQL.EjecutarProcedimiento("TPD_F_NC_P_Cancelados2", "@FechaInicio,@FechaFin", 2, dtpFechaInicio.Value.ToString("yyyy-MM-dd") + "," + dtpFechaFin.Value.ToString("yyyy-MM-dd"))
-   If dgvFNCPSinCanceladas.Rows.Count <> 0 Then
-    Dim column As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("MONTO TOTAL")
-    column.DefaultCellStyle.Format = "C2"
-    column.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
-
-    Dim column2 As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("DocSAP")
-    'column2.DefaultCellStyle.Format = "C2"
-    column2.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
-    column2.DefaultCellStyle.ForeColor = Color.DarkRed
-
-    Dim column3 As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("Documento")
-    'column3.DefaultCellStyle.Format = "C2"
-    column3.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
-    'column3.DefaultCellStyle.ForeColor = Color.DarkRed
-
-   End If
+   Dim column3 As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("Documento")
+   'column3.DefaultCellStyle.Format = "C2"
+   column3.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
+   'column3.DefaultCellStyle.ForeColor = Color.DarkRed
   End If
+
+
+  'If (dtpFechaFin.Value <= "2020-07-31" Or dtpFechaFin.Value > "2023-02-20") Then
+  ' dgvFNCPSinCanceladas.DataSource = SQL.EjecutarProcedimiento("TPD_F_NC_P_Cancelados", "@FechaInicio,@FechaFin", 2, dtpFechaInicio.Value.ToString("yyyy-MM-dd") + "," + dtpFechaFin.Value.ToString("yyyy-MM-dd"))
+  ' If dgvFNCPSinCanceladas.Rows.Count <> 0 Then
+  '  Dim column As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("MONTO TOTAL")
+  '  column.DefaultCellStyle.Format = "C2"
+  '  column.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
+
+  '  Dim column2 As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("DocSAP")
+  '  'column2.DefaultCellStyle.Format = "C2"
+  '  column2.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
+  '  column2.DefaultCellStyle.ForeColor = Color.DarkRed
+
+  '  Dim column3 As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("Documento")
+  '  'column3.DefaultCellStyle.Format = "C2"
+  '  column3.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
+  '  'column3.DefaultCellStyle.ForeColor = Color.DarkRed
+  ' End If
+  'Else
+  ' dgvFNCPSinCanceladas.DataSource = SQL.EjecutarProcedimiento("TPD_F_NC_P_Cancelados2", "@FechaInicio,@FechaFin", 2, dtpFechaInicio.Value.ToString("yyyy-MM-dd") + "," + dtpFechaFin.Value.ToString("yyyy-MM-dd"))
+  ' If dgvFNCPSinCanceladas.Rows.Count <> 0 Then
+  '  Dim column As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("MONTO TOTAL")
+  '  column.DefaultCellStyle.Format = "C2"
+  '  column.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
+
+  '  Dim column2 As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("DocSAP")
+  '  'column2.DefaultCellStyle.Format = "C2"
+  '  column2.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
+  '  column2.DefaultCellStyle.ForeColor = Color.DarkRed
+
+  '  Dim column3 As DataGridViewColumn = dgvFNCPSinCanceladas.Columns("Documento")
+  '  'column3.DefaultCellStyle.Format = "C2"
+  '  column3.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
+  '  'column3.DefaultCellStyle.ForeColor = Color.DarkRed
+
+  ' End If
+  'End If
   'FormatoDGV()
  End Sub
 

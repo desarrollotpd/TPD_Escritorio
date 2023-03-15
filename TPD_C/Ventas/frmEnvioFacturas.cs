@@ -8,8 +8,12 @@
  using System.Net.Mail;
  using System.Net;
  using System.IO;
+using CrystalDecisions.ReportAppServer;
+using DocumentFormat.OpenXml.Math;
+using Microsoft.Office.Interop.Excel;
+using System.Data.Odbc;
 
- //private System.Windows.Forms.DataGridViewCheckBoxColumn Select;
+//private System.Windows.Forms.DataGridViewCheckBoxColumn Select;
 
  namespace TPD_C.Ventas
  {
@@ -79,19 +83,54 @@
          Tabla = "ORCT";
        }
 
-       String ObtenRutaXML = " CASE WHEN T0.CreateDate < '2019-02-13' OR T0.CreateDate > '2020-07-27' THEN " +
-                             " substring(convert(nvarchar(4), T0.CreateDate, 112), 1, 5) + '-' + substring(convert(nvarchar(6), T0.CreateDate, 112), 5, 7) + '\\' + T0.CardCode + '\\' " +
-                             CarpetaAnterior +
-                             " (SELECT eccc2.ReportID FROM SBO_TPD.dbo.ECM2 eccc2 WHERE eccc2.SrcObjAbs = T0.DocEntry and eccc2.SrcObjType = " + SrcObjType + ")" +
-                             " ELSE" +
-                             " '" + CarpetaNueva + "' + '\\' + convert(varchar(4), year(T0.CreateDate)) + '\\'" +
-                             " + convert(varchar(2), month(T0.CreateDate)) + '\\'" +
-                             " + convert(varchar(2), day(T0.CreateDate)) + '\\'" +
-                             " + (SELECT series.SeriesName + convert(varchar, docto.DocNum) as ReportID FROM SBO_TPD.dbo." + Tabla + " docto INNER JOIN SBO_TPD.dbo.NNM1 series ON docto.Series = series.Series WHERE docto.DocNum = T0.DocNum and docto.ObjType = " + SrcObjType + ")" +
-                             " END" +
-                             " + '.xml' as 'EDocNum'";
+   //String ObtenRutaXML2 = " CASE WHEN T0.CreateDate < '2019-02-13' OR T0.CreateDate > '2020-07-27' THEN " +
+   //                      " substring(convert(nvarchar(4), T0.CreateDate, 112), 1, 5) + '-' + substring(convert(nvarchar(6), T0.CreateDate, 112), 5, 7) + '\\' + T0.CardCode + '\\' " +
+   //                      CarpetaAnterior +
+   //                      " (SELECT eccc2.ReportID FROM SBO_TPD.dbo.ECM2 eccc2 WHERE eccc2.SrcObjAbs = T0.DocEntry and eccc2.SrcObjType = " + SrcObjType + ")" +
+   //                      " ELSE" +
+   //                      " '" + CarpetaNueva + "' + '\\' + convert(varchar(4), year(T0.CreateDate)) + '\\'" +
+   //                      " + convert(varchar(2), month(T0.CreateDate)) + '\\'" +
+   //                      " + convert(varchar(2), day(T0.CreateDate)) + '\\'" +
+   //                      " + (SELECT series.SeriesName + convert(varchar, docto.DocNum) as ReportID FROM SBO_TPD.dbo." + Tabla + " docto INNER JOIN SBO_TPD.dbo.NNM1 series ON docto.Series = series.Series WHERE docto.DocNum = T0.DocNum and docto.ObjType = " + SrcObjType + ")" +
+   //                      " END" +
+   //                      " + '.xml' as 'EDocNum'";
 
-       return ObtenRutaXML;
+			String ObtenRutaXML = " CASE WHEN T0.CreateDate > '2019-02-13' AND T0.CreateDate < '2020-07-27' THEN " +
+																									" substring(convert(nvarchar(4), T0.CreateDate, 112), 1, 5) + '-' + substring(convert(nvarchar(6), T0.CreateDate, 112), 5, 7) + '\\' + T0.CardCode + '\\' " +
+																									CarpetaAnterior +
+																									" (SELECT eccc2.ReportID FROM SBO_TPD.dbo.ECM2 eccc2 WHERE eccc2.SrcObjAbs = T0.DocEntry and eccc2.SrcObjType = " + SrcObjType + ")" +
+																									" ELSE" + //En este caso considerara la  nueva ruta \\Servidordell\b1_shr\xml\TPD051215UZ1\INV...
+																									" '" + CarpetaNueva + "' + '\\' + convert(varchar(4), year(T0.CreateDate)) + '\\'" +
+																									" + convert(varchar(2), month(T0.CreateDate)) + '\\'" +
+																									" + convert(varchar(2), day(T0.CreateDate)) + '\\'" +
+																									" + (SELECT series.SeriesName + convert(varchar, docto.DocNum) as ReportID FROM SBO_TPD.dbo." + Tabla + " docto INNER JOIN SBO_TPD.dbo.NNM1 series ON docto.Series = series.Series WHERE docto.DocNum = T0.DocNum and docto.ObjType = " + SrcObjType + ")" +
+																									" END" +
+																									" + '.xml' as 'EDocNum'";
+
+			//String ObtenRutaXML = " CASE WHEN T0.CreateDate < '2019-02-13' AND T0.CreateDate > '2020-07-27' THEN " +
+			//                     " substring(convert(nvarchar(4), T0.CreateDate, 112), 1, 5) + '-' + substring(convert(nvarchar(6), T0.CreateDate, 112), 5, 7) + '\\' + T0.CardCode + '\\' " +
+			//                      CarpetaAnterior +
+			//                      " (SELECT eccc2.ReportID FROM SBO_TPD.dbo.ECM2 eccc2 WHERE eccc2.SrcObjAbs = T0.DocEntry and eccc2.SrcObjType = " + SrcObjType + ")" +
+
+			//                     //T0.CreateDate >= '2020-07-27' AND T0.CreateDate < '2023-02-23'
+			//                     " WHEN T0.CreateDate >= '2020-07-27' AND T0.CreateDate < '2023-02-21' THEN " +
+			//                     " '" + CarpetaNueva + "' + '\\' + convert(varchar(4), year(T0.CreateDate)) + '\\'" +
+			//                     " + convert(varchar(2), month(T0.CreateDate)) + '\\'" +
+			//                     " + convert(varchar(2), day(T0.CreateDate)) + '\\'" +
+			//                     " + (SELECT series.SeriesName + convert(varchar, docto.DocNum) as ReportID FROM SBO_TPD.dbo." + Tabla + " docto INNER JOIN SBO_TPD.dbo.NNM1 series ON docto.Series = series.Series WHERE docto.DocNum = T0.DocNum and docto.ObjType = " + SrcObjType + ")" +
+
+			//                      //>= '2023-02-23'
+			//                      " WHEN T0.CreateDate >= '2023-02-21' THEN " +
+			//                      "substring(convert(nvarchar(4),T0.DocDate ,112),1,5) + '-' + substring(convert(nvarchar(6),T0.DocDate,112),5,7) + '\\' + " +
+			//                      "T0.CardCode + '\\' + case when T0.ObjType = 13 then  'IN\\' else 'CM\\' END + " +
+			//                      "(CASE WHEN T0.DocDate < '2019-02-13' THEN" +
+			//                      " (SELECT eccc2.ReportID FROM SBO_TPD.dbo.ECM2 eccc2 WHERE eccc2.SrcObjAbs = T0.DocEntry and eccc2.SrcObjType = 13)" +
+			//                      "ELSE" +
+			//                      " (SELECT eccc2.U_BXP_UUID as ReportID FROM SBO_TPD.dbo.OINV eccc2 WHERE eccc2.DocNum = T0.DocNum and eccc2.ObjType = 13)" +
+			//                      "END)" +
+			//																						" END + '.xml' as 'EDocNum' ";
+
+			     return ObtenRutaXML;
        }
 
      //BOTON DE BUSQUEDA FACTURA POR CLIENTE.
@@ -144,8 +183,6 @@
          }
          //ALMACENA LA CONSULTA
          //VALIDA QUE CONSULTE TODOS LOS TIPOS DE DOCUMENTO
-
-            
 
          if (cmbTipoDoc.SelectedIndex == 3) {
              //OBTIENE LOS XML DE FACTURAS
@@ -478,7 +515,8 @@
          string E_Mail = "";
          string CardName = "";
          string _rutaPDF; // ALMACENA LA RUTA DEL PDF
-         string _rutaXML; //ALAMACENA LA RUTA DEL XML
+			      string _rutaPDF_Server; // ALMACENA LA RUTA DEL PDF
+			      string _rutaXML; //ALAMACENA LA RUTA DEL XML
          String correo1 = ""; //VARIABLE PARA ALMACENAR LOS  CORREOS
          DateTime fecha11082018 = Convert.ToDateTime("2018-08-11").Date; //VARIABLES PARA VALIDAR QUE FORMATO CREAR
          DateTime fecha01082018 = Convert.ToDateTime("2018-08-01").Date;
@@ -532,25 +570,25 @@
                       DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\Factura 3.3-93_6AddOn9NF2020.rpt"); //Formato post Migracion AGo 2020
                      }
 
-                 //VALIDA QUE SOLO SEAN NOTAS DE CREDITO
-                 }else if (Tipo == "NC")
-                 {
-                     if (DocDate <= fecha11082018){
-                         DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\TPD\NC 3_3 19ABR2018.rpt"); //RUTA DEL ARCHIVO .rpt
-                     }else if (DocDate < fechaMigracionAgo2020){
-                         DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\TPD\NC 3.3_93_05.rpt"); //ruta del archivo .rpt
-                     }
-                     else if (DocDate >= fechaMigracionCFDI_40)
+                     //VALIDA QUE SOLO SEAN NOTAS DE CREDITO
+                     }else if (Tipo == "NC")
                      {
-                        DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\NC_Abr2023_4.0.rpt"); //ruta del archivo para migracion CFDI 4.0
-                     }
-                     else
-                     {
-                        DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\NC 3.3-93_6AddOn9NF2020.rpt"); //Formato post Migracion AGo 2020
-                     }
+                       if (DocDate <= fecha11082018){
+                           DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\TPD\NC 3_3 19ABR2018.rpt"); //RUTA DEL ARCHIVO .rpt
+                       }else if (DocDate < fechaMigracionAgo2020){
+                           DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\TPD\NC 3.3_93_05.rpt"); //ruta del archivo .rpt
+                       }
+                       else if (DocDate >= fechaMigracionCFDI_40)
+                       {
+                          DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\NC_4.0_14.rpt"); //ruta del archivo para migracion CFDI 4.0
+                       }
+                       else
+                       {
+                          DocFacturas.Load(@"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD\NC 3.3-93_6AddOn9NF2020.rpt"); //Formato post Migracion AGo 2020
+                       }
 
-                 //VALIDA QUW SOLO SEAN PAGOS
-                 }else if (Tipo == "P"){
+                     //VALIDA QUW SOLO SEAN PAGOS
+                     }else if (Tipo == "P"){
                      //VALIDA LA FECHA PARA VER QUE FORMATO SE TENDRA QUE EJECUTAR
                      if (DocDate >= fecha01082018 & DocDate < fechaMigracionAgo2020){
                          //CARGA EL FORMATO DE CRYSTAL REPORTS DE LOS PAGOS
@@ -586,9 +624,10 @@
 
                  //ALMACENA RUTA DE XML
                  _rutaXML = @"\\" + conexion.RutaReportes + @"\b1_shr\xml\TPD051215UZ1\" + EDocNum;
+                 _rutaPDF_Server = _rutaXML.Replace(".xml", ".pdf");
 
-                 //Valido que exista el archvo, en caso contrario elimino o aviso
-                 if (File.Exists(_rutaXML) == false){
+																	//Valido que exista el archvo, en caso contrario elimino o aviso
+																	if (File.Exists(_rutaXML) == false){
                    if (MessageBox.Show("No se pudo localizar el archivo XML, el archivo no será enviado, desea continuar con el envío del archivo PDF?", "Desea continuar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No ){
                      DocFacturas.Close();
 																					createPDF_OK = false;
@@ -597,25 +636,32 @@
                    EDocNum = "";
                  }
 
-                 //GENERA PDF EN CARPETA TEMPORAL
-                 try
-                 {
-                     //ALMACENA EL PDF EN LA RUTA TEMPORAL
-                     DocFacturas.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, _rutaPDF);
-                     createPDF_OK = true;
-                 }
-                 catch (Exception ex)
-                 {
-                     MessageBox.Show("No se pudo crear el archivo PDF: " + _rutaPDF, "Error en PDF", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                     createPDF_OK = false;
-						goto Siguiente;
-                     //DocFacturas.Close();
-                     //return;
+                 //GENERA PDF DESDE EL SERVIDOR PARA VER SI DE AHI LO PUEDO TOMAR
 
-                 }
+                 if (File.Exists(_rutaPDF_Server) == false)
+                 {
+                  try
+                  {
+                   //ALMACENA EL PDF EN LA RUTA TEMPORAL
+                   DocFacturas.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, _rutaPDF);
+                   createPDF_OK = true;
+                  }
+                  catch (Exception ex)
+                  {
+                   MessageBox.Show("No se pudo crear el archivo PDF: " + _rutaPDF, "Error en PDF", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                   createPDF_OK = false;
+                   goto Siguiente;
+                   //DocFacturas.Close();
+                   //return;
 
-                 //ADJUNTAR LOS ARCHIVOS PDF'S Y XML'S
-                 try
+                  }
+                 }
+                 else
+                  _rutaPDF = _rutaPDF_Server;
+
+
+																	//ADJUNTAR LOS ARCHIVOS PDF'S Y XML'S
+																	try
                  {
                      System.Net.Mail.Attachment ArchiveRutaPDF = new System.Net.Mail.Attachment(_rutaPDF);
                      msg.Attachments.Add(ArchiveRutaPDF);
@@ -684,23 +730,34 @@
          //msg.AlternateViews.Add(planview);
          msg.AlternateViews.Add(htmlview);
 
-         //DIRECCION DE EMISOR DEL CORREO
-         msg.From = new System.Net.Mail.MailAddress("facturacion@tractopartesdiamante.com.mx", "Tracto Partes Diamante de Puebla");//Remitente
+         infMail inf = new infMail();
 
-         //SE CREA EL CLIENTE DE SMTP DEL CORREO
-         System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
-         //ESPECIFICA EL SERVIDOR DEL HOST ENVIANTE
-         client.Host = "mail.tractopartesdiamante.com.mx";
-         //ASIGNA AL CLIENTE  EL PUERTO 26 DE USO
-         client.Port = 26;
-         //client.EnableSsl = true; -- no tenemos SSL
-         //QUE EL EMISOR SIEMPRE SOLICITE LA CONTRASEÑA
-         client.UseDefaultCredentials = true;
-         //client.Credentials = new NetworkCredential("CorreoRemitente", "Contraseña");
-         client.Credentials = new NetworkCredential("facturacion@tractopartesdiamante.com.mx", "%dfHt_XV2PT3O0&_kglDsX$5"); //EMISOR Y CONTRASEÑA DEL CORREO
-         //CIERRA EL DOCUEMTNO DE RPT
-         DocFacturas.Close();
+         if (inf.getStatus().Equals(false)){
+				       MessageBox.Show(inf.getError(), "Error en configuración de cuenta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				       send_OK = false;
+				       return false;
+			      }
 
+			      //DIRECCION DE EMISOR DEL CORREO
+			      //msg.From = new System.Net.Mail.MailAddress("facturacion@tractopartesdiamante.com.mx", "Tracto Partes Diamante de Puebla");//Remitente
+			      msg.From = new System.Net.Mail.MailAddress(inf.getEmail(), "Tracto Partes Diamante de Puebla");//Remitente
+																																																																																																																													      //SE CREA EL CLIENTE DE SMTP DEL CORREO
+			      System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+			      //ESPECIFICA EL SERVIDOR DEL HOST ENVIANTE
+			      //client.Host = "mail.tractopartesdiamante.com.mx";
+			      client.Host = inf.getHost();
+
+			      //ASIGNA AL CLIENTE  EL PUERTO 26 DE USO
+			      //client.Port = 26;
+			      client.Port = inf.getPort();
+			      client.EnableSsl = inf.getSeguridad(); //-- no tenemos SSL
+			      //QUE EL EMISOR SIEMPRE SOLICITE LA CONTRASEÑA
+			      client.UseDefaultCredentials = true;
+			      //client.Credentials = new NetworkCredential("CorreoRemitente", "Contraseña");
+			      //client.Credentials = new NetworkCredential("facturacion@tractopartesdiamante.com.mx", "%dfHt_XV2PT3O0&_kglDsX$5"); //EMISOR Y CONTRASEÑA DEL CORREO
+			      client.Credentials = new NetworkCredential(inf.getEmail(), inf.getPassword()); //EMISOR Y CONTRASEÑA DEL CORREO
+																																																																																																																						      //CIERRA EL DOCUEMTNO DE RPT
+			      DocFacturas.Close();
          try
          {
              //REALIZA EL ENVIO DEL CORREO
